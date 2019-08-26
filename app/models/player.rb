@@ -7,6 +7,8 @@ class Player < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
 
+  private
+
   def set_defaults
     self.is_alive  = true
   end
