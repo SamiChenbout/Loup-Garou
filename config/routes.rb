@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :lover_couples, only: [:create, :destroy]
     resources :messages, only: [:index, :create]
     resources :game_event, only: [:create, :destroy]
-    get "/games/find", to: "games#find_game"
   end
+  get "/find", to: "games#find_game"
 end
