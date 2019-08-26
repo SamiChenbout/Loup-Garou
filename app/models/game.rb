@@ -2,7 +2,7 @@ class Game < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
   has_one :lover_couple, through: :players
-  has_many :playersS
+  has_many :players
 
   private
 
