@@ -7,5 +7,4 @@ class GameEvent < ApplicationRecord
   validates :game, presence: true
   validates :actor, presence: true
   validates :target, presence: true
-
 end
