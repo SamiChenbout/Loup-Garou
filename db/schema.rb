@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_130101) do
   end
 
   add_foreign_key "game_events", "games"
-  add_foreign_key "game_events", "users", column: "actor_id"
-  add_foreign_key "game_events", "users", column: "target_id"
+  add_foreign_key "game_events", "players", column: "actor_id"
+  add_foreign_key "game_events", "players", column: "target_id"
   add_foreign_key "lover_couples", "users", column: "lover1_id"
   add_foreign_key "lover_couples", "users", column: "lover2_id"
   add_foreign_key "messages", "games"
