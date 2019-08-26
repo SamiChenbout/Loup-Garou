@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
     resources :game_event, only: [:create, :destroy]
   end
-  get "/find", to: "games#find_game"
+    get "/find", to: "games#find_game"
 end
