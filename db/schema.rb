@@ -10,10 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_121939) do
+ActiveRecord::Schema.define(version: 2019_08_26_130101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "characters", force: :cascade do |t|
+    t.string "photo"
+    t.string "description"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "game_events", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "actor_id"
+    t.bigint "target_id"
+    t.string "event_type"
+    t.integer "round"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_game_events_on_actor_id"
+    t.index ["game_id"], name: "index_game_events_on_game_id"
+    t.index ["target_id"], name: "index_game_events_on_target_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.boolean "is_day"
+    t.integer "round"
+    t.string "step"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lover_couples", force: :cascade do |t|
+    t.bigint "lover1_id"
+    t.bigint "lover2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lover1_id"], name: "index_lover_couples_on_lover1_id"
+    t.index ["lover2_id"], name: "index_lover_couples_on_lover2_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "player_id"
+    t.text "content"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_messages_on_game_id"
+    t.index ["player_id"], name: "index_messages_on_player_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "character_id"
+    t.boolean "is_alive"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_players_on_character_id"
+    t.index ["game_id"], name: "index_players_on_game_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +83,21 @@ ActiveRecord::Schema.define(version: 2019_08_26_121939) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "description"
+    t.string "picture"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "game_events", "games"
+  add_foreign_key "game_events", "users", column: "actor_id"
+  add_foreign_key "game_events", "users", column: "target_id"
+  add_foreign_key "lover_couples", "users", column: "lover1_id"
+  add_foreign_key "lover_couples", "users", column: "lover2_id"
+  add_foreign_key "messages", "games"
+  add_foreign_key "messages", "players"
+  add_foreign_key "players", "characters"
+  add_foreign_key "players", "games"
+  add_foreign_key "players", "users"
 end
