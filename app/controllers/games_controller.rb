@@ -12,4 +12,15 @@ class GamesController < ApplicationController
     @game.destroy
     redirect_to root_path
   end
+
+  def find_game
+    if Game.where(step: "waiting") != nil
+      @game = Game.where(step: "waiting").first
+      @player = Player.new(user: current_user, game: @game)
+    else
+      @game = Game.new
+      @player = Player.new(user: current_user, game: @game)
+    end
+    redirect_to game_path(@game)
+  end
 end
