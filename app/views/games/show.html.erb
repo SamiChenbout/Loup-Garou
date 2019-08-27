@@ -1,13 +1,13 @@
 <% if @game.step == "waiting" %>
-<h1>I am the game room n°<%= @game.id %></h1>
+  <h1>I am the game room n°<%= @game.id %></h1>
 
-<h2>Players : <%= @game.players.count %> / 6</h2>
-<h2>Last User : <%= Player.where(user: current_user, game: @game).last.character.name %></h2>
-<h2><% @game.players.each { |lol| %> <%= lol.character.name %>, <% } %></h2>
+  <h2>Players : <%= @game.players.count %> / 6</h2>
+  <h2>Last User : <%= Player.where(user: current_user, game: @game).last.character.name %></h2>
+  <h2><% @game.players.each { |lol| %> <%= lol.character.name %>, <% } %></h2>
 
 <% else %>
-<h1>I am the FULL game room n°<%= @game.id %></h1>
-<h2>Players : <%= @game.players.count %> / 6</h2>
+  <h1>I am the FULL game room n°<%= @game.id %></h1>
+  <h2>Players : <%= @game.players.count %> / 6</h2>
   <% if @game.is_day? %>
     <!-- ChatRoom OMG-->
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
