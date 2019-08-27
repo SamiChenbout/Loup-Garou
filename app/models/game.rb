@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   has_one :lover_couple, through: :players
   has_many :players
   has_many :users, through: :players
+  has_many :characters, through: :players
 
   private
 
