@@ -4,7 +4,8 @@ class Player < ApplicationRecord
   belongs_to :game
 
   has_many :messages, dependent: :destroy
-  has_many :game_events, dependent: :destroy
+  has_many :actor_game_events, class_name: "GameEvent", foreign_key: "actor_id",dependent: :destroy
+  has_many :target_game_events, class_name: "GameEvent", foreign_key: "target_id",dependent: :destroy
 
   # validates :user, presence: true, uniqueness: true
 
