@@ -7,6 +7,5 @@ class Character < ApplicationRecord
 
   validates :name, presence: true
   validates_inclusion_of :name, :in => VALID_NAMES
-  validates :description, prensence: true
   validates :name, presence:true, uniqueness: true
 end
