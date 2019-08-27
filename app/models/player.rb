@@ -2,7 +2,9 @@ class Player < ApplicationRecord
   belongs_to :user
   belongs_to :character
   belongs_to :game
-  has_many :game_events
+
+  has_many :messages, dependent: :destroy
+  has_many :game_events, dependent: :destroy
 
   # validates :user, presence: true, uniqueness: true
 

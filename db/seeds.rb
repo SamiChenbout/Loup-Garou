@@ -6,11 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Player.destroy_all
 Character.destroy_all
 Game.destroy_all
-Player.destroy_all
 User.destroy_all
 
+puts 'Seeding characters...'
 loup1 = Character.new(name: "loup", description: "Il est méchant")
 loup2 = Character.new(name: "loup", description: "Il est méchant")
 voyante = Character.new(name: "voyante", description: "Il est gentil")
@@ -25,6 +26,7 @@ sorciere.save
 chasseur.save
 cupidon.save
 
+puts 'Seeding users...'
 user1 = User.new(username: "User1", email: "User1@mail.fr", password: "password")
 user2 = User.new(username: "User2", email: "User2@mail.fr", password: "password")
 user3 = User.new(username: "User3", email: "User3@mail.fr", password: "password")
@@ -37,10 +39,11 @@ user3.save
 user4.save
 user5.save
 
-
+puts 'Seeding a game...'
 game = Game.new
 game.save
 
+puts 'Seeding players...'
 player1 = Player.new(user: user1, character: loup1, game: game)
 player2 = Player.new(user: user2, character: loup2, game: game)
 player3 = Player.new(user: user3, character: voyante, game: game)
@@ -52,3 +55,5 @@ player2.save
 player3.save
 player4.save
 player5.save
+
+puts 'Seed has been done'

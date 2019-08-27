@@ -1,6 +1,8 @@
 class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
+    @message = Message.new
+
     @gamer = Player.where(user: current_user, game: @game).first
     @all_except_me = @game.players
 
