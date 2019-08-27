@@ -25,8 +25,4 @@ class GamesController < ApplicationController
       @player.save
       redirect_to game_path(@game)
   end
-
-  def starting
-    if Game.where(step: "waiting").players
-  end
 end
