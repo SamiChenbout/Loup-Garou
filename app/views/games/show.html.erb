@@ -10,10 +10,28 @@
 <h2>Players : <%= @game.players.count %> / 6</h2>
   <% if @game.is_day? %>
     <!-- ChatRoom OMG-->
-  <% else %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-      <%= f.input :target, as: :check_boxes, collection: @all_except_me.map { |target| target.user.username } %>
+      <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
       <%= f.button :submit %>
+    <% end %>
+  <% else %>
+    <% if @game.round == 1 %>
+      <% if @gamer.character.name == "cupidon" %>
+        <%= simple_form_for([@game, LoverCouple.new]) do |f| %>
+          <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
+          <%= f.button :submit %>
+        <% end %>
+      <% elsif @gamer.character.name != "chasseur" %>
+        <%= simple_form_for([@game, GameEvent.new]) do |f| %>
+          <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
+          <%= f.button :submit %>
+        <% end %>
+      <% end %>
+    <% elsif @gamer.character.name == "loup" || @gamer.character.name == "voyante" %>
+        <%= simple_form_for([@game, GameEvent.new]) do |f| %>
+          <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
+          <%= f.button :submit %>
+        <% end %>
     <% end %>
   <% end %>
 <% end %>
