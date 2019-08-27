@@ -94,8 +94,13 @@ ActiveRecord::Schema.define(version: 2019_08_27_111810) do
   add_foreign_key "game_events", "games"
   add_foreign_key "game_events", "players", column: "actor_id"
   add_foreign_key "game_events", "players", column: "target_id"
+<<<<<<< HEAD
   add_foreign_key "lover_couples", "users", column: "lover1_id"
   add_foreign_key "lover_couples", "users", column: "lover2_id"
+=======
+  add_foreign_key "lover_couples", "players", column: "lover1_id"
+  add_foreign_key "lover_couples", "players", column: "lover2_id"
+>>>>>>> 47a2fe63d88534a0f08194d75004388e1673f6dd
   add_foreign_key "messages", "games"
   add_foreign_key "messages", "players"
   add_foreign_key "players", "characters"
