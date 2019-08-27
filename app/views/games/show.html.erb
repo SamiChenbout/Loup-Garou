@@ -7,3 +7,6 @@
 </div>
 
 <%= render 'messages/form', game: @game, message: @message %>
+
+<!-- Ad hoc div to pass game id and user id to Action Cable -->
+<div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
