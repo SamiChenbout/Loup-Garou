@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_130101) do
+ActiveRecord::Schema.define(version: 2019_08_27_111810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_130101) do
     t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points"
     t.index ["character_id"], name: "index_players_on_character_id"
     t.index ["game_id"], name: "index_players_on_game_id"
     t.index ["user_id"], name: "index_players_on_user_id"
@@ -91,8 +92,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_130101) do
   end
 
   add_foreign_key "game_events", "games"
-  add_foreign_key "game_events", "players", column: "actor_id"
-  add_foreign_key "game_events", "players", column: "target_id"
+  add_foreign_key "game_events", "users", column: "actor_id"
+  add_foreign_key "game_events", "users", column: "target_id"
   add_foreign_key "lover_couples", "players", column: "lover1_id"
   add_foreign_key "lover_couples", "players", column: "lover2_id"
   add_foreign_key "messages", "games"
