@@ -1,5 +1,9 @@
 <h1>I am the game room n°<%= @game.id %></h1>
 
-<h2>Players : <%= @game.players.length %> / 6</h2>
-<h2>First User : <%= Player.where(user: current_user).character.name %></h2>
+<div id="messages">
+  <% @game.messages.each do |message| %>
+    <%= render 'messages/show', message: message %>
+  <% end %>
+</div>
 
+<%= render 'messages/form', game: @game, message: @message %>

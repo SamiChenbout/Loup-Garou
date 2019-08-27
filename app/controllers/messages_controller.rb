@@ -5,11 +5,15 @@
   end
 
   def create
+    @game = Game.find(params[:game_id])
+    @player = @game.players.where(user_id: current_user.id)[0]
     @message = Message.new(message_params)
+    @message.game = @game
+    @message.player = @player
     if @message.save
-      redirect_to user_path(@message)
+      redirect_to game_path(@game)
     else
-      render new
+      render 'games/show'
     end
   end
 
