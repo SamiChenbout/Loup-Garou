@@ -1,9 +1,25 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-4 offset-4"></div>
-      <h1>Le loup-garou mobile</h1>
-      <div class="button btn btn-primary"><%= link_to 'JOIN A GAME', find_path %></div>
+ <div class="container">
+    <div class="flex-box d-flex flex-column">
+      <div class="play-wolf text-center">
+        <div id="werewolf" class="">
+            <%= image_tag "Werewolf.png" %>
+        </div>
+        <div id="play" class="">
+          <%= link_to find_path  do %>
+            <%= image_tag "Play.png" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
+  <div id="settings">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "Settings.png" %>
+      <% end %>
+  </div>
+  <div id="rules">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "Rules.png" %>
+      <% end %>
+  </div>

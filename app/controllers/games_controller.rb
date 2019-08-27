@@ -2,6 +2,16 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @message = Message.new
+
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+
+    @sorciere = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
+    @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
+    @cupidon = Player.where(game: @game, character: Character.where(name: "cupidon").first).first
+    @chasseur = Player.where(game: @game, character: Character.where(name: "chasseur").first).first
+    @loup1 = Player.where(game: @game, character: Character.where(name: "loup").first).first
+    @loup2 = Player.where(game: @game, character: Character.where(name: "loup").last).first
   end
 
   def create
@@ -15,26 +25,19 @@ class GamesController < ApplicationController
   end
 
   def find_game
-
     @characters = Character.all
     if Game.where(step: "waiting") != []
       @game = Game.where(step: "waiting").first
-      roles = @game.characters if @game.characters != nil
-      @characters -= roles if @game.characters != nil
+      roles = @game.characters
+      @characters -= roles
       @player = Player.new(user: current_user, game: @game, character: @characters.sample)
     else
       @game = Game.new
       @player = Player.new(user: current_user, game: @game, character: @characters.sample)
     end
-      @game.save
-      @player.save
-      redirect_to game_path(@game)
-  end
-
-  def starting
-    @waiting_games = Game.where(step: "waiting")
-    @waiting_games.each do |game|
-      game.step = "starting" if game.players.count > 5
-    end
+    @game.save
+    @player.save
+    @game.update(step: "starting") if @game.players.count > 5
+    redirect_to game_path(@game)
   end
 end
