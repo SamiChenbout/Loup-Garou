@@ -14,20 +14,20 @@ class GamesController < ApplicationController
   end
 
   def find_game
-    characters = %w(Loup Sorciere Chasseur Voyante Cupidon)
-    character = characters.select
-    characters.delete(character)
+
+    characters = Character.all
     if Game.where(step: "waiting") != []
       @game = Game.where(step: "waiting").first
+      roles = @game.characters if @game.characters != nil
+      characters -= roles
       @player = Player.new(user: current_user, game: @game)
-      @player.character = character
     else
       @game = Game.new
       @player = Player.new(user: current_user, game: @game)
-      @player.character = character
     end
-      @game.save!
-      @player.save!
+      @game.save
+      @player.character = characters.sample
+      @player.save
       redirect_to game_path(@game)
   end
 
