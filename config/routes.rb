@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :players, except: [:edit, :new]
     resources :lover_couples, only: [:create, :destroy]
     resources :messages, only: [:index, :create]
-    resources :game_event, only: [:create, :destroy]
+    resources :game_events, only: [:create, :destroy]
   end
     get "/find", to: "games#find_game"
 end

@@ -1,31 +1,24 @@
 class GameEventsController < ApplicationController
-
-  def new
-    @game_event = Game_event.new
-  end
-
   def create
     @game = Game.find(params[:game_id])
-    @game_event = Game_event.new(game_event_params)
+    @user = User.find_by(username: params["game_event"]["target"].last)
+    @game_event = GameEvent.new(target: Player.find_by(user: @user))
     @game_event.game = @game
     @game_event.round = @game.round
-    @actor = current_user
+    @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
+    if @game.is_day?
+      @game_event.event_type = "villageois-vote"
+    else
+      @game_event.event_type = "sorciere-kill" if @actor.character.name == "sorciere"
+      @game_event.event_type = "spy" if @actor.character.name == "voyante"
+      @game_event.event_type = "loup-vote" if @actor.character.name == "loup"
+    end
     @game_event.save
+    redirect_to game_path(@game)
   end
 
   def destroy
     @game_event.destroy
   end
-
-  def event_type
-    #CODE THIS SHIT LATER
-  end
-
-  private
-
-  def game_event_params
-    params.require(:game_event).permit(:target)
-  end
-
 end

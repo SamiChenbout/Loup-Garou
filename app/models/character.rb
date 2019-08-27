@@ -6,5 +6,5 @@ class Character < ApplicationRecord
   has_many :users, through: :players
 
   validates_inclusion_of :name, :in => VALID_NAMES
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 end
