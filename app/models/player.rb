@@ -3,7 +3,7 @@ class Player < ApplicationRecord
   belongs_to :character
   belongs_to :game
 
-  validates :user, presence: true, uniqueness: true
+  # validates :user, presence: true, uniqueness: true
 
   after_initialize :set_defaults, unless: :persisted?
 

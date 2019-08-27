@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Character.destroy_all
+Game.destroy_all
+Player.destroy_all
 
 Character.new(name: "loup", description: "Il est méchant").save
 Character.new(name: "loup", description: "Il est méchant").save
