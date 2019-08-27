@@ -1,4 +1,4 @@
-<%= simple_form_for([ game, message ]) do |f| %>
+<%= simple_form_for([ game, message ], remote: true) do |f| %>
   <%= f.input :content, as: :text %>
   <%= f.button :submit, "Send" %>
 <% end %>

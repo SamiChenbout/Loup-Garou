@@ -11,9 +11,15 @@
     @message.game = @game
     @message.player = @player
     if @message.save
-      redirect_to game_path(@game)
+      respond_to do |format|
+        format.html { redirect_to game_path(@game) }
+        format.js
+      end
     else
-      render 'games/show'
+      respond_to do |format|
+        format.html { render 'games/show' }
+        format.js
+      end
     end
   end
 
