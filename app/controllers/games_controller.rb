@@ -14,19 +14,27 @@ class GamesController < ApplicationController
   end
 
   def find_game
+    characters = %w(Loup Sorciere Chasseur Voyante Cupidon)
+    character = characters.select
+    characters.delete(character)
     if Game.where(step: "waiting") != []
       @game = Game.where(step: "waiting").first
       @player = Player.new(user: current_user, game: @game)
+      @player.character = character
     else
       @game = Game.new
       @player = Player.new(user: current_user, game: @game)
+      @player.character = character
     end
-      @game.save
-      @player.save
+      @game.save!
+      @player.save!
       redirect_to game_path(@game)
   end
 
   def starting
-    if Game.where(step: "waiting").players
+    @waiting_games = Game.where(step: "waiting")
+    @waiting_games.each do |game|
+      game.step = "starting" if game.players.count > 5
+    end
   end
 end
