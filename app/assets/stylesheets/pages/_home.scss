@@ -1,1 +1,40 @@
-// Specific CSS for your home-page
+.button {
+position: absolute;
+width: 10vw;
+height: 10vh;
+left: 45vw;
+top: 45vh;
+}
+
+
+#play img {
+position: absolute;
+width: 20vw;
+height: 10vh;
+left: 40vw;
+bottom: 30vh;
+}
+
+#settings img {
+position: absolute;
+width: 53px;
+height: 43px;
+left: 1vw;
+bottom: 5vh;
+}
+
+#rules img {
+position: absolute;
+width: 53px;
+height: 43px;
+right: 1vw;
+bottom: 4vh;
+}
+
+#werewolf img {
+position: absolute;
+width: 300px;
+height: 300px;
+right: 39vw;
+bottom: 45vh;
+}
