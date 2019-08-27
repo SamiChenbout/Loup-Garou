@@ -13,7 +13,6 @@ class PlayersController < ApplicationController
     @player = Player.new()
     @player.user = current_user
     Character::VALID_NAMES.
-    @player.character =
     # TODO: ASSIGN GAME
     # TODO: REDIRECT TO
   end
