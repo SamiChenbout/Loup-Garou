@@ -5,8 +5,8 @@ const cupidon = () => {
   }
 }
 
-const loup = () => {
-  if(document.querySelector('.loup')) {
+const loups = () => {
+  if(document.querySelector('.loups')) {
     randomLoupVote();
   }
 }
@@ -65,4 +65,4 @@ const chasseur = () => {
   }, 3000);
 }
 
-export { cupidon, voyante, chasseur };
+export { cupidon, voyante, chasseur, loups };
