@@ -86,4 +86,10 @@ class GameEventsController < ApplicationController
     @game.save
     redirect_to game_path(@game)
   end
+
+  def sorciere
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+  end
+
 end
