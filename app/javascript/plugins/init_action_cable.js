@@ -12,7 +12,6 @@ const initActionCable = () => {
         const currentUserId = parseInt(gameDiv.dataset.currentUserId, 10);
         if (data.current_user_id !== currentUserId) {
         document.getElementById("messages").insertAdjacentHTML('beforeend', data.message_partial);
-
       }}}
     )
   }

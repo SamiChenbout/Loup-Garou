@@ -12,7 +12,7 @@ class Message < ApplicationRecord
     ActionCable.server.broadcast("game_#{self.game.id}", {
       message_partial: ApplicationController.renderer.render(
         partial: "messages/show",
-        locals: { message: self } # user_is_messages_author: false
+        locals: { message: self }
       ),
       current_user_id: self.player.user.id
     })
