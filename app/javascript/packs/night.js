@@ -1,3 +1,26 @@
+const firstNight = () => {
+  if(document.querySelector('.firstNight')) {
+    // Cupidon First
+    document.querySelector('.cupidon').classList.remove('d-none');
+    randomCouple();
+    // Voyante
+    document.querySelector('.cupidon').classList.add('d-none');
+    document.querySelector('.voyante').classList.remove('d-none');
+    voyante();
+    // loup
+    document.querySelector('.voyante').classList.add('d-none');
+    document.querySelector('.loup').classList.remove('d-none');
+    loup();
+    // sorciere
+    document.querySelector('.loup').classList.add('d-none');
+    document.querySelector('.sorciere').classList.remove('d-none');
+    sorciere();
+    // le jour se leve !
+    document.querySelector('.sorciere').classList.add('d-none');
+  };
+}
+
+
 // Accessing game id
 const gameDiv = document.getElementById("connect-to-game-channel");
 if (gameDiv) {
@@ -34,3 +57,5 @@ const chasseur = () => {
     fetch(`/games/${game_id}/chasseur_random_kill`);
   }, 30000);
 }
+
+export { firstNight };
