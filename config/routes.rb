@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "/voyante_next_step", to: "game_events#voyante_next_step"
     get "/random_loup_vote", to: "game_events#random_loup_vote"
     get "/random_sorciere_vote", to: "game_events#random_sorciere_vote"
+    get "/loup_votes", to: "game_events#loup_votes"
   end
   get "/find", to: "games#find_game"
 end

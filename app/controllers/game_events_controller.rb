@@ -104,4 +104,11 @@ class GameEventsController < ApplicationController
     # round_step is not changing
     redirect_to game_path(@game)
   end
+
+  def loup_vote
+    game = Game.find(params[:id])
+    @message = Message.new
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
 end
