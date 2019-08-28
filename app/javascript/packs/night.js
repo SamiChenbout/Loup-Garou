@@ -37,4 +37,16 @@ const endOfNight = () => {
   document.querySelector('.endOfNight').innerHTML = "<% @game.update(is_day: true) %>";
 }
 
+const voyante = () => {
+  if (document.querySelector('.voyante').classList.contains('d-none')) {
+    GO TO NEXT STEP
+  else
+    setTimeout(function() {
+        document.querySelector('.voyante').classList.remove('d-none');
+      }, 15000);
+    }
+  }
+
+
+
 export { firstNight, otherNight, endOfNight };
