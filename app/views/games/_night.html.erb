@@ -6,14 +6,7 @@
     <% end %>
   <% end %>
 </div>
-<div class="voyante d-none">
-  <% if @gamer.character.name == "voyante" %>
-    <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-      <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-      <%= f.button :submit, class: "button" %>
-    <% end %>
-  <% end %>
-</div>
+
 <div class="loup d-none">
   <% if @gamer.character.name == "loup" %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
@@ -30,14 +23,7 @@
     <% end %>
   <% end %>
 </div>
-<div class="chasseur d-none">
-  <% if @gamer.character.name == "chasseur" %>
-    <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-      <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-      <%= f.button :submit, class: "button" %>
-    <% end %>
-  <% end %>
-</div>
+
 
 <% if @game.round == 1 %>
 <div class="firstNight"></div>

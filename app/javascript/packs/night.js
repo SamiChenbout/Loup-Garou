@@ -11,6 +11,18 @@ const loup = () => {
   }
 }
 
+const voyante = () => {
+  if(document.querySelector('.voyante')) {
+    randomCouple();
+  }
+}
+
+const chasseur = () => {
+  if(document.querySelector('.chasseur')) {
+    randomCouple();
+  }
+}
+
 // Default action calls if no action taken by user
 const randomCouple = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
@@ -53,4 +65,4 @@ const chasseur = () => {
   }, 3000);
 }
 
-export { cupidon };
+export { cupidon, voyante, chasseur };

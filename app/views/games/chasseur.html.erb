@@ -1,0 +1,11 @@
+<div class="chasseur d-none">
+  <% if @gamer.character.name == "chasseur" %>
+    <%= simple_form_for([@game, GameEvent.new]) do |f| %>
+      <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
+      <%= f.button :submit, class: "button" %>
+    <% end %>
+  <% end %>
+</div>
+
+ <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
+ <div class="chasseur"></div>
