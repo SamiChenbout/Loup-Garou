@@ -59,7 +59,7 @@ class GameEventsController < ApplicationController
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
-    @game_event.event_type = "Loup has designated a prey!"
+    @game_event.event_type = "loup-vote"
     @game_event.save
     # Setting game round_step
     if @game.round == 1
@@ -84,7 +84,7 @@ class GameEventsController < ApplicationController
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
-    @game_event.event_type = "Sorciere has used its death potion!"
+    @game_event.event_type = "sorciere-kill"
     @game_event.save
     # Setting game round_step
     # @game.round_step = "day"
@@ -104,7 +104,7 @@ class GameEventsController < ApplicationController
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
-    @game_event.event_type = "Chasseur has shot someone down !"
+    @game_event.event_type = "sorciere-kill"
     @game_event.save
     # round_step is not changing
     redirect_to game_path(@game)
