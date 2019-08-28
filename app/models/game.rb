@@ -1,11 +1,11 @@
 class Game < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
 
-  has_one :lover_couple, through: :players
-  has_many :players
+  has_many :players, dependent: :destroy
   has_many :users, through: :players
   has_many :characters, through: :players
   has_many :messages, dependent: :destroy
+  has_one :lover_couple, through: :players
 
   private
 
