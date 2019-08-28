@@ -22,11 +22,6 @@ class GameEventsController < ApplicationController
     @game_event.destroy
   end
 
-  def couple
-    @game = Game.find(params[:game_id])
-    @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
-  end
   # Actions triggered by default if no action taken
   def random_couple
     @game = Game.find(params[:game_id])
@@ -117,13 +112,27 @@ class GameEventsController < ApplicationController
     @all_except_me = @game.players
   end
 
+  def couple
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+
   def voyante
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+
+  def sorciere
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
   end
 
   def chasseur
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
   end
 end
