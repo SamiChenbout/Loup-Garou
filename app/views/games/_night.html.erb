@@ -4,30 +4,34 @@
       <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
       <%= f.button :submit, class: "button" %>
     <% end %>
+  <% end %>
 </div>
 <div class="voyante d-none">
-  <% elsif @gamer.character.name == "voyante" %>
+  <% if @gamer.character.name == "voyante" %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
       <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
       <%= f.button :submit, class: "button" %>
     <% end %>
+  <% end %>
 </div>
 <div class="loup d-none">
-  <% elsif @gamer.character.name == "loup" %>
+  <% if @gamer.character.name == "loup" %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
       <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
       <%= f.button :submit, class: "button" %>
     <% end %>
+  <% end %>
 </div>
 <div class="sorciere d-none">
-  <% elsif @gamer.character.name == "sorciere" %>
+  <% if @gamer.character.name == "sorciere" %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
       <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
       <%= f.button :submit, class: "button" %>
     <% end %>
+  <% end %>
 </div>
 <div class="chasseur d-none">
-  <% elsif @gamer.character.name == "chasseur" %>
+  <% if @gamer.character.name == "chasseur" %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
       <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
       <%= f.button :submit, class: "button" %>
