@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :lover_couples, only: [:create, :destroy]
     resources :messages, only: :create
     resources :game_events, only: [:create, :destroy]
+
+    post 'games/:game_id/random_loup_vote', to: 'game_events#random_loup_vote'
   end
     get "/find", to: "games#find_game"
 end

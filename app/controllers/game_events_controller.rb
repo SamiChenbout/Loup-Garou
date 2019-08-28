@@ -18,6 +18,21 @@ class GameEventsController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def random_loup_vote
+    @game = Game.find(params[:game_id])
+    @users = User.all
+    @users.delete(current_user)
+    @user = @users.sample
+    @game_event = GameEvent.new(target: Player.find_by(user: @user))
+    @game_event.game = @game
+    @game_event.round = @game.round
+    @actor = Player.where(game: @game, user: current_user).first
+    @game_event.actor = @actor
+    @game_event.event_type = "loup-vote"
+    @game_event.save
+    redirect_to game_path(@game)
+  end
+
   def destroy
     @game_event.destroy
   end

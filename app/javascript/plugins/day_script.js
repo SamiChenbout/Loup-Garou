@@ -1,0 +1,5 @@
+const dayScript = () => {
+
+}
+
+export { dayScript }

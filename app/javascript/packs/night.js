@@ -47,6 +47,15 @@ const voyante = () => {
     }
   }
 
+const loups = () => {
+  if (document.querySelector('.loups').classList.contains('d-none')) {
+    GO TO NEXT STEP
+  else
+    setTimeout(function() {
+        document.querySelector('.loups').classList.remove('d-none');
+      }, 30000);
+    }
+  }
 
 
 export { firstNight, otherNight, endOfNight };
