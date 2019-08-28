@@ -15,6 +15,7 @@ class PlayersController < ApplicationController
     Character::VALID_NAMES.
     # TODO: ASSIGN GAME
     # TODO: REDIRECT TO
+
   end
 
   def update

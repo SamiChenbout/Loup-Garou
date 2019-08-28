@@ -1,3 +1,4 @@
+LoverCouple.destroy_all
 GameEvent.destroy_all
 Message.destroy_all
 Player.destroy_all
