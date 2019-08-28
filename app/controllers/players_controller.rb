@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-
   before_action :set_player, only: [:show, :update, :destroy]
 
   def index
@@ -10,12 +9,11 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.new()
+    @player = Player.new
     @player.user = current_user
-    Character::VALID_NAMES.
+    Character::VALID_NAMES
     # TODO: ASSIGN GAME
     # TODO: REDIRECT TO
-
   end
 
   def update
@@ -33,5 +31,4 @@ class PlayersController < ApplicationController
   def set_player
     @player = Player.find(params[:id])
   end
-
 end
