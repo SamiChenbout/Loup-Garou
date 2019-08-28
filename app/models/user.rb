@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :players, dependent: :destroy
   has_many :messages, through: :players
   validates :email, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
 end

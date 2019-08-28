@@ -35,12 +35,14 @@ const endOfNight = () => {
   document.querySelector('.endOfNight').innerHTML = "<% @game.update(is_day: true) %>";
 }
 
+
 const voyante = () => {
+  document.querySelector('.voyante').classList.remove('d-none')
   if (document.querySelector('.voyante').classList.contains('d-none')) {
      //GO TO NEXT STEP
   else
     setTimeout(function() {
-        document.querySelector('.voyante').classList.remove('d-none');
+        document.querySelector('.voyante').classList.add('d-none');
       }, 15000);
     }
   }
