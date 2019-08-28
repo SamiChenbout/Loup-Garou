@@ -6,4 +6,4 @@ import { firstNight , otherNight, endOfNight } from "./night";
 mycheck();
 initActionCable();
 firstNight();
-night();
+otherNight();
