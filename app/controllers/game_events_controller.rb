@@ -82,7 +82,7 @@ class GameEventsController < ApplicationController
     @game_event.event_type = "Sorciere has used its death potion!"
     @game_event.save
     # Setting game round_step
-    @game.round_step = "day"
+    # @game.round_step = "day"
     @game.save
     redirect_to game_path(@game)
   end
