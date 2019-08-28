@@ -1,4 +1,3 @@
-// Accessing game id
 const cupidon = () => {
   if(document.querySelector('.cupidon')) {
     randomCouple();
@@ -7,13 +6,19 @@ const cupidon = () => {
 
 const voyante = () => {
   if(document.querySelector('.voyante')) {
-    randomCouple();
+    voyante();
+  }
+}
+
+const sorciere = () => {
+  if(document.querySelector('.sorciere')) {
+    sorciere();
   }
 }
 
 const chasseur = () => {
   if(document.querySelector('.chasseur')) {
-    randomCouple();
+    chasseur();
   }
 }
 
@@ -46,7 +51,6 @@ const sorciere = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
   setTimeout(function() {
-    console.log("rien");
     fetch(`/games/${gameId}/random_sorciere_vote`);
   }, 3000);
 }
@@ -59,4 +63,5 @@ const chasseur = () => {
   }, 3000);
 }
 
-export { cupidon, voyante, chasseur };
+export { cupidon, voyante, chasseur, sorciere };
+
