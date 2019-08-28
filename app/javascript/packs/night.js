@@ -1,32 +1,15 @@
-const firstNight = () => {
-  if(document.querySelector('.firstNight')) {
-    // Cupidon First
-    document.querySelector('.cupidon').classList.remove('d-none');
+// Accessing game id
+const cupidon = () => {
+  if(document.querySelector('.cupidon')) {
     randomCouple();
-    // Voyante
-    setTimeout(function() {
-      document.querySelector('.cupidon').classList.add('d-none');
-      document.querySelector('.voyante').classList.remove('d-none');
-      voyante();
-    }, 3000)
-    // // loup
-    setTimeout(function() {
-      document.querySelector('.voyante').classList.add('d-none');
-      document.querySelector('.loup').classList.remove('d-none');
-      loup();
-    }, 6000)
-    // // sorciere
-    setTimeout(function() {
-      document.querySelector('.loup').classList.add('d-none');
-      document.querySelector('.sorciere').classList.remove('d-none');
-      sorciere();
-    }, 9000)
-    // // le jour se leve !
-    // document.querySelector('.sorciere').classList.add('d-none');
-  };
+  }
 }
 
-// Accessing game id
+const loup = () => {
+  if(document.querySelector('.loup')) {
+    randomLoupVote();
+  }
+}
 
 // Default action calls if no action taken by user
 const randomCouple = () => {
@@ -45,7 +28,7 @@ const voyante = () => {
   }, 3000);
 }
 
-const loup = () => {
+const randomLoupVote = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
   setTimeout(function() {
@@ -70,4 +53,4 @@ const chasseur = () => {
   }, 3000);
 }
 
-export { firstNight };
+export { cupidon };
