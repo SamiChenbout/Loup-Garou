@@ -10,18 +10,27 @@ Rails.application.routes.draw do
     resources :messages, only: :create
     resources :game_events, only: [:create, :destroy]
 
-    get "/sorciere", to: "game_events#sorciere"
+    get "/sorciere", to: "game_events#sorciere" do
+      get "/random_sorciere_vote", to: "game_events#random_sorciere_vote"
+    end
 
+    get "/couple", to: "game_events#couple" do
+      get "/random_couple", to: "game_events#random_couple"
+    end
 
+    get "/voyante", to: "game_events#voyante" do
+      get "/voyante_next_step", to: "game_events#voyante_next_step"
+    end
 
-    get "/random_couple", to: "game_events#random_couple"
-    get "/voyante_next_step", to: "game_events#voyante_next_step"
-    get "/random_loup_vote", to: "game_events#random_loup_vote"
-    get "/random_sorciere_vote", to: "game_events#random_sorciere_vote"
-    get "/loup_votes", to: "game_events#loup_votes"
-    get "/voyante", to: "game_events#voyante"
-    get "/chasseur", to: "game_events#chasseur"
-    get "/couple", to: "game_events#couple"
+    get "/chasseur", to: "game_events#chasseur" do
+      get "/chasseur_random_kill", to: "game_events#chasseur_random_kill"
+    end
+    
+    get "/loup_votes", to: "game_events#loup_votes" do
+      get "/random_loup_vote", to: "game_events#random_loup_vote"
+    end
+
   end
+
   get "/find", to: "games#find_game"
 end
