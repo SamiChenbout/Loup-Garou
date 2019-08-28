@@ -1,19 +1,21 @@
-<% if @game.step == "waiting" %>
-  <%= render "waiting" %>
-<% elsif @game.step == "starting" %>
-  <%= render "starting" %>
-<% else %>
-  <%= render "finished" %>
-<% end %>
+<div class="container">
+  <% if @game.step == "waiting" %>
+    <%= render "waiting" %>
+  <% elsif @game.step == "starting" %>
+    <%= render "starting" %>
+  <% else %>
+    <%= render "finished" %>
+  <% end %>
 
 <!-- Chat Room -->
-<div id="messages">
-  <% @game.messages.each do |message| %>
-    <%= render 'messages/show', message: message %>
-  <% end %>
+  <div id="messages">
+    <% @game.messages.each do |message| %>
+      <%= render 'messages/show', message: message %>
+    <% end %>
+  </div>
+
+  <%= render 'messages/form', game: @game, message: @message %>
+
+  <!-- Ad hoc div to pass game id and user id to Action Cable -->
+  <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 </div>
-
-<%= render 'messages/form', game: @game, message: @message %>
-
-<!-- Ad hoc div to pass game id and user id to Action Cable -->
-<div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
