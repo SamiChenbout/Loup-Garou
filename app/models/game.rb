@@ -10,7 +10,7 @@ class Game < ApplicationRecord
   private
 
   def set_defaults
-    self.is_day = false
+    self.round_step = "cupidon"
     self.round = 1
     self.step = "waiting"
   end
