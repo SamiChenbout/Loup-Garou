@@ -4,15 +4,23 @@ const cupidon = () => {
   }
 }
 
+const voyante = () => {
+  if(document.querySelector('.voyante')) {
+    voyante();
+  }
+}
+
 const sorciere = () => {
   if(document.querySelector('.sorciere')) {
     sorciere();
   }
 }
 
-
-
-// Accessing game id
+const chasseur = () => {
+  if(document.querySelector('.chasseur')) {
+    chasseur();
+  }
+}
 
 // Default action calls if no action taken by user
 const randomCouple = () => {
@@ -55,5 +63,5 @@ const chasseur = () => {
   }, 3000);
 }
 
-export { cupidon };
-export { sorciere };
+export { cupidon, voyante, chasseur, sorciere };
+

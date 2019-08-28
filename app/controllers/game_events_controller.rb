@@ -21,7 +21,7 @@ class GameEventsController < ApplicationController
   def destroy
     @game_event.destroy
   end
-
+  
   # Actions triggered by default if no action taken
   def random_couple
     @game = Game.find(params[:game_id])
@@ -54,7 +54,7 @@ class GameEventsController < ApplicationController
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
-    @game_event.event_type = "Loup has designated a prey!"
+    @game_event.event_type = "loup-vote"
     @game_event.save
     # Setting game round_step
     if @game.round == 1
@@ -79,7 +79,7 @@ class GameEventsController < ApplicationController
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
-    @game_event.event_type = "Sorciere has used its death potion!"
+    @game_event.event_type = "sorciere-kill"
     @game_event.save
     # Setting game round_step
     # @game.round_step = "day"
@@ -87,9 +87,45 @@ class GameEventsController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def chasseur_random_kill
+    @game = Game.find(params[:game_id])
+    @players = @game.players.where.not(user_id: current_user.id)
+    # Designing a target ramdomly
+    @target = @players.sample
+    # Creating corresponding game event
+    @game_event = GameEvent.new(target: @target)
+    # Assigning game_event attributes before saving
+    @game_event.game = @game
+    @game_event.round = @game.round
+    @actor = Player.where(game: @game, user: current_user).first
+    @game_event.actor = @actor
+    @game_event.event_type = "sorciere-kill"
+    @game_event.save
+    # round_step is not changing
+    redirect_to game_path(@game)
+  end
+  
+  def couple
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+  
+  def voyante
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+
   def sorciere
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
   end
-
+  
+  def chasseur
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
 end
