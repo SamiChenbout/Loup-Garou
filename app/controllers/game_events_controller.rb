@@ -22,8 +22,13 @@ class GameEventsController < ApplicationController
     @game_event.destroy
   end
 
-  # Actions triggered by default if no action taken
-  def random_couple
+  # CUPIDON
+  def cupidon
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+  def random_couple_choose
     @game = Game.find(params[:game_id])
     # Designing 2 lovers ramdomly
     @lovers = @game.players.sample(2)
@@ -34,6 +39,12 @@ class GameEventsController < ApplicationController
     @game.save
   end
 
+  # VOYANTE
+  def voyante
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
   def voyante_next_step
     # Setting game round_step
     @game = Game.find(params[:game_id])
@@ -41,7 +52,13 @@ class GameEventsController < ApplicationController
     @game.save
   end
 
-  def random_loup_vote
+  # LOUP
+  def loup
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+  def random_loup_choose
     # All players except current_user
     @game = Game.find(params[:game_id])
     @players = @game.players.where.not(user_id: current_user.id)
@@ -66,7 +83,13 @@ class GameEventsController < ApplicationController
     redirect_to game_path(@game)
   end
 
-   def random_sorciere_vote
+  # SORCIERE
+  def sorciere
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+   def random_sorciere_choose
     # All players except current_user
     @game = Game.find(params[:game_id])
     @players = @game.players.where.not(user_id: current_user.id)
@@ -87,7 +110,13 @@ class GameEventsController < ApplicationController
     redirect_to game_path(@game)
   end
 
-  def chasseur_random_kill
+  # CHASSEUR
+  def chasseur
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+  def random_chasseur_kill
     @game = Game.find(params[:game_id])
     @players = @game.players.where.not(user_id: current_user.id)
     # Designing a target ramdomly
@@ -103,36 +132,5 @@ class GameEventsController < ApplicationController
     @game_event.save
     # round_step is not changing
     redirect_to game_path(@game)
-  end
-
-  def loup_vote
-    game = Game.find(params[:id])
-    @message = Message.new
-    @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
-  end
-
-  def couple
-    @game = Game.find(params[:game_id])
-    @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
-  end
-
-  def voyante
-    @game = Game.find(params[:game_id])
-    @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
-  end
-
-  def sorciere
-    @game = Game.find(params[:game_id])
-    @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
-  end
-
-  def chasseur
-    @game = Game.find(params[:game_id])
-    @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
   end
 end

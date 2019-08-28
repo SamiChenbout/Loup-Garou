@@ -1,10 +1,10 @@
-<% if @gamer.character.name == "sorciere" %>
-  <p><%= @gamer.character.name %>, select the one you want to poison!</p>
+<% if @gamer.character.name == "loup" %>
+  <p><%= @gamer.character.name %>, who would you like to eat raw?!</p>
   <%= simple_form_for([@game, GameEvent.new]) do |f| %>
     <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-    <%= f.button :submit, "Poison!", class: "btn btn-primary" %>
+    <%= f.button :submit, "Eat! Savage!", class: "btn btn-primary" %>
   <% end %>
 <% end %>
 
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
-<div class="sorciere"></div>
+<div class="loup"></div>

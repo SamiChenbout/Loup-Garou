@@ -1,7 +1,8 @@
 <% if @gamer.character.name == "cupidon" %>
+  <p><%= @gamer.character.name %>, choose two players whom destiny (life or death) will be bound to each other!</p>
   <%= simple_form_for([@game, LoverCouple.new]) do |f| %>
     <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
-    <%= f.button :submit, class: "button" %>
+    <%= f.button :submit, "Bound by destiny", class: "btn btn-primary" %>
   <% end %>
 <% end %>
 
