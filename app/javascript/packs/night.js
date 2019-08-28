@@ -37,15 +37,14 @@ const endOfNight = () => {
 
 
 const voyante = () => {
-  document.querySelector('.voyante').classList.remove('d-none')
-  if (document.querySelector('.voyante').classList.contains('d-none')) {
-     //GO TO NEXT STEP
-  else
-    setTimeout(function() {
-        document.querySelector('.voyante').classList.add('d-none');
-      }, 15000);
-    }
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  if (gameDiv) {
+    const gameId = gameDiv.dataset.gameId;
   }
+  setTimeout(function() {
+    fetch(`/games/${gameId}/voyante_next_step`);
+  }, 15000);
+}
 
 const loups = () => {
   if (document.querySelector('.loups').classList.contains('d-none')) {

@@ -24,6 +24,10 @@ class GamesController < ApplicationController
     redirect_to root_path
   end
 
+  def voyante_next_step
+    @game.round_step = "sorciere"
+  end
+
   def find_game
     @characters = Character.all
     if Game.where(step: "waiting") != []
