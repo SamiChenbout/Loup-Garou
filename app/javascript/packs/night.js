@@ -1,59 +1,73 @@
 const firstNight = () => {
   if(document.querySelector('.firstNight')) {
+    // Cupidon First
+    document.querySelector('.cupidon').classList.remove('d-none');
     randomCouple();
-  };
-}
-
-const randomCouple = () => {
-  document.querySelector('.cupidon').classList.remove('d-none');
-  setTimeout(function() {
-    if (document.querySelector('.cupidon').hasClass("d-none") === false){
-      $.ajax({
-        type: "POST",
-        url: "/games/<% @game.id %>/random_couple"
-      });
-    };
-  }, 15000);
-}
-
-const otherNight = () => {
-  if(document.querySelector('.night')) {
+    // Voyante
     setTimeout(function() {
+      document.querySelector('.cupidon').classList.add('d-none');
       document.querySelector('.voyante').classList.remove('d-none');
-    }, 20000);
+      voyante();
+    }, 3000)
+    // // loup
     setTimeout(function() {
       document.querySelector('.voyante').classList.add('d-none');
       document.querySelector('.loup').classList.remove('d-none');
-    }, 30000);
-    endOfNight();
+      loup();
+    }, 6000)
+    // // sorciere
+    setTimeout(function() {
+      document.querySelector('.loup').classList.add('d-none');
+      document.querySelector('.sorciere').classList.remove('d-none');
+      sorciere();
+    }, 9000)
+    // // le jour se leve !
+    // document.querySelector('.sorciere').classList.add('d-none');
   };
 }
 
-const endOfNight = () => {
-  document.querySelector('.endOfNight').innerHTML = "<% @game.update(is_day: true) %>";
+// Accessing game id
+
+// Default action calls if no action taken by user
+const randomCouple = () => {
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
+  setTimeout(function() {
+    fetch(`/games/${gameId}/random_couple`);
+  }, 3000);
 }
 
-
 const voyante = () => {
-  document.querySelector('.voyante').classList.remove('d-none')
-  if (document.querySelector('.voyante').classList.contains('d-none')) {
-     //GO TO NEXT STEP
-  else
-    setTimeout(function() {
-        document.querySelector('.voyante').classList.add('d-none');
-      }, 15000);
-    }
-  }
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
+  setTimeout(function() {
+    fetch(`/games/${gameId}/voyante_next_step`);
+  }, 3000);
+}
 
-const loups = () => {
-  if (document.querySelector('.loups').classList.contains('d-none')) {
-    GO TO NEXT STEP
-  else
-    setTimeout(function() {
-        document.querySelector('.loups').classList.remove('d-none');
-      }, 30000);
-    }
-  }
+const loup = () => {
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
+  setTimeout(function() {
+    fetch(`/games/${gameId}/random_loup_vote`);
+  }, 3000);
+}
 
+const sorciere = () => {
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
+  setTimeout(function() {
+    console.log("rien");
+    fetch(`/games/${gameId}/random_sorciere_vote`);
+  }, 3000);
+}
 
-export { firstNight, otherNight, endOfNight };
+const chasseur = () => {
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
+  setTimeout(function() {
+    fetch(`/games/${game_id}/chasseur_random_kill`);
+  }, 3000);
+}
+
+export { firstNight };
