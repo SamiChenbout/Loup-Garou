@@ -1,39 +1,9 @@
 <% if @game.step == "waiting" %>
-  <h1>I am the game room n°<%= @game.id %></h1>
-
-  <h2>Players : <%= @game.players.count %> / 6</h2>
-  <h2>Last User : <%= Player.where(user: current_user, game: @game).last.character.name %></h2>
-  <h2><% @game.players.each { |lol| %> <%= lol.character.name %>, <% } %></h2>
-
+  <%= render "waiting" %>
+<% elsif @game.step == "starting" %>
+  <%= render "starting" %>
 <% else %>
-  <h1>I am the FULL game room n°<%= @game.id %></h1>
-  <h2>Players : <%= @game.players.count %> / 6</h2>
-  <% if @game.is_day? %>
-    <!-- ChatRoom OMG-->
-    <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-      <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-      <%= f.button :submit %>
-    <% end %>
-  <% else %>
-    <% if @game.round == 1 %>
-      <% if @gamer.character.name == "cupidon" %>
-        <%= simple_form_for([@game, LoverCouple.new]) do |f| %>
-          <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
-          <%= f.button :submit %>
-        <% end %>
-      <% elsif @gamer.character.name != "chasseur" %>
-        <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-          <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-          <%= f.button :submit %>
-        <% end %>
-      <% end %>
-    <% elsif @gamer.character.name == "loup" || @gamer.character.name == "voyante" %>
-        <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-          <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-          <%= f.button :submit %>
-        <% end %>
-    <% end %>
-  <% end %>
+  <%= render "finished" %>
 <% end %>
 
 <!-- Chat Room -->
