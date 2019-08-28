@@ -7,14 +7,12 @@ const firstNight = () => {
 const randomCouple = () => {
   document.querySelector('.cupidon').classList.remove('d-none');
   setTimeout(function() {
-    $(".edit").click(function(){
-      if (document.querySelector('.cupidon').hasClass("update") === false){
-        $.ajax({
-          type: "POST",
-          url: "/games/<% @game.id %>/random_couple"
-        });
-      };
-    })
+    if (document.querySelector('.cupidon').hasClass("d-none") === false){
+      $.ajax({
+        type: "POST",
+        url: "/games/<% @game.id %>/random_couple"
+      });
+    };
   }, 15000);
 }
 
