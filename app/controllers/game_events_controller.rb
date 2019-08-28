@@ -104,4 +104,15 @@ class GameEventsController < ApplicationController
     # round_step is not changing
     redirect_to game_path(@game)
   end
+
+
+  def voyante
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+  end
+
+  def chasseur
+    @game = Game.find(params[:game_id])
+    @gamer = Player.where(user: current_user, game: @game).first
+  end
 end
