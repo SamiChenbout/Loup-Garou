@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     post 'games/:game_id/random_loup_vote', to: 'game_events#random_loup_vote'
     get "/random_couple", to: "lover_couples#random_couple"
   end
-    get "/find", to: "games#find_game"
+  get "/find", to: "games#find_game"
 end
