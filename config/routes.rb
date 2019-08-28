@@ -25,9 +25,11 @@ Rails.application.routes.draw do
     get "/chasseur", to: "game_events#chasseur" do
       get "/chasseur_random_kill", to: "game_events#chasseur_random_kill"
     end
+    
+    get "/loup_votes", to: "game_events#loup_votes" do
+      get "/random_loup_vote", to: "game_events#random_loup_vote"
+    end
 
-
-    get "/random_loup_vote", to: "game_events#random_loup_vote"
   end
 
   get "/find", to: "games#find_game"

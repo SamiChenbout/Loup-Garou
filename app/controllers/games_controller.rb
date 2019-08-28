@@ -39,7 +39,6 @@ class GamesController < ApplicationController
     @player.save
     if @game.players.count > 5
       @game.update(step: "starting")
-
     end
 
     redirect_to game_path(@game)

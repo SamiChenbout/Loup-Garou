@@ -4,6 +4,12 @@ const cupidon = () => {
   }
 }
 
+const loups = () => {
+  if(document.querySelector('.loups')) {
+    randomLoupVote();
+  }
+}
+
 const voyante = () => {
   if(document.querySelector('.voyante')) {
     voyante();
@@ -39,7 +45,7 @@ const voyante = () => {
   }, 3000);
 }
 
-const loup = () => {
+const randomLoupVote = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
   setTimeout(function() {
@@ -63,5 +69,4 @@ const chasseur = () => {
   }, 3000);
 }
 
-export { cupidon, voyante, chasseur, sorciere };
-
+export { cupidon, voyante, chasseur, loups };
