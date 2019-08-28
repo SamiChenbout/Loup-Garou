@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :game_events, only: [:create, :destroy]
 
     post 'games/:game_id/random_loup_vote', to: 'game_events#random_loup_vote'
+    post "/games/:game_id/random_couple", to: "lover_couple#random_couple"
   end
     get "/find", to: "games#find_game"
 end
