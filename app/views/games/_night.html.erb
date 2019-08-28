@@ -2,7 +2,7 @@
   <% if @gamer.character.name == "cupidon" %>
     <%= simple_form_for([@game, LoverCouple.new]) do |f| %>
       <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "button" %>
     <% end %>
 </div>
 <div class="voyante d-none">
