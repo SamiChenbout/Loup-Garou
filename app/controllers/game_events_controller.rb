@@ -21,7 +21,7 @@ class GameEventsController < ApplicationController
   def destroy
     @game_event.destroy
   end
-  
+
   # Actions triggered by default if no action taken
   def random_couple
     @game = Game.find(params[:game_id])
@@ -104,13 +104,20 @@ class GameEventsController < ApplicationController
     # round_step is not changing
     redirect_to game_path(@game)
   end
-  
+
+  def loup_vote
+    game = Game.find(params[:id])
+    @message = Message.new
+    @gamer = Player.where(user: current_user, game: @game).first
+    @all_except_me = @game.players
+  end
+
   def couple
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
     @all_except_me = @game.players
   end
-  
+
   def voyante
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
@@ -122,7 +129,7 @@ class GameEventsController < ApplicationController
     @gamer = Player.where(user: current_user, game: @game).first
     @all_except_me = @game.players
   end
-  
+
   def chasseur
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
