@@ -12,7 +12,9 @@
 <!-- Chat Room -->
   <div id="messages">
     <% @game.messages.each do |message| %>
-      <%= render 'messages/show', message: message %>
+      <% if message.player.character.name != "loup" %>
+        <%= render 'messages/show', message: message %>
+      <% end %>
     <% end %>
   </div>
 

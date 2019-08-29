@@ -27,7 +27,7 @@ class GamesController < ApplicationController
     @game.destroy
     redirect_to root_path
   end
-
+  
   def end_game
     @game = Game.find(params[:id])
     @gamer = Player.where(user: current_user, game: @game).first

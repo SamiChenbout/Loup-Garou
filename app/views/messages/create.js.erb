@@ -8,9 +8,27 @@ function addMessage(messageHTML) {
   messages.insertAdjacentHTML('beforeend', messageHTML);
 }
 
-<% if @message.errors.any? %>
-  refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
-<% else %>
-  addMessage('<%= j render "messages/show", message: @message %>');
-  refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
-<% end %>
+function addLoupMessage(messageHTML) {
+  const messages = document.getElementById('loup_messages');
+  messages.insertAdjacentHTML('beforeend', messageHTML);
+}
+
+const messageDiv = document.getElementById("messages");
+const loupMessageDiv = document.getElementById("loup_messages");
+
+if (messageDiv) {
+  <% if @message.errors.any? %>
+    refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
+  <% else %>
+    addMessage('<%= j render "messages/show", message: @message %>');
+    refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
+  <% end %>
+} else if (loupMessageDiv) {
+  <% if @message.errors.any? %>
+    refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
+  <% else %>
+    addLoupMessage('<%= j render "messages/show", message: @message %>');
+    refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
+  <% end %>
+}
+
