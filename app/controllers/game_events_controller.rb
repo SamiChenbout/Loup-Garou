@@ -32,7 +32,7 @@ class GameEventsController < ApplicationController
     @game_event.destroy
   end
 
-  def whenDayComes
+  def when_day_comes
     @game = Game.find(params[:game_id])
     @game.update(news: "")
     victimes_loup = GameEvent.where(game: @game, round: @game.round, event_type: "loup-vote")
@@ -40,7 +40,7 @@ class GameEventsController < ApplicationController
     victime1.update(is_alive: false)
     @game.update(news: @game.news + "Les amoureux ont été liés !\n") if @game.round == 1
     if GameEvent.where(game: @game, round: @game.round, event_type: "spy") != []
-      decouvert = GameEvent.where(game: @game, round: @game.round, event_type: "loup-vote").first.target
+      decouvert = GameEvent.where(game: @game, round: @game.round, event_type: "spy").first.target
       @game.update(news: @game.news + "La voyante a espionnée ")
       if decouvert.character.name == "loup" || decouvert.character.name == "chasseur"
         @game.update(news: @game.news + "le ")
@@ -60,7 +60,7 @@ class GameEventsController < ApplicationController
     broadcast_status(@game)
   end
 
-  def whenNightComes
+  def when_night_comes
     @game = Game.find(params[:game_id])
     victimes = GameEvent.where(game: @game, round: @game.round, event_type: "villageois-vote")
     count = {}
@@ -83,7 +83,7 @@ class GameEventsController < ApplicationController
     redirect_to game_end_day_path(@game)
   end
 
-  def whenNightTalk
+  def when_night_talk
     @game = Game.find(params[:game_id])
     @game.update(round_step: "voyante")
   end
