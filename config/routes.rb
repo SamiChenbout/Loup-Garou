@@ -26,9 +26,9 @@ Rails.application.routes.draw do
       get "/random_chasseur_kill", to: "game_events#random_chasseur_kill"
     end
 
-    get "/start-day", to: "game_events#whenDayComes"
-    get "/end-day-calcul", to: "game_events#whenNightComes"
-    get "/end-day", to: "game_events#whenNightTalk"
+    get "/start-day", to: "game_events#when_day_comes"
+    get "/end-day-calcul", to: "game_events#when_night_comes"
+    get "/end-day", to: "game_events#when_night_talk"
   end
 
   get "/find", to: "players#find_game"
