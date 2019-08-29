@@ -41,6 +41,8 @@ const redirectAllPlayers = (data) => {
     } else if (data.game_status.round_step === "end-day") {
       window.location = `/games/${data.game_id}/end-day-calcul`;
     }
+  } else if (data.game_status.step === "finished") {
+    window.location = `/games/${data.game_id}/end_game`;
   }
 }
 

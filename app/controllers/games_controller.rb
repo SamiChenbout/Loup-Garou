@@ -29,21 +29,7 @@ class GamesController < ApplicationController
   end
 
   def end_game
-    @alivewolves = []
-    @aliveplayers = []
-    @players.each do |player|
-      if player.character.name == "loup" && player.is_alive == true
-        @alivewolves << player
-      elsif player.is_alive == true
-        @aliveplayers << player
-      end
-    end
-    if @wolves.count == @players.count
-      return "Wolves win"
-    elsif @wolves.count == 0
-      return "Villagers win"
-    else
-      return "game continues"
-    end
+    @game = Game.find(params[:id])
+    @gamer = Player.where(user: current_user, game: @game).first
   end
 end

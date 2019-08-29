@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   end
 
   get "/find", to: "players#find_game"
+  get "/end_game", to: "games#end_game"
 end
