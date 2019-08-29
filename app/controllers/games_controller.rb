@@ -24,5 +24,22 @@ class GamesController < ApplicationController
     redirect_to root_path
   end
 
-
+  def end_game
+    @alivewolves = []
+    @aliveplayers = []
+    @players.each do |player|
+      if player.character.name == "loup" && player.is_alive == true
+        @alivewolves << player
+      elsif player.is_alive == true
+        @aliveplayers << player
+      end
+    end
+    if @wolves.count == @players.count
+      return "Wolves win"
+    elsif @wolves.count == 0
+      return "Villagers win"
+    else
+      return "game continues"
+    end
+  end
 end
