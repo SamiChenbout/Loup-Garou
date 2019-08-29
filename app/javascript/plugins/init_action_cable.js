@@ -24,8 +24,16 @@ const initActionCable = () => {
 
 const redirectAllPlayers = (data) => {
   if (data.game_status.step === "starting") {
-    if (data.game_status.round_step === "cupidon") {
+    if (data.game_status.round_step === "cupidon" && data.round === 1) {
       window.location = `/games/${gameId}/cupidon`;
+    } else if (data.game_status.round_step === "voyante") {
+      window.location = `/games/${gameId}/voyante`;
+    } else if (data.game_status.round_step === "loup") {
+      window.location = `/games/${gameId}/loup`;
+    } else if (data.game_status.round_step === "sorciere" && data.round === 1) {
+      window.location = `/games/${gameId}/sorciere`;
+    } else if (data.game_status.round_step === "day") {
+      window.location = `/games/${gameId}`;
     }
   }
 }
