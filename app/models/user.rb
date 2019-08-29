@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :messages, through: :players
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
+
+  mount_uploader :photo, PhotoUploader
 end
