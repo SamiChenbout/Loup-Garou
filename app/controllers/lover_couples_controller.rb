@@ -13,7 +13,11 @@ class LoverCouplesController < ApplicationController
   def cupidon
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
+    all = @game.players
+    @all_except_me = []
+    all.each do |player|
+      @all_except_me << player if player.user != current_user && player.is_alive
+    end
   end
   def random_couple_choose
     @game = Game.find(params[:game_id])
