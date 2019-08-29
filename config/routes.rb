@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     resources :messages, only: :create
     resources :game_events, only: [:create, :destroy]
 
-    get "/cupidon", to: "game_events#cupidon" do
-      get "/random_couple_choose", to: "game_events#random_couple_choose"
+    get "/cupidon", to: "lover_couples#cupidon" do
+      get "/random_couple_choose", to: "lover_couples#random_couple_choose"
     end
     get "/voyante", to: "game_events#voyante" do
       get "/voyante_next_step", to: "game_events#voyante_next_step"
