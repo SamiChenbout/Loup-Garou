@@ -14,7 +14,9 @@ class Player < ApplicationRecord
   private
 
   def set_defaults
-    self.is_alive  = true
+    self.is_alive = true
     self.points = 0
+    self.is_link = false
+    self.state_chasseur = ""
   end
 end

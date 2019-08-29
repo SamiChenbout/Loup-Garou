@@ -1,1 +1,4 @@
 <h3><%= @game.news %></h3>
+<% if @chasseur.state_chasseur == "dead-end" %>
+  <%= render "chasseur" %>
+<% end %>
