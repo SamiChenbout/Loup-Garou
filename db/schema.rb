@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_131421) do
+ActiveRecord::Schema.define(version: 2019_08_29_131948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_131421) do
     t.datetime "updated_at", null: false
     t.integer "points"
     t.boolean "is_link"
+    t.string "state_chasseur"
     t.index ["character_id"], name: "index_players_on_character_id"
     t.index ["game_id"], name: "index_players_on_game_id"
     t.index ["user_id"], name: "index_players_on_user_id"
