@@ -6,28 +6,11 @@ left: 10px;
 top: 10px;
 }
 
-
 #play img {
 width: 20vw;
 height: 10vh;
 left: 40vw;
 bottom: 30vh;
-}
-
-#settings img {
-position: fixed;
-width: 53px;
-height: 43px;
-left: 10px;
-bottom: 10px;
-}
-
-#rules img {
-position: fixed;
-width: 53px;
-height: 43px;
-right: 10px;
-bottom: 10px;
 }
 
 #werewolf img {
@@ -45,7 +28,7 @@ margin-bottom: 50px;
 @media (max-width: 1024px) {
     body {
       width: 1024px;
-      height: 1024px;
+      height: 1366px;
     }
 
     .play-wolf {
@@ -71,7 +54,7 @@ margin-bottom: 50px;
   }
 
   .play-wolf {
-    margin-top: 264px;
+    margin-top: 200px;
   }
 
  .container {
@@ -93,7 +76,7 @@ margin-bottom: 50px;
   }
 
   .play-wolf {
-    margin-top: 164px;
+    margin-top: 134px;
   }
 
  .container {
@@ -106,6 +89,52 @@ margin-bottom: 50px;
   margin-bottom: 20px;
   }
 }
+
+
+@media (max-width:375px) and (max-height:812px){
+  /* For a screen < 540px, this CSS will be read */
+  body {
+    width: 375px;
+    height: 812px;
+  }
+
+  .play-wolf {
+    margin-top: 164px;
+  }
+
+ .container {
+  margin: 0 auto;
+  width: 375px;
+}
+  #werewolf img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  }
+}
+
+@media (max-width:375px) and (max-height:667px){
+  /* For a screen < 540px, this CSS will be read */
+  body {
+    width: 375px;
+    height: 667px;
+  }
+
+  .play-wolf {
+    margin-top: 104px;
+  }
+
+ .container {
+  margin: 0 auto;
+  width: 375px;
+}
+  #werewolf img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  }
+}
+
 @media (max-width: 320px) {
   /* For a screen < 540px, this CSS will be read */
   body {
@@ -126,4 +155,5 @@ margin-bottom: 50px;
   height: 100px;
   margin-bottom: 20px;
   }
+
 }

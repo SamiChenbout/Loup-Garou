@@ -12,7 +12,9 @@
 <!-- Chat Room -->
   <div id="messages">
     <% @game.messages.each do |message| %>
-      <%= render 'messages/show', message: message %>
+      <% if message.player.character.name != "loup" %>
+        <%= render 'messages/show', message: message %>
+      <% end %>
     <% end %>
   </div>
 
@@ -21,3 +23,4 @@
   <!-- Ad hoc div to pass game id and user id to Action Cable -->
   <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 </div>
+
