@@ -6,5 +6,18 @@
   <% end %>
 <% end %>
 
+<!-- Chat Room -->
+
+<% if Player.where(user: current_user)[0].character.name == "loup" %>
+  <div id="loup_messages">
+    <% @game.messages.each do |message| %>
+      <% if message.player.character.name == "loup" %>
+        <%= render 'messages/show', message: message %>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render 'messages/form', game: @game, message: Message.new %>
+<% end %>
+
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="loup"></div>
