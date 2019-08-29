@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
         step: game.step,
         round_step: game.round_step,
         round: game.round
-      }
+      },
+      game_id: game.id
     })
   end
 end

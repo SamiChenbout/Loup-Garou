@@ -1,9 +1,2 @@
 <h1>I am the FULL game room n°<%= @game.id %></h1>
 <h2>Players : <%= @game.players.count %> / 6</h2>
-
-<% if @game.round_step == "day" %>
-  <!-- ChatRoom OMG-->
-  <%= render "day" %>
-<% else %>
-  <%= render "night" %>
-<% end %>
