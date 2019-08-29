@@ -1,7 +1,7 @@
 class GameEventsController < ApplicationController
   def create
     @game = Game.find(params[:game_id])
-    @user = User.find_by(username: params["game_event"]["target"].last)
+    @user = User.find_by(username: params["game_event"]["target"])
     @game_event = GameEvent.new(target: Player.find_by(user: @user))
     @game_event.game = @game
     @game_event.round = @game.round
@@ -19,7 +19,7 @@ class GameEventsController < ApplicationController
       elsif @actor.character.name == "loup"
         @game_event.event_type = "loup-vote"
         @game.update(round_step: "start-day")
-        @game.update(round_step: "sorciere")if @game.round == 1
+        @game.update(round_step: "sorciere") if @game.round == 1
       elsif @actor.character.name == "chasseur"
         @game_event.event_type = "sorciere-kill"
       end
@@ -65,31 +65,27 @@ class GameEventsController < ApplicationController
     victimes = GameEvent.where(game: @game, round: @game.round, event_type: "villageois-vote")
     count = {}
     victimes.each do |victime|
-      if count.key?(victime.user.username)
-        count[victime.user.username] += 1
+      if count.key?(victime.target.user.username)
+        count[victime.target.user.username] += 1
       else
-        count[victime.user.username] = 1
+        count[victime.target.user.username] = 1
       end
     end
-    victime = victimes.max_by { |_key, value| value }.first
-    player = Player.where(game: @game, user: User.find_by(username: victime)).first
+    victime = victimes.max_by { |_key, value| value }
+    player = Player.where(game: @game, user: User.find_by(username: victime.target.user.username)).first
     player.update(is_alive: false)
     @game.update(news: "#{player.user.username}, ")
-    if player.character.name == "loup" || player.charcter.name == "chasseur"
-      @game.update(news: @game.news + "le ")
+    if player.character.name == "loup" || player.character.name == "chasseur"
+      @game.update(news: @game.news + "le #{player.character.name}, est mort!")
     else
-      @game.update(news: @game.news + "la ")
+      @game.update(news: @game.news + "la #{player.character.name}, est morte!")
     end
-    @game.update(news: "#{player.character.name}, est mort!")
     redirect_to game_end_day_path(@game)
-    broadcast_status(@game)
   end
 
   def whenNightTalk
     @game = Game.find(params[:game_id])
-    sleep(10_000)
     @game.update(round_step: "voyante")
-    broadcast_status(@game)
   end
 
   # VOYANTE
