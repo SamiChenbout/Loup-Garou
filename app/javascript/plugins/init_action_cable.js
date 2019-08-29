@@ -36,6 +36,10 @@ const redirectAllPlayers = (data) => {
       window.location = `/games/${data.game_id}/sorciere`;
     } else if (data.game_status.round_step === "day") {
       window.location = `/games/${data.game_id}`;
+    } else if (data.game_status.round_step === "start-day") {
+      window.location = `/games/${data.game_id}/start-day`;
+    } else if (data.game_status.round_step === "end-day") {
+      window.location = `/games/${data.game_id}/end-day-calcul`;
     }
   }
 }
