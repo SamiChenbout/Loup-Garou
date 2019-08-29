@@ -11,9 +11,22 @@ const initActionCable = () => {
         // Avoiding to show user sent message twice (because of AJAX)
         const currentUserId = parseInt(gameDiv.dataset.currentUserId, 10);
         if (data.current_user_id !== currentUserId) {
-        document.getElementById("messages").insertAdjacentHTML('beforeend', data.message_partial);
-      }}}
+          document.getElementById("messages").insertAdjacentHTML('beforeend', data.message_partial);
+        }
+      }}
     )
+    App[`game_status_${gameId}`] = App.cable.subscriptions.create(
+      { channel: 'GameStatusChannel', game_id: gameId },
+      { received: redirectAllPlayers(data)}
+    )
+  }
+}
+
+const redirectAllPlayers = (data) => {
+  if (data.game_status.step === "starting") {
+    if (data.game_status.round_step === "cupidon") {
+      window.location = `/games/${gameId}/cupidon`;
+    }
   }
 }
 

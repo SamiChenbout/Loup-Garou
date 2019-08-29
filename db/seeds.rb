@@ -11,13 +11,13 @@ user1 = User.new(username: "User1", email: "User1@mail.fr", password: "password"
 user2 = User.new(username: "User2", email: "User2@mail.fr", password: "password")
 user3 = User.new(username: "User3", email: "User3@mail.fr", password: "password")
 user4 = User.new(username: "User4", email: "User4@mail.fr", password: "password")
-# user5 = User.new(username: "User5", email: "User5@mail.fr", password: "password")
+user5 = User.new(username: "User5", email: "User5@mail.fr", password: "password")
 
 user1.save
 user2.save
 user3.save
 user4.save
-# user5.save
+user5.save
 puts 'Users seeded!'
 
 puts 'Seeding characters...'
@@ -47,7 +47,7 @@ player1 = Player.new(user: user1, character: loup1, game: game)
 player2 = Player.new(user: user2, character: loup2, game: game)
 player3 = Player.new(user: user3, character: voyante, game: game)
 player4 = Player.new(user: user4, character: chasseur, game: game)
-#player5 = Player.new(user: user5, character: sorciere, game: game)
+player5 = Player.new(user: user5, character: sorciere, game: game)
 
 puts "#{player1.valid?}"
 puts "#{player1.user.id}"
@@ -55,7 +55,7 @@ player1.save
 player2.save
 player3.save
 player4.save
-# player5.save
+player5.save
 puts 'Players seeded!'
 
 puts 'Seed has been done'
