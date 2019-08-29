@@ -2,6 +2,7 @@
 <%= render 'player_number' %>
 
 <% if @chasseur.state_chasseur == "dead-start" %>
+  <% @game.update(round_step: "chasseur") %>
   <%= render "./game_events/chasseur" %>
 <% else %>
   <% if @gamer.is_alive %>

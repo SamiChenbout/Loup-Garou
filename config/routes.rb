@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     get "/start-day", to: "game_events#when_day_comes"
     get "/end-day-calcul", to: "game_events#when_night_comes"
     get "/end-day", to: "game_events#when_night_talk"
+    get "/end_game", to: "games#end_game"
   end
 
   get "/find", to: "players#find_game"
-  get "/end_game", to: "games#end_game"
 end
