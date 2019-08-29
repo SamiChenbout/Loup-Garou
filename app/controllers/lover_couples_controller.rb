@@ -5,7 +5,8 @@ class LoverCouplesController < ApplicationController
     lover1 = Player.find_by(user: User.find_by(username: params[:lovers][:lovers_ids][1]), game: @game)
     lover2 = Player.find_by(user: User.find_by(username: params[:lovers][:lovers_ids][2]), game: @game)
     @lover_couple = LoverCouple.new(lover1: lover1, lover2: lover2)
-    redirect_to game_path(@game)
+    @game.update(round_step: "voyante")
+    broadcast_status(@game)
   end
 
   # CUPIDON
@@ -21,8 +22,8 @@ class LoverCouplesController < ApplicationController
     @lover_couple = LoverCouple.new(lover1: @lovers[0], lover2: @lovers[1])
     @lover_couple.save
     # Setting game round_step
-    @game.round_step = "voyante"
-    @game.save
+    @game.update(round_step: "voyante")
+    broadcast_status(@game)
   end
 
   def destroy

@@ -7,15 +7,25 @@ class GameEventsController < ApplicationController
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
-    if @game.is_day?
+    if @game.round_step == "day"
       @game_event.event_type = "villageois-vote"
     else
-      @game_event.event_type = "sorciere-kill" if @actor.character.name == "sorciere"
-      @game_event.event_type = "spy" if @actor.character.name == "voyante"
-      @game_event.event_type = "loup-vote" if @actor.character.name == "loup"
+      if @actor.character.name == "sorciere"
+        @game_event.event_type = "sorciere-kill"
+        @game.update(round_step: "day")
+      elsif @actor.character.name == "voyante"
+        @game_event.event_type = "spy"
+        @game.update(round_step: "loup")
+      elsif @actor.character.name == "loup"
+        @game_event.event_type = "loup-vote"
+        @game.update(round_step: "day")
+        @game.update(round_step: "sorciere")if @game.round == 1
+      elsif @actor.character.name == "chasseur"
+        @game_event.event_type = "sorciere-kill"
+      end
     end
     @game_event.save
-    redirect_to game_path(@game)
+    broadcast_status(@game)
   end
 
   def destroy
@@ -31,8 +41,8 @@ class GameEventsController < ApplicationController
   def voyante_next_step
     # Setting game round_step
     @game = Game.find(params[:game_id])
-    @game.round_step = "loup"
-    @game.save
+    @game.update(round_step: "loup")
+    broadcast_status(@game)
   end
 
   # LOUP
@@ -58,12 +68,11 @@ class GameEventsController < ApplicationController
     @game_event.save
     # Setting game round_step
     if @game.round == 1
-      @game.round_step = "sorciere"
+      @game.update(round_step: "sorciere")
     else
-      @game.round_step = "day"
+      @game.update(round_step: "day")
     end
-    @game.save
-    redirect_to game_path(@game)
+    broadcast_status(@game)
   end
 
   # SORCIERE
@@ -89,8 +98,8 @@ class GameEventsController < ApplicationController
     @game_event.save
     # Setting game round_step
     # @game.round_step = "day"
-    @game.save
-    redirect_to game_path(@game)
+    @game.update(round_step: "day")
+    broadcast_status(@game)
   end
 
   # CHASSEUR
@@ -114,6 +123,6 @@ class GameEventsController < ApplicationController
     @game_event.event_type = "sorciere-kill"
     @game_event.save
     # round_step is not changing
-    redirect_to game_path(@game)
+    broadcast_status(@game)
   end
 end
