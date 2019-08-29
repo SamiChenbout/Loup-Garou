@@ -9,6 +9,8 @@ const initActionCable = () => {
       { channel: 'GamesChannel', game_id: gameId },
       { received: (data) => {
         // Avoiding to show user sent message twice (because of AJAX)
+        console.log(data);
+        document.getElementById("number-players").innerText = data.number_of_players;
         const currentUserId = parseInt(gameDiv.dataset.currentUserId, 10);
         if (data.current_user_id !== currentUserId) {
           document.getElementById("messages").insertAdjacentHTML('beforeend', data.message_partial);

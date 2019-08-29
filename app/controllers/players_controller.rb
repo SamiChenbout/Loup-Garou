@@ -1,30 +1,4 @@
 class PlayersController < ApplicationController
-  # before_action :set_player, only: [:show, :update, :destroy]
-
-  # def index
-  #   @players = Player.all
-  # end
-
-  # def show
-  # end
-
-  # def create
-  #   @player = Player.new
-  #   @player.user = current_user
-  #   Character::VALID_NAMES
-    # TODO: ASSIGN GAME
-    # TODO: REDIRECT TO
-  # end
-
-  # def update
-    # TODO: RE-ASSIGN PLAYER IS_ALIVE ATTRIBUTE ONLY
-    # TODO: REDIRECT TO
-  # end
-
-  # def destroy
-  #   @player.destroy
-    # TODO: REDIRECT TO
-  # end
 
   def find_game
     @characters = Character.all
@@ -39,6 +13,7 @@ class PlayersController < ApplicationController
     end
     @game.save
     @player.save
+    broadcast_number_players(@game)
     if @game.players.count > 5
       @game.update(step: "starting")
       broadcast_status(@game)
@@ -50,7 +25,10 @@ class PlayersController < ApplicationController
 
   private
 
-  # def set_player
-  #   @player = Player.find(params[:id])
-  # end
+  def broadcast_number_players(game)
+    ActionCable.server.broadcast("game_#{game.id}", {
+      number_of_players: game.players.count
+    })
+  end
+
 end
