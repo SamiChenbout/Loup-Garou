@@ -39,8 +39,10 @@ class GamesController < ApplicationController
       end
     end
     if @wolves.count == @players.count
+      @games.update(step: "finished")
       return "Wolves win"
     elsif @wolves.count == 0
+      @games.update(step: "finished")
       return "Villagers win"
     else
       return "game continues"
