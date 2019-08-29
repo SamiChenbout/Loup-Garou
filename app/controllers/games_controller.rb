@@ -4,7 +4,11 @@ class GamesController < ApplicationController
     @message = Message.new
 
     @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
+    all = @game.players
+    @all_except_me = []
+    all.each do |player|
+      @all_except_me << player if player.user != current_user && player.is_alive
+    end
 
     @sorciere = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
     @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first

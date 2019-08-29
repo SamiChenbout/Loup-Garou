@@ -96,7 +96,11 @@ class GameEventsController < ApplicationController
   def voyante
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
+    all = @game.players
+    @all_except_me = []
+    all.each do |player|
+      @all_except_me << player if player.user != current_user && player.is_alive
+    end
   end
   def voyante_next_step
     # Setting game round_step
@@ -109,7 +113,11 @@ class GameEventsController < ApplicationController
   def loup
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
+    all = @game.players
+    @all_except_me = []
+    all.each do |player|
+      @all_except_me << player if player.user != current_user && player.is_alive
+    end
   end
   def random_loup_choose
     # All players except current_user
@@ -139,7 +147,11 @@ class GameEventsController < ApplicationController
   def sorciere
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
+    all = @game.players
+    @all_except_me = []
+    all.each do |player|
+      @all_except_me << player if player.user != current_user && player.is_alive
+    end
   end
    def random_sorciere_choose
     # All players except current_user
@@ -166,7 +178,11 @@ class GameEventsController < ApplicationController
   def chasseur
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
-    @all_except_me = @game.players
+    all = @game.players
+    @all_except_me = []
+    all.each do |player|
+      @all_except_me << player if player.user != current_user && player.is_alive
+    end
   end
   def random_chasseur_kill
     @game = Game.find(params[:game_id])
