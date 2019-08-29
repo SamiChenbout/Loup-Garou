@@ -124,7 +124,12 @@ class GameEventsController < ApplicationController
 
   def when_night_talk
     @game = Game.find(params[:game_id])
-    @game.update(round_step: "voyante")
+    voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
+    if voyante.is_alive
+      @game.update(round_step: "voyante")
+    else
+      @game.update(round_step: "loup")
+    end
     alivewolves = []
     aliveplayers = []
     players = []

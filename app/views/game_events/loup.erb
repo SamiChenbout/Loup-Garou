@@ -4,6 +4,7 @@
     <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
     <%= f.button :submit, "Eat! Savage!", class: "btn btn-primary" %>
   <% end %>
+  <div class="loup"></div>
 <% end %>
 
 <!-- Chat Room -->
@@ -20,4 +21,3 @@
 <% end %>
 
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
-<div class="loup"></div>
