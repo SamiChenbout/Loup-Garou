@@ -1,4 +1,4 @@
-<% if @gamer.character.name == "loup" %>
+<% if @gamer.character.name == "loup"  && @gamer.is_alive  %>
   <p><%= @gamer.character.name %>, who would you like to eat raw?!</p>
   <%= simple_form_for([@game, GameEvent.new]) do |f| %>
     <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>

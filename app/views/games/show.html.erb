@@ -7,6 +7,8 @@
     <%= render "finished" %>
   <% end %>
 
+  <h3><%= @game.news %></h3>
+
 <!-- Chat Room -->
   <div id="messages">
     <% @game.messages.each do |message| %>
