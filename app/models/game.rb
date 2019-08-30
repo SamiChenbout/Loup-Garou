@@ -5,7 +5,7 @@ class Game < ApplicationRecord
   has_many :users, through: :players
   has_many :characters, through: :players
   has_many :messages, dependent: :destroy
-  # has_many :lover_couples, through: :players
+  has_many :lover_couples
 
   private
 

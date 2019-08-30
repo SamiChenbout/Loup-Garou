@@ -23,12 +23,12 @@ class GameEventsController < ApplicationController
       elsif @actor.character.name == "chasseur"
         @actor.update(is_alive: false)
         if @actor.is_link
-          duo = LoverCouple.where(game: @game)
+          duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
           duo.lover2.update(is_alive: false)
         end
         if @game_event.target.is_link
-          duo = LoverCouple.where(game: @game)
+          duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
           duo.lover2.update(is_alive: false)
         end
@@ -53,7 +53,7 @@ class GameEventsController < ApplicationController
     victime1 = (victimes_loup.sample).target
     victime1.update(is_alive: false)
     if victime1.is_link
-      duo = LoverCouple.where(game: @game)
+      duo = LoverCouple.find_by(game: @game)
       duo.lover1.update(is_alive: false)
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
@@ -76,7 +76,7 @@ class GameEventsController < ApplicationController
       victime2 = GameEvent.where(game: @game, round: @game.round, event_type: "sorciere-kill").first.target
       victime2.update(is_alive: false)
       if victime2.is_link
-        duo = LoverCouple.where(game: @game)
+        duo = LoverCouple.find_by(game: @game)
         duo.lover1.update(is_alive: false)
         duo.lover2.update(is_alive: false)
         duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
@@ -143,7 +143,7 @@ class GameEventsController < ApplicationController
     player = Player.where(game: @game, user: User.find_by(username: victime.target.user.username)).first
     player.update(is_alive: false)
     if player.is_link
-      duo = LoverCouple.where(game: @game)
+      duo = LoverCouple.find_by(game: @game)
       duo.lover1.update(is_alive: false)
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-end") if duo.lover1.character.name == "chasseur"
