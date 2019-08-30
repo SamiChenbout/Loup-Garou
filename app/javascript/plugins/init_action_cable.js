@@ -4,19 +4,21 @@ const initActionCable = () => {
     const gameId = gameDiv.dataset.gameId;
     App[`game_${gameId}`] = App.cable.subscriptions.create(
       { channel: 'GamesChannel', game_id: gameId },
-      { received: (data) => {
-        console.log(data);
-        const numberPlayerSpan = document.getElementById("number-players");
-        if (numberPlayerSpan) {
-          document.getElementById("number-players").innerText = data.number_of_players;
+        { received: (data) => {
+          console.log(data);
+          const numberPlayerSpan = document.getElementById("number-players");
+          const currentUserId = parseInt(gameDiv.dataset.currentUserId, 10);
+          const messageDiv = document.getElementById("messages");
+          if (numberPlayerSpan) {
+            document.getElementById("number-players").innerText = data.number_of_players;
+          };
+          if (messageDiv) {
+            if (data.current_user_id !== currentUserId) {
+            messageDiv.insertAdjacentHTML('beforeend', data.message_partial);
+            }
+          }
         }
-        const currentUserId = parseInt(gameDiv.dataset.currentUserId, 10);
-        const messageDiv = document.getElementById("messages");
-        if (messageDiv) {
-          if (data.current_user_id !== currentUserId) {
-          messageDiv.insertAdjacentHTML('beforeend', data.message_partial);
-        }}
-      }}
+      }
     )
     App[`game_status_${gameId}`] = App.cable.subscriptions.create(
       { channel: 'GameStatusChannel', game_id: gameId },
