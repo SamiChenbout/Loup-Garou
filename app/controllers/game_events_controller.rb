@@ -127,7 +127,6 @@ class GameEventsController < ApplicationController
       @game.update(news: @game.news + "The werewolfs win!") unless @game.news.include?("win")
     end
     broadcast_status(@game)
-    raise
   end
 
   def when_night_comes
