@@ -62,14 +62,51 @@ margin-bottom: 50px;
   padding-right:10px;
 }
 
-.sender {
-  background-color: blue;
-  text-align: right;
+.message-sender {
+  margin-left: 12px;
+  border-radius: 8px;
+  background: #F1ECCE;
+  color: black;
+  padding: 16px;
+  text-align: left;
+  font-weight: 900;
+  position: relative;
 }
 
-.sendee {
-  background-color: grey;
-  text-align: left;
+.triangle-sender:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 8px solid transparent;
+  border-right: 8px solid #F1ECCE;
+  border-top: 8px solid #F1ECCE;
+  border-bottom: 8px solid transparent;
+  left: -8px;
+  top: +8px;
+}
+
+.message-sendee {
+  margin-right: 12px;
+  border-radius: 8px;
+  background: #F3EFF5;
+  color: grey;
+  padding: 16px;
+  text-align: right;
+  position: relative;
+}
+
+.triangle-sendee:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 8px solid #F3EFF5;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #F3EFF5;
+  border-bottom: 8px solid transparent;
+  right: -8px;
+  top: +8px;
 }
 
 @media (max-width: 1024px) {
