@@ -1,5 +1,4 @@
 <h1>I am the game room n°<%= @game.id %></h1>
-<%= raise %>
 <% if @game.round == 1 && @game.round_step == "waiting" %>
   <%= render 'player_number' %>
 <% end %>
