@@ -1,5 +1,7 @@
 <h1>I am the FULL game room n°<%= @game.id %></h1>
-<%= render 'player_number' %>
+<% if @game.round == 1 && @game.round_step == "waiting" %>
+  <%= render 'player_number' %>
+<% end %>
 
 <% if @chasseur.state_chasseur == "dead-start" %>
   <% @game.update(round_step: "chasseur") %>
@@ -8,7 +10,7 @@
   <% if @gamer.is_alive %>
     <%= simple_form_for([@game, GameEvent.new]) do |f| %>
       <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-      <%= f.button :submit, "Reveal!", class: "btn btn-primary" %>
+      <%= f.button :submit, "Vote!", class: "btn btn-primary" %>
     <% end %>
   <% end %>
 <% end %>
