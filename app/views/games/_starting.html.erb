@@ -1,6 +1,8 @@
 <h1>I am the FULL game room n°<%= @game.id %></h1>
 <%= render 'player_number' %>
 
+<div id="countdown"></div>
+
 <% if @chasseur.state_chasseur == "dead-start" %>
   <% @game.update(round_step: "chasseur") %>
   <%= render "./game_events/chasseur" %>
@@ -12,3 +14,5 @@
     <% end %>
   <% end %>
 <% end %>
+
+<div class="day"></div>

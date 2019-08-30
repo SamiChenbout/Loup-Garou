@@ -1,3 +1,5 @@
+<div id="countdown"></div>
+
 <% if @gamer.character.name == "loup"  && @gamer.is_alive  %>
   <p><%= @gamer.character.name %>, who would you like to eat raw?!</p>
   <%= simple_form_for([@game, GameEvent.new]) do |f| %>

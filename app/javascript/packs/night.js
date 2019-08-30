@@ -1,30 +1,30 @@
 const cupidon = () => {
   if(document.querySelector('.cupidon')) {
-    randomCoupleChoose();
+    myTimer(15, randomCoupleChoose());
   }
 }
 
 const voyante = () => {
   if(document.querySelector('.voyante')) {
-    randomVoyanteChoose();
+    myTimer(15, randomVoyanteChoose());
   }
 }
 
 const loup = () => {
   if(document.querySelector('.loups')) {
-    randomLoupChoose();
+    myTimer(30, randomLoupChoose());
   }
 }
 
 const sorciere = () => {
   if(document.querySelector('.sorciere')) {
-    randomSorciereChoose();
+    myTimer(15, randomSorciereChoose());
   }
 }
 
 const chasseur = () => {
   if(document.querySelector('.chasseur')) {
-    randomChasseurChoose();
+    myTimer(10, randomChasseurChoose());
   }
 }
 
@@ -32,41 +32,44 @@ const chasseur = () => {
 const randomCoupleChoose = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
-  setTimeout(function() {
-    fetch(`/games/${gameId}/random_couple_choose`);
-  }, 15000000);
+  fetch(`/games/${gameId}/random_couple_choose`);
 }
 
 const andomVoyanteChoose = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
-  setTimeout(function() {
-    fetch(`/games/${gameId}/voyante_next_step`);
-  }, 15000000);
+  fetch(`/games/${gameId}/voyante_next_step`);
 }
 
 const randomLoupChoose = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
-  setTimeout(function() {
-    fetch(`/games/${gameId}/random_loup_choose`);
-  }, 15000000);
+  fetch(`/games/${gameId}/random_loup_choose`);
 }
 
 const randomSorciereChoose = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
-  setTimeout(function() {
-    fetch(`/games/${gameId}/random_sorciere_choose`);
-  }, 15000000);
+  fetch(`/games/${gameId}/random_sorciere_choose`);
 }
 
 const randomChasseurChoose = () => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
-  setTimeout(function() {
-    fetch(`/games/${game_id}/random_chasseur_kill`);
-  }, 15000000);
+  fetch(`/games/${game_id}/random_chasseur_kill`);
+}
+
+const myTimer = (timeLeft, myfonc) => {
+  const timerDiv = document.getElementById("countdown");
+  setInterval(function(){
+    if (timerDiv)
+      timerDiv.innerHTML = timeLeft;
+      timeLeft -= 1;
+      if(timeLeft <= 0){
+        clearInterval(timer);
+        myfonc();
+      }
+  }, 1000);
 }
 
 export { cupidon, voyante, chasseur, loup, sorciere };
