@@ -1,10 +1,11 @@
+<div id="countdown"></div>
+
 <% if @gamer.character.name == "voyante" && @gamer.is_alive %>
   <p><%= @gamer.character.name %>, select player you would like to reveal!</p>
-  <%= simple_form_for([@game, GameEvent.new]) do |f| %>
+  <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
     <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
     <%= f.button :submit, "Reveal!", class: "btn btn-primary" %>
   <% end %>
-  <div class="voyante"></div>
 <% end %>
-
+<div class="voyante"></div>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>

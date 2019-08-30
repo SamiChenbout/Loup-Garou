@@ -1,6 +1,6 @@
 function refreshForm(innerHTML) {
   const newMessageForm = document.getElementById('new_message');
-  newMessageForm.innerHTML = innerHTML;
+    newMessageForm.innerHTML = innerHTML;
 }
 
 function addMessage(messageHTML) {
@@ -10,12 +10,14 @@ function addMessage(messageHTML) {
 
 function addLoupMessage(messageHTML) {
   const messages = document.getElementById('loup_messages');
-  messages.insertAdjacentHTML('beforeend', messageHTML);
+    messages.insertAdjacentHTML('beforeend', messageHTML);
 }
 
-const messageDiv = document.getElementById("messages");
-const loupMessageDiv = document.getElementById("loup_messages");
+function createMessage() {
+  const messageDiv = document.getElementById("messages");
+  const loupMessageDiv = document.getElementById("loup_messages");
 
+<<<<<<< HEAD
 if (messageDiv) {
   <% if @message.errors.any? %>
     refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
@@ -31,4 +33,6 @@ if (messageDiv) {
     refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
   <% end %>
 }
+
+createMessage();
 
