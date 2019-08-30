@@ -1,1 +1,18 @@
-<p><%= message.player.user.username %>: <%= message.content %></p>
+<% if message.player == @player %>
+  <div class="sendee-messages">
+    <div class="message-group">
+      <div class="message-username" ><%= message.player.user.username %>:</div>
+      <div class="message-content bg-blue"> <%= message.content %></div>
+    </div>
+  </div>
+<% end %>
+
+<% if message.player != @player %>
+  <div class="sender-messages">
+    <div class="message-group">
+      <div class="message-username" ><%= message.player.user.username %>:</div>
+      <div class="message-content bg-blue"> <%= message.content %></div>
+    </div>
+  </div>
+<% end %>
+
