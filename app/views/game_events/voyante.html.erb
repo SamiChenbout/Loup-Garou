@@ -1,6 +1,6 @@
 <% if @gamer.character.name == "voyante" && @gamer.is_alive %>
   <p><%= @gamer.character.name %>, select player you would like to reveal!</p>
-  <%= simple_form_for([@game, GameEvent.new]) do |f| %>
+  <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
     <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
     <%= f.button :submit, "Reveal!", class: "btn btn-primary" %>
   <% end %>

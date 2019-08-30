@@ -3,7 +3,7 @@
     <div class="flex-box d-flex flex-column">
       <div class="text-center">
         <p><%= @gamer.character.name.capitalize %>, please choose two players who destiny will bound to each other!</p>
-        <%= simple_form_for([@game, LoverCouple.new]) do |f| %>
+        <%= simple_form_for([@game, LoverCouple.new], remote: true) do |f| %>
           <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
           <%= f.button :submit, "Bound by destiny", class: "btn btn-primary" %>
         <% end %>
