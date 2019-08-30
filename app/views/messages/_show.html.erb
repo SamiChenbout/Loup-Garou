@@ -1,16 +1,16 @@
 
-  <% if message.player.user != user %>
+  <% if message.player.user == user %>
     <div class="message-group text-left">
       <div class="message-username" ><%= message.player.user.username %>:</div>
-      <div class="message-content sendee"> <%= message.content %></div>
+      <div class="message-sender triangle-sender"> <%= message.content %></div>
     </div>
   <% end %>
 
 
-  <% if message.player.user == user %>
+  <% if message.player.user != user %>
     <div class="message-group text-right" style="margin-left: auto;">
       <div class="message-username" ><%= message.player.user.username %>:</div>
-      <div class="message-content sender"> <%= message.content %></div>
+      <div class="message-sendee triangle-sendee"> <%= message.content %></div>
     </div>
   <% end %>
 
