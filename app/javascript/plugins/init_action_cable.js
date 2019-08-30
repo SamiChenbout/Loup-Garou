@@ -15,7 +15,6 @@ const initActionCable = () => {
           if (messageDiv) {
             if (data.current_user_id !== currentUserId) {
             messageDiv.insertAdjacentHTML('beforeend', data.message_partial);
-            scrollLastMessageIntoView();
             }
           }
         }
