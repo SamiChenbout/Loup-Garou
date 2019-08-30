@@ -9,15 +9,15 @@
   <h3><%= @game.news %></h3>
 
 <!-- Chat Room -->
-  <div id="messages" class="message-box">
-    <% @game.messages.each do |message| %>
-      <% if message.player.character.name != "loup" %>
-        <div class="row">
-          <%= render 'messages/show', message: message %>
-        </div>
+    <div id="messages" class="message-box">
+      <% @game.messages.each do |message| %>
+        <% if message.player.character.name != "loup" %>
+          <div class="row">
+            <%= render 'messages/show', message: message, user: current_user %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
   <div class="message-form">
     <%= render 'messages/form', game: @game, message: @message %>
