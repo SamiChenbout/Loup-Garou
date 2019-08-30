@@ -1,4 +1,8 @@
+<div id="countdown"></div>
+
 <h3><%= @game.news %></h3>
 <% if @chasseur.state_chasseur == "dead-end" %>
   <%= render "chasseur" %>
 <% end %>
+
+<div class="end-day"></div>

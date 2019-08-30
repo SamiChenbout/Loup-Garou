@@ -157,10 +157,7 @@ class GameEventsController < ApplicationController
     end
     player.update(state_chasseur: "dead-end") if player.character.name == "chasseur"
     @game.update(round: @game.round + 1)
-    redirect_to game_end_day_path(@game)
   end
-
-
 
   def when_night_talk
     @game = Game.find(params[:game_id])

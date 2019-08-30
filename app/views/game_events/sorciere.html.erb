@@ -1,3 +1,5 @@
+<div id="countdown"></div>
+
 <% if @gamer.character.name == "sorciere" %>
   <p><%= @gamer.character.name %>, select the one you want to poison!</p>
   <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
