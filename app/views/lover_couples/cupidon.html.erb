@@ -2,17 +2,16 @@
 
 <div id="countdown"></div>
 <div class="container">
-    <div class="flex-box d-flex flex-column">
-      <div class="text-center">
-        <p><%= @gamer.character.name.capitalize %>, please choose two players who destiny will bound to each other!</p>
-        <%= simple_form_for([@game, LoverCouple.new], remote: true) do |f| %>
-          <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
-          <%= f.button :submit, "Bound by destiny", class: "btn btn-primary" %>
-        <% end %>
+  <div class="flex-box d-flex flex-column">
+    <div class="text-center">
+      <p><%= @gamer.character.name.capitalize %>, please choose two players who destiny will bound to each other!</p>
+      <%= simple_form_for([@game, LoverCouple.new], remote: true) do |f| %>
+        <%= collection_check_boxes :lovers, :lovers_ids, @all_except_me.map { |target| target.user }, :username, :username %>
+        <%= f.button :submit, "Bound by destiny", class: "btn btn-primary" %>
       <% end %>
-      </div>
     </div>
+  </div>
 </div>
-
+<% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="cupidon"></div>
