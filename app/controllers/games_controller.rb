@@ -30,7 +30,6 @@ class GamesController < ApplicationController
 
   def end_game
     @game = Game.find(params[:game_id])
-    raise
     @gamer = Player.where(user: current_user, game: @game).first
   end
 end

@@ -10,21 +10,16 @@ Rails.application.routes.draw do
     resources :messages, only: :create
     resources :game_events, only: [:create, :destroy]
 
-    get "/cupidon", to: "lover_couples#cupidon" do
-      get "/random_couple_choose", to: "lover_couples#random_couple_choose"
-    end
-    get "/voyante", to: "game_events#voyante" do
-      get "/voyante_next_step", to: "game_events#voyante_next_step"
-    end
-    get "/loup", to: "game_events#loup" do
-      get "/random_loup_choose", to: "game_events#random_loup_choose"
-    end
-    get "/sorciere", to: "game_events#sorciere" do
-      get "/random_sorciere_choose", to: "game_events#random_sorciere_choose"
-    end
-    get "/chasseur", to: "game_events#chasseur" do
-      get "/random_chasseur_kill", to: "game_events#random_chasseur_kill"
-    end
+    get "/cupidon", to: "lover_couples#cupidon"
+    get "/random_couple_choose", to: "lover_couples#random_couple_choose"
+    get "/voyante", to: "game_events#voyante"
+    get "/voyante_next_step", to: "game_events#voyante_next_step"
+    get "/loup", to: "game_events#loup"
+    get "/random_loup_choose", to: "game_events#random_loup_choose"
+    get "/sorciere", to: "game_events#sorciere"
+    get "/random_sorciere_choose", to: "game_events#random_sorciere_choose"
+    get "/chasseur", to: "game_events#chasseur"
+    get "/random_chasseur_kill", to: "game_events#random_chasseur_kill"
 
     get "/start-day", to: "game_events#when_day_comes"
     get "/end-day-calcul", to: "game_events#when_night_comes"

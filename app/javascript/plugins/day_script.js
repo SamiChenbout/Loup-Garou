@@ -1,19 +1,21 @@
 const dayScript = () => {
-  myTimer(180, document.querySelector('.day'), `/games/${gameId}/end-day-calcul`);
-  myTimer(0, document.querySelector('.end-day-calcul'), `/games/${gameId}/end-day`);
-  myTimer(5, document.querySelector('.end-day'), `/games/${gameId}/end-day`);
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
+  myTimerDay(180, document.querySelector('.day'), `end-day-calcul`);
+  myTimerDay(0, document.querySelector('.end-day-calcul'), `end-day`);
+  myTimerDay(5, document.querySelector('.end-day'), `end-day`);
 }
 
-const myTimer = (timeLeft, ifDivIs, whatFetch) => {
+const myTimerDay = (timeLeft, ifDivIs, whatFetch) => {
   const timerDiv = document.getElementById("countdown");
   if(ifDivIs) {
-    setInterval(function(){
+    var timer = setInterval(function(){
     if (timerDiv)
       timerDiv.innerHTML = timeLeft;
       timeLeft -= 1;
       if(timeLeft <= 0){
         clearInterval(timer);
-        fetch(whatFetch);
+        fetch(`/games/${gameId}/${whatFetch}`);
       }
   }, 1000);
   }
