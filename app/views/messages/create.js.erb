@@ -24,7 +24,8 @@ function createMessage() {
       addMessage('<%= j render "messages/show", message: @message %>');
       refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
     <% end %>
-  } else if (loupMessageDiv) {
+  }
+  if (loupMessageDiv) {
     <% if @message.errors.any? %>
       refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
     <% else %>

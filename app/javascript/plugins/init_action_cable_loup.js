@@ -10,7 +10,7 @@ const initActionCableLoup = () => {
         const loupMessageDiv = document.getElementById("loup_messages");
         if (loupMessageDiv) {
           if (data.current_user_id !== currentUserId) {
-            document.getElementById("loup_messages").insertAdjacentHTML('beforeend', data.message_partial);
+            loupMessageDiv.insertAdjacentHTML('beforeend', data.message_partial);
           }
         }
       }}
