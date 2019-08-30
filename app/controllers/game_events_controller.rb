@@ -126,7 +126,6 @@ class GameEventsController < ApplicationController
       @game.update(step: "finished")
       @game.update(news: @game.news + "The werewolfs win!") unless @game.news.include?("win")
     end
-    redirect_to game_path(@game) unless @game.step == "finished"
     broadcast_status(@game)
   end
 
