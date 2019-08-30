@@ -18,21 +18,22 @@ function createMessage() {
   const loupMessageDiv = document.getElementById("loup_messages");
 }
 
-if (messageDiv) {
-  <% if @message.errors.any? %>
-    refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
-  <% else %>
-    addMessage('<%= j render "messages/show", message: @message, user: current_user %>');
-    refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
-  <% end %>
-} else if (loupMessageDiv) {
-  <% if @message.errors.any? %>
-    refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
-  <% else %>
-    addLoupMessage('<%= j render "messages/show", message: @message, user: current_user %>');
-    refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
-  <% end %>
-}
+  if (messageDiv) {
+    <% if @message.errors.any? %>
+      refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
+    <% else %>
+      addMessage('<%= j render "messages/show", message: @message, user: current_user %>');
+      refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
+    <% end %>
+  }
+  if (loupMessageDiv) {
+    <% if @message.errors.any? %>
+      refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
+    <% else %>
+      addLoupMessage('<%= j render "messages/show", message: @message, user: current_user %>');
+      refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
+    <% end %>
+  }
 
 createMessage();
 

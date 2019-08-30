@@ -30,13 +30,13 @@ class GameEventsController < ApplicationController
           duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
           duo.lover2.update(is_alive: false)
-          @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
+          @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!") unless @game.news.include?("réunis")
         end
         if @game_event.target.is_link
           duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
           duo.lover2.update(is_alive: false)
-          @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
+          @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!") unless @game.news.include?("réunis")
         end
       end
     end
@@ -60,7 +60,7 @@ class GameEventsController < ApplicationController
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
       duo.lover2.update(state_chasseur: "dead-start") if duo.lover2.character.name == "chasseur"
-      @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
+      @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!") unless @game.news.include?("réunis")
     end
     victime1.update(state_chasseur: "dead-start") if victime1.character.name == "chasseur"
     @game.update(news: @game.news + "Les amoureux ont été liés !\n") if @game.round == 1
@@ -84,7 +84,7 @@ class GameEventsController < ApplicationController
         duo.lover2.update(is_alive: false)
         duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
         duo.lover2.update(state_chasseur: "dead-start") if duo.lover2.character.name == "chasseur"
-        @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
+        @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!") unless @game.news.include?("réunis")
       end
       victime2.update(state_chasseur: "dead-start") if victime2.character.name == "chasseur"
       @game.update(news: @game.news + "   - #{victime2.user.username}, qui était #{victime2.character.name}.\n") if victime2 != victime1
@@ -109,19 +109,22 @@ class GameEventsController < ApplicationController
     if (lovers & allalive) == allalive
       lovers[0].update(points: 700)
       lovers[1].update(points: 700)
-      @game.update(news: @game.news + "The couple win!", step: "finished")
+      @game.update(step: "finished")
+      @game.update(news: @game.news + "The couple win!") unless @game.news.include?("win")
     elsif alivewolves.count == 0
       players.each do |villagoie|
         villagoie.update(points: 250)
         villagoie.update(points: 500) if villagoie.is_alive
       end
-      @game.update(news: @game.news + "The villagoies win!", step: "finished")
+      @game.update(step: "finished")
+      @game.update(news: @game.news + "The villagoies win!") unless @game.news.include?("win")
     elsif alivewolves.count == aliveplayers && alivewolves.count == 1
       wolfs.each do |loup|
         loup.update(points: 250)
         loup.update(points: 500) if loup.is_alive
       end
-      @game.update(news: @game.news + "The werewolfs win!", step: "finished")
+      @game.update(step: "finished")
+      @game.update(news: @game.news + "The werewolfs win!") unless @game.news.include?("win")
     end
     broadcast_status(@game)
   end
@@ -152,7 +155,7 @@ class GameEventsController < ApplicationController
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-end") if duo.lover1.character.name == "chasseur"
       duo.lover2.update(state_chasseur: "dead-end") if duo.lover2.character.name == "chasseur"
-      @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
+      @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!") unless @game.news.include?("réunis")
     end
     @game.update(news: "#{player.user.username}, ")
     if player.character.name == "loup" || player.character.name == "chasseur"
@@ -197,19 +200,22 @@ class GameEventsController < ApplicationController
     if (lovers & allalive) == allalive
       lovers[0].update(points: 700)
       lovers[1].update(points: 700)
-      @game.update(news: @game.news + "The couple win!", step: "finished")
+      @game.update(step: "finished")
+      @game.update(news: @game.news + "The couple win!") unless @game.news.include?("win")
     elsif alivewolves.count == 0
       players.each do |villagoie|
         villagoie.update(points: 250)
         villagoie.update(points: 500) if villagoie.is_alive
       end
-      @game.update(news: @game.news + "test", step: "finished")
+      @game.update(step: "finished")
+      @game.update(news: @game.news + "The villagoies win!") unless @game.news.include?("win")
     elsif alivewolves.count == aliveplayers && alivewolves.count == 1
       wolfs.each do |loup|
         loup.update(points: 250)
         loup.update(points: 500) if loup.is_alive
       end
-      @game.update(news: @game.news + "The werewolfs win!", step: "finished")
+      @game.update(step: "finished")
+      @game.update(news: @game.news + "The werewolfs win!") unless @game.news.include?("win")
     end
     broadcast_status(@game)
   end
