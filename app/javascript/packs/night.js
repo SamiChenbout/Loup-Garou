@@ -1,73 +1,44 @@
 const cupidon = () => {
   if(document.querySelector('.cupidon')) {
-    myTimer(15, randomCoupleChoose());
+    myTimer(15, `random_couple_choose`);
   }
 }
 
 const voyante = () => {
   if(document.querySelector('.voyante')) {
-    myTimer(15, randomVoyanteChoose());
+    myTimer(15, `voyante_next_step`);
   }
 }
 
 const loup = () => {
-  if(document.querySelector('.loups')) {
-    myTimer(30, randomLoupChoose());
+  if(document.querySelector('.loup')) {
+    myTimer(30, `random_loup_choose`);
   }
 }
 
 const sorciere = () => {
   if(document.querySelector('.sorciere')) {
-    myTimer(15, randomSorciereChoose());
+    myTimer(15, `random_sorciere_choose`);
   }
 }
 
 const chasseur = () => {
   if(document.querySelector('.chasseur')) {
-    myTimer(10, randomChasseurChoose());
+    myTimer(10, `random_chasseur_kill`);
   }
 }
 
-// Default action calls if no action taken by user
-const randomCoupleChoose = () => {
+const myTimer = (timeLeft, whatFetch) => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
-  fetch(`/games/${gameId}/random_couple_choose`);
-}
-
-const andomVoyanteChoose = () => {
-  const gameDiv = document.getElementById("connect-to-game-channel");
-  const gameId = gameDiv.dataset.gameId;
-  fetch(`/games/${gameId}/voyante_next_step`);
-}
-
-const randomLoupChoose = () => {
-  const gameDiv = document.getElementById("connect-to-game-channel");
-  const gameId = gameDiv.dataset.gameId;
-  fetch(`/games/${gameId}/random_loup_choose`);
-}
-
-const randomSorciereChoose = () => {
-  const gameDiv = document.getElementById("connect-to-game-channel");
-  const gameId = gameDiv.dataset.gameId;
-  fetch(`/games/${gameId}/random_sorciere_choose`);
-}
-
-const randomChasseurChoose = () => {
-  const gameDiv = document.getElementById("connect-to-game-channel");
-  const gameId = gameDiv.dataset.gameId;
-  fetch(`/games/${game_id}/random_chasseur_kill`);
-}
-
-const myTimer = (timeLeft, myfonc) => {
   const timerDiv = document.getElementById("countdown");
-  setInterval(function(){
+  var timer = setInterval(function(){
     if (timerDiv)
       timerDiv.innerHTML = timeLeft;
       timeLeft -= 1;
       if(timeLeft <= 0){
         clearInterval(timer);
-        myfonc();
+        fetch(`/games/${gameId}/${whatFetch}`);
       }
   }, 1000);
 }

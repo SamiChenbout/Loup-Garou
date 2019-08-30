@@ -22,24 +22,26 @@ class GameEventsController < ApplicationController
         @game.update(round_step: "sorciere") if @game.round == 1
       elsif @actor.character.name == "chasseur"
         @actor.update(is_alive: false)
+        @game_event.event_type = "chasseur-kill"
+        @game.update(round_step: "day") if @actor.state_chasseur == "dead-start"
+        @game.update(news: "#{@actor.user.username}, le chasseur, a tué #{@game_event.target.user.username}, qui était #{@game_event.target.character.name}.\n")
+        @actor.update(state_chasseur: "peace")
         if @actor.is_link
           duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
           duo.lover2.update(is_alive: false)
+          @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
         end
         if @game_event.target.is_link
           duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
           duo.lover2.update(is_alive: false)
+          @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
         end
-        @game_event.event_type = "chasseur-kill"
-        @game.update(round_step: "day") if @actor.state_chasseur == "dead-start"
-        @game.update(news: "#{@actor.user.username}, le chasseur, a tué #{@game_event.target.user.username}, qui était #{@game_event.target.character.name}.")
-        @actor.update(state_chasseur: "peace")
       end
     end
     @game_event.save
-    broadcast_status(@game)
+    broadcast_status(@game) unless @game.round_step == "day"
   end
 
   def destroy
@@ -58,6 +60,7 @@ class GameEventsController < ApplicationController
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
       duo.lover2.update(state_chasseur: "dead-start") if duo.lover2.character.name == "chasseur"
+      @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
     end
     victime1.update(state_chasseur: "dead-start") if victime1.character.name == "chasseur"
     @game.update(news: @game.news + "Les amoureux ont été liés !\n") if @game.round == 1
@@ -81,6 +84,7 @@ class GameEventsController < ApplicationController
         duo.lover2.update(is_alive: false)
         duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
         duo.lover2.update(state_chasseur: "dead-start") if duo.lover2.character.name == "chasseur"
+        @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
       end
       victime2.update(state_chasseur: "dead-start") if victime2.character.name == "chasseur"
       @game.update(news: @game.news + "   - #{victime2.user.username}, qui était #{victime2.character.name}.\n") if victime2 != victime1
@@ -148,6 +152,7 @@ class GameEventsController < ApplicationController
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-end") if duo.lover1.character.name == "chasseur"
       duo.lover2.update(state_chasseur: "dead-end") if duo.lover2.character.name == "chasseur"
+      @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!")
     end
     @game.update(news: "#{player.user.username}, ")
     if player.character.name == "loup" || player.character.name == "chasseur"
