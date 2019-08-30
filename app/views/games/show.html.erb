@@ -12,7 +12,9 @@
   <div id="messages" class="message-box">
     <% @game.messages.each do |message| %>
       <% if message.player.character.name != "loup" %>
-        <%= render 'messages/show', message: message %>
+        <div class="row">
+          <%= render 'messages/show', message: message %>
+        </div>
       <% end %>
     <% end %>
   </div>
