@@ -12,7 +12,7 @@ class Message < ApplicationRecord
     ActionCable.server.broadcast("game_#{self.game.id}", {
       message_partial: ApplicationController.renderer.render(
         partial: "messages/show",
-        locals: { message: self }
+        locals: { message: self, user: "fake_user" }
       ),
       current_user_id: self.player.user.id
     })
@@ -23,7 +23,7 @@ class Message < ApplicationRecord
       ActionCable.server.broadcast("loup_messages_#{self.game.id}", {
         message_partial: ApplicationController.renderer.render(
           partial: "messages/show",
-          locals: { message: self }
+          locals: { message: self, user: "fake_user" }
         ),
         current_user_id: self.player.user.id
       })

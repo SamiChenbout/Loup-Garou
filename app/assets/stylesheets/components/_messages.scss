@@ -1,0 +1,25 @@
+#amessage {
+  color: white;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  width: 50%;
+  padding: 10px;
+  background-color: red;
+
+}
+
+#username {
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.current-user-message {
+  text-align: left;
+  background-color: red;
+}
+
+
+.others-messages {
+  text-align: right;
+  background-color: blue;
+}

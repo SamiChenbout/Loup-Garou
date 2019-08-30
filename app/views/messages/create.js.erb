@@ -16,12 +16,13 @@ function addLoupMessage(messageHTML) {
 function createMessage() {
   const messageDiv = document.getElementById("messages");
   const loupMessageDiv = document.getElementById("loup_messages");
+}
 
   if (messageDiv) {
     <% if @message.errors.any? %>
       refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
     <% else %>
-      addMessage('<%= j render "messages/show", message: @message %>');
+      addMessage('<%= j render "messages/show", message: @message, user: current_user %>');
       refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
     <% end %>
   }
@@ -29,11 +30,10 @@ function createMessage() {
     <% if @message.errors.any? %>
       refreshForm('<%= j render "messages/form", game: @game, message: @message %>');
     <% else %>
-      addLoupMessage('<%= j render "messages/show", message: @message %>');
+      addLoupMessage('<%= j render "messages/show", message: @message, user: current_user %>');
       refreshForm('<%= j render "messages/form", game: @game, message: Message.new %>');
     <% end %>
   }
-}
 
 createMessage();
 
