@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2019_08_30_092638) do
 
   # These are extensions that must be enabled in order to support this database
@@ -102,8 +101,8 @@ ActiveRecord::Schema.define(version: 2019_08_30_092638) do
   add_foreign_key "game_events", "players", column: "actor_id"
   add_foreign_key "game_events", "players", column: "target_id"
   add_foreign_key "lover_couples", "games"
-  add_foreign_key "lover_couples", "players", column: "lover1_id"
-  add_foreign_key "lover_couples", "players", column: "lover2_id"
+  add_foreign_key "lover_couples", "users", column: "lover1_id"
+  add_foreign_key "lover_couples", "users", column: "lover2_id"
   add_foreign_key "messages", "games"
   add_foreign_key "messages", "players"
   add_foreign_key "players", "characters"
