@@ -5,12 +5,13 @@ const initActionCableLoup = () => {
     App[`loup_messages_${gameId}`] = App.cable.subscriptions.create(
       { channel: 'LoupMessagesChannel', game_id: gameId },
       { received: (data) => {
-        console.log(data);
+        console.log(data.message_partial);
         const currentUserId = parseInt(gameDiv.dataset.currentUserId, 10);
         const loupMessageDiv = document.getElementById("loup_messages");
         if (loupMessageDiv) {
           if (data.current_user_id !== currentUserId) {
             loupMessageDiv.insertAdjacentHTML('beforeend', data.message_partial);
+            scrollLastMessageIntoView();
           }
         }
       }}
@@ -18,4 +19,5 @@ const initActionCableLoup = () => {
   }
 }
 
+import { scrollLastMessageIntoView } from "./init_action_cable";
 export { initActionCableLoup }
