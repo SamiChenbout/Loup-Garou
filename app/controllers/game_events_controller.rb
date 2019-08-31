@@ -63,10 +63,10 @@ class GameEventsController < ApplicationController
       @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!") unless @game.news.include?("réunis")
     end
     victime1.update(state_chasseur: "dead-start") if victime1.character.name == "chasseur"
-    @game.update(news: @game.news + "Les amoureux ont été liés !\n") if @game.round == 1
+    @game.update(news: @game.news + "Les amoureux étaient liés !\n") if @game.round == 1
     if GameEvent.where(game: @game, round: @game.round, event_type: "spy") != []
       decouvert = GameEvent.where(game: @game, round: @game.round, event_type: "spy").first.target
-      @game.update(news: @game.news + "La voyante a espionnée ")
+      @game.update(news: @game.news + "La voyante a espionné ")
       if decouvert.character.name == "loup" || decouvert.character.name == "chasseur"
         @game.update(news: @game.news + "le ")
       else
@@ -112,12 +112,12 @@ class GameEventsController < ApplicationController
       @game.update(step: "finished")
       @game.update(news: @game.news + "The couple win!") unless @game.news.include?("win")
     elsif alivewolves.count == 0
-      players.each do |villagoie|
-        villagoie.update(points: 250)
-        villagoie.update(points: 500) if villagoie.is_alive
+      players.each do |villageois|
+        villageois.update(points: 250)
+        villageois.update(points: 500) if villageois.is_alive
       end
       @game.update(step: "finished")
-      @game.update(news: @game.news + "The villagoies win!") unless @game.news.include?("win")
+      @game.update(news: @game.news + "The villageois win!") unless @game.news.include?("win")
     elsif alivewolves.count == aliveplayers && alivewolves.count == 1
       wolfs.each do |loup|
         loup.update(points: 250)
@@ -203,12 +203,12 @@ class GameEventsController < ApplicationController
       @game.update(step: "finished")
       @game.update(news: @game.news + "The couple win!") unless @game.news.include?("win")
     elsif alivewolves.count == 0
-      players.each do |villagoie|
-        villagoie.update(points: 250)
-        villagoie.update(points: 500) if villagoie.is_alive
+      players.each do |villageois|
+        villageois.update(points: 250)
+        villageois.update(points: 500) if villageois.is_alive
       end
       @game.update(step: "finished")
-      @game.update(news: @game.news + "The villagoies win!") unless @game.news.include?("win")
+      @game.update(news: @game.news + "The villageois win!") unless @game.news.include?("win")
     elsif alivewolves.count == aliveplayers && alivewolves.count == 1
       wolfs.each do |loup|
         loup.update(points: 250)

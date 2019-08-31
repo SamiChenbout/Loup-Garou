@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
   <% if @game.step == "waiting" %>
@@ -31,31 +32,31 @@
   </div>
 </div>
 
+<% if @game.step == "waiting" %>
+  <%= render "waiting" %>
+<% elsif @game.step == "starting" %>
+  <%= render "starting" %>
+<% else %>
+  <%= render "finished" %>
+<% end %>
 
+<h3><%= @game.news %></h3>
 
-  <% if @game.step == "waiting" %>
-    <%= render "waiting" %>
-  <% elsif @game.step == "starting" %>
-    <%= render "starting" %>
-  <% else %>
-    <%= render "finished" %>
-  <% end %>
-
-  <h3><%= @game.news %></h3>
-
-<!-- Chat Room -->
-    <div id="messages" class="message-box">
-      <% @game.messages.each do |message| %>
-        <% if message.player.character.name != "loup" %>
-            <%= render 'messages/show', message: message, user: current_user %>
-        <% end %>
-      <% end %>
+<!-- MAIN CHATROOM -->
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <div class="chat-header"><h4>Main Chat</h4></div>
+        <div id="messages" class="messages">
+        </div>
+        <div class="message-form">
+          <%= render 'messages/form', game: @game, message: @message, player: @gamer %>
+        </div>
+      </div>
     </div>
-
-  <div class="message-form">
-    <%= render 'messages/form', game: @game, message: @message %>
   </div>
+</div>
 
-  <!-- Ad hoc div to pass game id and user id to Action Cable -->
-  <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
+<!-- EMPTY DIV EMBEDDING DATA -->
+<div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 
