@@ -1,0 +1,33 @@
+<!-- TIMER -->
+<div id="countdown"></div>
+
+<!-- SHOW ONLY IF CURRENT USER IS ALIVE -->
+<% if @game.round_step == "loup" && @gamer.character.name == "loup" && @gamer.is_alive  %>
+
+  <!-- FORM TO CHOOSE WHO TO KILL -->
+  <p><%= @gamer.character.name %>, who would you like to eat raw?!</p>
+  <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+    <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
+    <%= f.button :submit, "Eat! Savage!", class: "btn btn-primary" %>
+  <% end %>
+
+  <!-- LOUP CHATROOM -->
+  <div class="container">
+    <div class="row">
+      <div class="col-10 offset-1">
+        <div class="chat-header"><h4>Loup Chat</h4></div>
+          <div id="loup_messages" class="messages">
+          </div>
+          <div class="message-form">
+            <%= render 'messages/form', game: @game, message: Message.new, player: @gamer %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+<!-- EMPTY DIV EMBEDDING DATA -->
+<div class="loup"></div>
+<div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>

@@ -1,5 +1,5 @@
 <h1>I am the game room n°<%= @game.id %></h1>
-<% if @game.round == 1 && @game.round_step == "waiting" %>
+<% if @game.round == 1 && @game.players.count < 6 %>
   <%= render 'player_number' %>
 <% end %>
 <h2>Last User : <%= Player.where(user: current_user, game: @game).last.character.name %></h2>

@@ -1,9 +1,5 @@
   class MessagesController < ApplicationController
 
-  def index
-    @messages = Message.all
-  end
-
   def create
     @game = Game.find(params[:game_id])
     @player = @game.players.where(user_id: current_user.id)[0]
@@ -21,6 +17,11 @@
         format.js
       end
     end
+    if @message.game.round_step == "loup" && @player.is_alive
+      broadcast_loup_message
+    elsif @player.is_alive
+      broadcast_message
+    end
   end
 
   private
@@ -28,4 +29,26 @@
   def message_params
     params.require(:message).permit(:content)
   end
+
+  def broadcast_message
+    ActionCable.server.broadcast("game_#{@game.id}", {
+      message_partial: ApplicationController.renderer.render(
+        partial: "messages/show",
+        locals: { message: @message, author: false }
+      ),
+      current_user_id: current_user.id
+    })
+  end
+
+  def broadcast_loup_message
+    ActionCable.server.broadcast("loup_messages_#{@game.id}", {
+      message_partial: ApplicationController.renderer.render(
+        partial: "messages/show",
+        locals: { message: @message, author: false }
+      ),
+      current_user_id: current_user.id
+    })
+  end
+
 end
+

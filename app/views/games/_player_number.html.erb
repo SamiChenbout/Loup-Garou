@@ -1,1 +1,1 @@
-<h2>Waiting for  <span class="bolder" id="number-players"><%= 6 - @game.players.count %> more players</span></h2>
+<h2>Waiting for  <span class="bolder" id="number-players"><%= pluralize(6 - @game.players.count, "player") %></span></h2>

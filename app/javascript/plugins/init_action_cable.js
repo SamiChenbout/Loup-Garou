@@ -15,6 +15,7 @@ const initActionCable = () => {
           if (messageDiv) {
             if (data.current_user_id !== currentUserId) {
             messageDiv.insertAdjacentHTML('beforeend', data.message_partial);
+             scrollLastMessageIntoView();
             }
           }
         }
@@ -27,6 +28,16 @@ const initActionCable = () => {
   }
 }
 
+// SCROLL FUNCTION
+const scrollLastMessageIntoView = () => {
+  const messages = document.querySelectorAll('.message');
+  const lastMessage = messages[messages.length - 1];
+  if (lastMessage !== undefined) {
+    lastMessage.scrollIntoView();
+  }
+}
+
+// GAME REDIRECTION FUNCTION
 const redirectAllPlayers = (data) => {
   if (data.game_status.step === "starting") {
     if (data.game_status.round_step === "cupidon" && data.game_status.round === 1) {
@@ -51,4 +62,4 @@ const redirectAllPlayers = (data) => {
   }
 }
 
-export { initActionCable }
+export { initActionCable, scrollLastMessageIntoView }
