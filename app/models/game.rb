@@ -10,7 +10,7 @@ class Game < ApplicationRecord
   private
 
   def set_defaults
-    self.round_step = "cupidon"
+    self.round_step = "show-role"
     self.round = 1
     self.step = "waiting"
   end

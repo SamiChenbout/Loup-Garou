@@ -1,1 +1,1 @@
-<h2>Waiting for  <span class="bolder" id="number-players"><%= 6 - @game.players.count %> more players</span></h2>
+<h2 class="mj-text">Il manque  <span class="bolder" id="number-players"><%= 6 - @game.players.count %> joueur<% if 6 - @game.players.count > 1 %>s<%end%>...</span></h2>

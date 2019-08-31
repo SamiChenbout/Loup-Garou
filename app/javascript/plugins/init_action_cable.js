@@ -45,6 +45,8 @@ const redirectAllPlayers = (data) => {
       window.location = `/games/${data.game_id}/end-day-calcul`;
     } else if (data.game_status.round_step === "chasseur") {
       window.location = `/games/${data.game_id}`;
+    } else if (data.game_status.round_step === "show-role") {
+      window.location = `/games/${data.game_id}/role`;
     }
   } else if (data.game_status.step === "finished") {
     window.location = `/games/${data.game_id}/end_game`;

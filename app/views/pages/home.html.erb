@@ -1,18 +1,57 @@
-<div class="container">
-    <div class="flex-box d-flex flex-column">
-      <div class="play-wolf text-center">
-        <div id="werewolf" class="">
-            <%= image_tag "Werewolf.png" %>
-        </div>
+<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
+    <% end %>
 
-        <div id="play" class="">
-          <%= link_to find_path  do %>
-            <%= image_tag "Play.png" %>
-            <% end %>
-        </div>
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <% if current_user.photo.url != nil %>
+          <%= image_tag current_user.photo.url, class: "avatar" %>
+          <% else %>
+          <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="flex-box d-flex flex-column">
+    <div class="play-wolf text-center">
+
+      <div class="scene">
+        <img src="https://i1.wp.com/lost-fortress.com/wp-content/uploads/2017/08/Dwarf_women_idle_costume.gif?resize=160%2C160" class="secondleft">
+        <img src="https://elqgamingblog.files.wordpress.com/2017/10/dreamblazers-elven-archer-animation-triple-size-brown.gif" class="firstleft">
+        <img src="https://i.pinimg.com/originals/08/63/a0/0863a09172b315fa8cd3e85a370b9fac.gif" class="firemiddle">
+        <img src="https://art.ngfiles.com/images/762000/762704_rflowers_witch.gif?f1546043499" class="firstright">
+        <img src="https://i.pinimg.com/originals/fc/f2/02/fcf20275d15b7d35a55512b081f61375.gif" class="secondright">
+      </div>
+
+      <div class="play">
+        <%= link_to find_path  do %>
+          <%= image_tag "Play.png" %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
+
+<div class="footer">
+  <div class="footer-logo">
+    <img src="https://cdn.pixabay.com/photo/2014/04/02/17/03/gear-307780__340.png">
+  </div>
+  <div class="footer-logo">
+    <img src="https://res.cloudinary.com/pixel-art/image/upload/v1554322838/open-book/167755-open-book-pixel-art.png">
+  </div>
+</div>
 
 
   <embed  class="background-music" src="http://soundimage.org/wp-content/uploads/2014/03/Spells-a-Brewin.mp3" autostart="true" loop="true" hidden="true"><embed>

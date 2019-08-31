@@ -226,6 +226,7 @@ class GameEventsController < ApplicationController
   def voyante
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
     all = @game.players
     @all_except_me = []
     all.each do |player|
@@ -243,6 +244,8 @@ class GameEventsController < ApplicationController
   def loup
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @loup1 = Player.where(game: @game, character: Character.where(name: "loup").first).first
+    @loup2 = Player.where(game: @game, character: Character.where(name: "loup").last).first
     all = @game.players
     @all_except_me = []
     all.each do |player|
@@ -277,6 +280,7 @@ class GameEventsController < ApplicationController
   def sorciere
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @sorciere = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
     all = @game.players
     @all_except_me = []
     all.each do |player|

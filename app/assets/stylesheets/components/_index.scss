@@ -4,3 +4,16 @@
 @import "navbar";
 @import "footer";
 @import "messages";
+@import "home";
+@import "game";
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #11194a;
+}

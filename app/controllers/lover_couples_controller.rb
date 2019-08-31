@@ -15,6 +15,7 @@ class LoverCouplesController < ApplicationController
   def cupidon
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @cupidon = Player.find_by(game: @game, character: Character.where(name: "cupidon"))
     all = @game.players
     @all_except_me = []
     all.each do |player|

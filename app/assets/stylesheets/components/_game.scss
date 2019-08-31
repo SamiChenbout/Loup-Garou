@@ -1,0 +1,277 @@
+.mj {
+  height: 100%;
+  object-fit: cover;
+}
+
+.maitre-head {
+  display: flex;
+  align-items: center;
+}
+
+.mj-text {
+  align-self: center;
+  color: white;
+  margin-bottom: 0px!important;
+  font-size: 15px!important;
+}
+
+// Waiting Part =======================================================
+
+.allplayers {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #82e0dc;
+  .player {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .player-name {
+      text-align: center;
+      font-size: 10px!important;
+    }
+  }
+}
+
+.player-photo {
+  align-self: center;
+  .avatar {
+    height: 35px;
+    width: 35px;
+    object-fit: center;
+  }
+}
+
+// Show Role Part =======================================================
+
+.role {
+  margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .character {
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+  }
+  .info {
+    font-weight: bolder!important;
+    text-align: center;
+    font-size: 14px!important;
+    margin-bottom: 0;
+    margin-top: 5px;
+    color: white;
+  }
+  .description {
+    border-radius: 10px;
+    margin: 20px;
+    background-color: #cce7ed;
+    font-size: 13px!important;
+    padding: 20px;
+    text-align: justify;
+    h4 {
+      font-size: 13px!important;
+    }
+  }
+}
+
+.other-role {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  .other-role-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    .character {
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+    }
+    .name {
+      padding-top: 7px;
+      color: white;
+      p {
+        font-size: 10px!important;
+      }
+    }
+  }
+}
+
+// Cupidon Part ===========================================================
+
+.his-role {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cce7ed;
+  border-radius: 10px;
+  padding: 20px;
+  .character {
+    width: 30%;
+    img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+    }
+  }
+  .info {
+    font-weight: bolder!important;
+    text-align: center;
+    font-size: 14px!important;
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+  .description {
+    width: 70%;
+    font-size: 13px!important;
+    text-align: justify;
+    h4 {
+      font-size: 13px!important;
+    }
+  }
+}
+
+.repos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  img {
+    width: 70vw;
+    object-fit: cover;
+  }
+}
+
+.info-noaction {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-color: red;
+  color: white;
+  height: 23px;
+  h4 {
+    font-size: 13px!important;
+    margin: 0;
+  }
+}
+
+.info-action {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-color: green;
+  color: white;
+  height: 23px;
+  h4 {
+    font-size: 13px!important;
+    margin: 0;
+  }
+}
+
+.checked {
+  border: 3px solid green!important;
+  border-radius: 13px;
+}
+
+.choice {
+  padding-top: 10%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  label:before {
+    position: absolute;
+    z-index: 100;
+  }
+  input[type=checkbox] {
+    display: none;
+  }
+  /*pure cosmetics:*/
+  label {
+    margin: 10px;
+  }
+  .check {
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+  .mycheck {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 135px;
+    h4 {
+      color: white;
+      font-size: 13px!important;
+    }
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5%;
+  .btn-valider {
+    background-color: #85810d;
+    color: white;
+    border-radius: 5px;
+  }
+}
+
+// Role Part except Cupidon  ===========================================================
+
+.choice-One {
+  padding-top: 10%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  label:before {
+    position: absolute;
+    z-index: 100;
+  }
+  input[type=checkbox] {
+    display: none;
+  }
+  /*pure cosmetics:*/
+  label {
+    margin: 10px;
+  }
+  .check {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .mycheck {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 135px;
+    h4 {
+      color: white;
+      font-size: 13px!important;
+    }
+  }
+}
