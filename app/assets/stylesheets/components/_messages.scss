@@ -28,6 +28,9 @@
   height: 50px!important;
   padding: 7px;
   background-color: transparent!important;
+  bottom: 0vh;
+  position: absolute;
+  width: 97%;
   .new_message {
     height: 100%;
     display: flex;
@@ -55,9 +58,16 @@
 .message-group {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 15px;
+  margin-top: 10px;
   .message-user {
     margin-right: 10px;
     margin-left: 10px;
+    align-self:flex-end;
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 
@@ -66,17 +76,57 @@
   flex-direction: column;
   align-items: flex-start;
   .message-username {
-    font-size: 8px!important;
-    color: gray;
+    font-size: 10px!important;
+    color: white;
+    padding-bottom: 5px;
   }
 }
 
 .sender {
-  background-color: #c0c8cc;
-  text-align: right;
+  background-color: #e6eaeb!important;
+  text-align: justify;
 }
 
 .sendee {
-  background-color: #b5d5e6;
-  text-align: left;
+  background-color: #b5d5e6!important;
+  text-align: justify;
+}
+
+.gauche {
+  display: flex;
+  justify-content: flex-start!important;
+}
+
+.message-box {
+  flex:1;
+  overflow-y: scroll!important;
+  margin-bottom: 20vh;
+  max-height: 73vh;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 10px;
+  &.right {
+    flex-direction: row-reverse;
+    .message-content {
+      background-color: #F7F7F7;
+    }
+  }
+}
+
+.message-content {
+  background-color: #F2F9FC;
+  border-radius: 3px;
+  padding: 8px 13px;
+  align-self: center;
+  border-radius: 15px;
+  max-width: 60vw;
+}
+
+.message-username {
+  padding-left:10px;
+  padding-right:10px;
 }

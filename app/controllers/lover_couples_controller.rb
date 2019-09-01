@@ -18,8 +18,10 @@ class LoverCouplesController < ApplicationController
     @cupidon = Player.find_by(game: @game, character: Character.where(name: "cupidon"))
     all = @game.players
     @all_except_me = []
+    @dead = []
     all.each do |player|
       @all_except_me << player if player.user != current_user && player.is_alive
+      @dead << player if player.user != current_user && player.is_alive == false
     end
   end
 

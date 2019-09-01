@@ -1,4 +1,4 @@
-<% if message.player.user == user %>
+<% if message.player.user == current_user %>
   <div class="message-group text-right" style="margin-left: auto;">
     <div class="message-content sendee"> <%= message.content %></div>
     <div class="message-user">
@@ -12,17 +12,17 @@
 <% end %>
 
 
-<% if message.player.user != user %>
-  <div class="message-group text-left">
+<% if message.player.user != current_user %>
+  <div class="message-group text-left gauche">
     <div class="message-user">
-      <% if player.user.photo.url != nil %>
-        <%= image_tag player.user.photo.url, class: "avatar" %>
+      <% if message.player.user.photo.url != nil %>
+        <%= image_tag message.player.user.photo.url, class: "avatar" %>
       <% else %>
         <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
       <% end %>
     </div>
     <div class="message-other">
-      <div class="message-username" ><%= message.player.user.username %>:</div>
+      <div class="message-username" ><%= message.player.user.username %></div>
       <div class="message-content sender"> <%= message.content %></div>
     </div>
   </div>

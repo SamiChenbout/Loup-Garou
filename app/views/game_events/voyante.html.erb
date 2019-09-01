@@ -11,7 +11,11 @@
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <% if @game.step == "starting" %>
-            <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+            <% if @gamer.is_alive %>
+              <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+            <% else %>
+              <%= image_tag player.character.photo.url, class: "filtered" %>
+            <% end %>
           <% else %>
             <% if current_user.photo.url != nil %>
             <%= image_tag current_user.photo.url, class: "avatar" %>
@@ -30,7 +34,7 @@
 </div>
 <% if @gamer.character.name != "voyante" %>
 <div class="allplayers">
-  <% @game.players.each do |player| %>
+  <% @all_except_me.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">
         <% if player.user.photo.url != nil %>
@@ -38,6 +42,16 @@
         <% else %>
           <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
         <% end %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "filtered" %>
       </div>
       <div class="player-name">
         <p><%= player.user.username.capitalize %></p>
@@ -76,7 +90,11 @@
             </div>
             <div>
               <%= f.label :target do %>
-                <%= image_tag player.user.photo.url, class: "check" %>
+                <% if player.user.photo.url != nil %>
+                  <%= image_tag player.user.photo.url, class: "avatar check" %>
+                <% else %>
+                  <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar check" %>
+                <% end %>
               <% end %>
             </div>
             <div><h4><%= player.user.username %></h4></div>

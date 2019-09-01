@@ -37,5 +37,85 @@ const mycheckOne = () => {
   };
 };
 
+const mycheckVoteLoup = () => {
+  if(document.querySelector('.checkVoteLoup')) {
+    document.querySelectorAll('.mycheck').forEach(function(element) {
+      element.addEventListener('click', (event) => {
+        event.preventDefault();
+        if(element.querySelector('input').checked === false) {
+          document.querySelectorAll('.mycheck').forEach(function(thing) {
+            if(thing.querySelector('input').checked) {
+              if(thing.querySelector('.puce').innerText === "1") {
+                thing.querySelector('.puce').innerText = "0";
+              } else if(thing.querySelector('.puce').innerText === "2") {
+                thing.querySelector('.puce').innerText = "1";
+              }
+              thing.querySelector('input').checked = false;
+            }
+          });
+          if(element.querySelector('.puce').innerText === "0") {
+            element.querySelector('.puce').innerText = "1";
+            element.querySelector('input').checked = true;
+          } else if(element.querySelector('.puce').innerText === "1") {
+            element.querySelector('.puce').innerText = "2";
+            element.querySelector('input').checked = true;
+          }
+        } else {
+          if(element.querySelector('.puce').innerText === "1") {
+            element.querySelector('.puce').innerText = "0";
+            element.querySelector('input').checked = false;
+          } else if(element.querySelector('.puce').innerText === "2") {
+            element.querySelector('.puce').innerText = "1";
+            element.querySelector('input').checked = false;
+          }
+        }
+        document.querySelectorAll('.mycheck').forEach(function(truc) {
+          if(truc.querySelector('.puce').innerText === "0") {
+            truc.querySelector('.puce').classList.add('d-none');
+          } else if(truc.querySelector('.puce').innerText != "0") {
+            truc.querySelector('.puce').classList.remove('d-none');
+          }
+        });
+      });
+    });
+  };
+};
 
-export { mycheckTwo, mycheckOne };
+const mycheckVote = () => {
+  const numberDiv = document.getElementById("connect-to-game-channel");
+  const number = numberDiv.dataset.numberId;
+  if(document.querySelector('.checkVote')) {
+    document.querySelectorAll('.mycheck').forEach(function(element) {
+      element.addEventListener('click', (event) => {
+        event.preventDefault();
+        if(element.querySelector('input').checked === false) {
+          document.querySelectorAll('.mycheck').forEach(function(thing) {
+            if(thing.querySelector('input').checked) {
+              let count = parseInt(thing.querySelector('.puce').innerText, 10);
+              thing.querySelector('.puce').innerText = (count - 1).toString();
+              thing.querySelector('input').checked = false;
+            }
+          });
+          let county = parseInt(element.querySelector('.puce').innerText, 10);
+          if(county < number) {
+            element.querySelector('.puce').innerText = (county + 1).toString();
+            element.querySelector('input').checked = true;
+          }
+        } else {
+          element.querySelector('.puce').innerText = (county - 1).toString();
+          element.querySelector('input').checked = false;
+        }
+        document.querySelectorAll('.mycheck').forEach(function(truc) {
+          if(truc.querySelector('.puce').innerText === "0") {
+            truc.querySelector('.puce').classList.add('d-none');
+          } else if(truc.querySelector('.puce').innerText != "0") {
+            truc.querySelector('.puce').classList.remove('d-none');
+          }
+        });
+      });
+    });
+  };
+};
+
+
+export { mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote };

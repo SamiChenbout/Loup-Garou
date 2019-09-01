@@ -41,48 +41,12 @@ margin-bottom: 50px;
   overflow: scroll;
 }
 
-.message-form {
-  padding: 10px;
-  background-color: #ffffff;
-  margin-bottom: 20px;
-  border: 1px solid #ececec;
-}
-
 .app-container {
   width: 100vw;
   height: 100vh;
   background-color: white;
   display: flex;
   flex-direction: column;
-}
-
-.message-box {
-  flex:1;
-  overflow-y: scroll;
-  margin-bottom: 20vh;
-}
-
-.message {
-  display: flex;
-  margin-bottom: 10px;
-  &.right {
-    flex-direction: row-reverse;
-    .message-content {
-      background-color: #F7F7F7;
-    }
-  }
-}
-
-.message-content {
-  background-color: #F2F9FC;
-  border-radius: 3px;
-  margin: 0 10px;
-  padding: 11px 10px 8px 10px;
-}
-
-.message-username {
-  padding-left:10px;
-  padding-right:10px;
 }
 
 @media (max-width: 1024px) {
@@ -105,10 +69,7 @@ margin-bottom: 50px;
     .play-wolf {
       margin-top: 364px;
     }
-   .container {
-    margin: 0 auto;
-    width: 1024px;
-  }
+
     #werewolf img {
     width: 300px;
     height: 300px;
@@ -168,10 +129,6 @@ margin-bottom: 50px;
     margin-top: 134px;
   }
 
- .container {
-  margin: 0 auto;
-  width: 414px;
-}
   #werewolf img {
   width: 150px;
   height: 150px;
@@ -202,10 +159,6 @@ margin-bottom: 50px;
     font-size: 16px;
   }
 
- .container {
-  margin: 0 auto;
-  width: 375px;
-}
   #werewolf img {
   width: 150px;
   height: 150px;
@@ -235,10 +188,6 @@ margin-bottom: 50px;
     font-size: 16px;
   }
 
- .container {
-  margin: 0 auto;
-  width: 375px;
-}
   #werewolf img {
   width: 150px;
   height: 150px;
@@ -268,10 +217,6 @@ margin-bottom: 50px;
     font-size: 16px;
   }
 
- .container {
-  margin: 0 auto;
-  width: 320px;
-}
   #werewolf img {
   width: 100px;
   height: 100px;

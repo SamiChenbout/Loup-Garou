@@ -72,7 +72,11 @@
             </div>
             <div>
               <label for="post_lovers_ids_<%=i%>" class="check">
-                <%= image_tag player.user.photo.url %>
+                <% if player.user.photo.url != nil %>
+                  <%= image_tag player.user.photo.url, class: "avatar check" %>
+                <% else %>
+                  <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar check" %>
+                <% end %>
               </label>
             </div>
             <div><h4><%= player.user.username %></h4></div>
