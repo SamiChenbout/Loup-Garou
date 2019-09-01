@@ -1,8 +1,6 @@
-<h1>I am the game room n°<%= @game.id %></h1>
-<% if @game.round == 1 && @game.players.count < 6 %>
-  <%= render 'player_number' %>
-<% end %>
-<h2>Last User : <%= Player.where(user: current_user, game: @game).last.character.name %></h2>
+<h1>Game room n°<%= @game.id %></h1>
+<%= render 'player_number' %>
+<h2>Last User: <%= Player.where(user: current_user, game: @game).last.character.name %></h2>
 <h2><% @game.players.each { |lol| %> <%= lol.character.name %>, <% } %></h2>
 
 
