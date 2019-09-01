@@ -34,6 +34,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
     @chasseur = Player.where(game: @game, character: Character.where(name: "chasseur").first).first
+    @sorciere = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
+    @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
+    @cupidon = Player.where(game: @game, character: Character.where(name: "cupidon").first).first
+    @loup1 = Player.where(game: @game, character: Character.where(name: "loup").first).first
+    @loup2 = Player.where(game: @game, character: Character.where(name: "loup").last).first
+    @lovers = @game.lover_couples.first
   end
 
   def role

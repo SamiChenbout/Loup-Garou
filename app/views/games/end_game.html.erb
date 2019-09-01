@@ -1,2 +1,190 @@
-<h3><%= @game.news %></h3>
-<h5>You won <%= @gamer.points %> points !</h5>
+<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
+  <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
+  <% if @game.news != nil && @game.news.include?('villag') %>
+  <h2 class="mj-text">Les villageois gagnent !</h2>
+  <% elsif @game.news != nil && @game.news.include?('wolf') %>
+  <h2 class="mj-text">Les loups gagnent !</h2>
+  <% else %>
+  <h2 class="mj-text">Le couple gagne !</h2>
+  <% end %>
+
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <% if current_user.photo.url != nil %>
+          <%= image_tag current_user.photo.url, class: "avatar" %>
+          <% else %>
+          <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="allplayers">
+  <% @game.players.each do |player| %>
+    <% if player != @gamer %>
+      <div class="player mx-3">
+        <div class="player-photo">
+          <%= image_tag player.character.photo.url, class: "avatar" %>
+        </div>
+        <div class="player-name">
+          <p><%= player.user.username.capitalize %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="win_or_loose">
+  <div class="info-game">
+    <div class="photo">
+      <div class="info"><p><%= @gamer.points || 0 %><br>points</p></div>
+      <%= image_tag @gamer.character.photo.url, class: "character" %>
+      <% if @gamer.points != nil && @gamer.points > 0 %>
+      <img src="https://www.shareicon.net/data/128x128/2017/03/29/881758_cup_512x512.png" alt="" class="badge">
+      <% else %>
+      <img src="https://www.shareicon.net/data/128x128/2016/09/26/835604_halloween_512x512.png" alt="" class="badge">
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="my-restart-button my-3">
+  <%= link_to find_path  do %>
+    <img src="http://pixelartmaker.com/art/bbd609bb4cbee37.png" alt="", class="restart">
+  <% end %>
+</div>
+
+<div class="historique">
+  <% i = 1 %>
+  <% j = 1 %>
+  <div class="titre mt-3"><h5 class="titre">Première nuit :</h5></div>
+  <div class="cupidon-historique impaire mt-3">
+    <div class="character">
+      <%= image_tag @cupidon.user.photo.url, class: "avatar" %>
+      <%= image_tag @cupidon.character.photo.url, class: "player" %>
+    </div>
+    <div class="description">
+      <h4><span class="bolder"><%= @cupidon.user.username.capitalize %></span> a lié les deux amoureux : <span class="bolder"><%= @lovers.lover1.user.username.capitalize %></span> et <span class="bolder"><%= @lovers.lover2.user.username.capitalize %></span>, respectivement <%= @lovers.lover1.character.name.capitalize %> et <%= @lovers.lover1.character.name.capitalize %>.</h4>
+    </div>
+  </div>
+  <% i += 1 %>
+  <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+    <div class="character">
+      <%= image_tag @voyante.user.photo.url, class: "avatar" %>
+      <%= image_tag @voyante.character.photo.url, class: "player" %>
+    </div>
+    <div class="description">
+      <% espionnage = GameEvent.find_by(actor: @voyante, game: @game, round: 1, event_type: "spy") %>
+      <% if espionnage == nil %>
+        <h4><span class="bolder"><%= @voyante.user.username.capitalize %></span> n'a espionné personne cette nuit là.</h4>
+      <% else %>
+        <h4><span class="bolder"><%= @voyante.user.username.capitalize %></span> a décidé, cette nuit là, d'espionner <span class="bolder"><%= espionnage.target.user.username.capitalize %></span> qui était <%= espionnage.target.character.name %>.</h4>
+      <% end %>
+    </div>
+  </div>
+  <% i += 1 %>
+  <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+    <div class="character">
+      <%= image_tag @loup1.user.photo.url, class: "avatar" %>
+      <%= image_tag @loup2.user.photo.url, class: "avatar2" %>
+      <%= image_tag @loup1.character.photo.url, class: "player" %>
+    </div>
+    <div class="description">
+      <% victime = GameEvent.find_by(round: 1, game: @game, event_type: "loup-vote").target %>
+      <h4>Les loups, <span class="bolder"><%= @loup1.user.username.capitalize %></span> et <span class="bolder"><%= @loup2.user.username.capitalize %></span>, ont dévoré durant la nuit <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.</h4>
+    </div>
+  </div>
+  <% i += 1 %>
+  <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+    <div class="character">
+      <%= image_tag @sorciere.user.photo.url, class: "avatar" %>
+      <%= image_tag @sorciere.character.photo.url, class: "player" %>
+    </div>
+    <div class="description">
+      <% poison = GameEvent.find_by(actor: @sorciere, round: 1, game: @game, event_type: "sorciere-kill").target %>
+      <h4><span class="bolder"><%= @sorciere.user.username.capitalize %></span> a empoisonné <span class="bolder"><%= poison.user.username.capitalize %></span>, qui était <%= poison.character.name.capitalize %>.<% if poison.character.name == "loup" %> C'est bien visé ! <% else %> Quel gachis ! <% end %></h4>
+    </div>
+  </div>
+  <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('start') %>
+  <%= render "historique_chasseur" %>
+  <% end %>
+  <% if GameEvent.find_by(round: 1, game: @game, event_type: "villageois-vote") != nil %>
+  <% accusé = GameEvent.find_by(round: 1, game: @game, event_type: "villageois-vote").target %>
+  <% i += 1 %>
+  <div class="titre mt-3"><h5 class="titre">Premier jour :</h5></div>
+  <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+    <div class="character">
+      <img src="https://www.shareicon.net/data/128x128/2016/07/07/792192_envelope_512x512.png" alt="" class="player">
+    </div>
+    <div class="description">
+      <h4>Les villageois ont voté pour la pandaison de <span class="bolder"><%= accusé.user.username.capitalize %></span>, qui était <%= accusé.character.name.capitalize %>.<% if accusé.character.name == "loup" %> Un bon point pour le village ! <% else %> Pauvre innocent<%if accusé.character.name == "sorciere" || accusé.character.name == "voyante" %>e<%end%>... <% end %></h4>
+    </div>
+  </div>
+  <% end %>
+  <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('end') %>
+  <%= render "historique_chasseur" %>
+  <% end %>
+  <% j += 1 %>
+  <% while(j <= @game.round) %>
+    <div class="titre mt-3"><h5 class="titre"><% if j == 2 %>Seconde<%else%>Troisieme<%end%>  nuit :</h5></div>
+    <% espionnage = GameEvent.find_by(actor: @voyante, game: @game, round: j, event_type: "spy") %>
+    <% if espionnage != nil %>
+    <% i += 1 %>
+      <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+        <div class="character">
+          <%= image_tag @voyante.user.photo.url, class: "avatar" %>
+          <%= image_tag @voyante.character.photo.url, class: "player" %>
+        </div>
+        <div class="description">
+          <h4><span class="bolder"><%= @voyante.user.username.capitalize %></span> a décidé, cette nuit là, d'espionner <span class="bolder"><%= espionnage.target.user.username.capitalize %></span> qui était <%= espionnage.target.character.name %>.</h4>
+        </div>
+      </div>
+    <% end %>
+    <% i += 1 %>
+    <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+      <div class="character">
+        <%= image_tag @loup1.user.photo.url, class: "avatar" %>
+        <%= image_tag @loup2.user.photo.url, class: "avatar2" %>
+        <%= image_tag @loup1.character.photo.url, class: "player" %>
+      </div>
+      <div class="description">
+        <% victime = GameEvent.find_by(round: j, game: @game, event_type: "loup-vote").target %>
+        <h4>Les loups, <span class="bolder"><%= @loup1.user.username.capitalize %></span> et <span class="bolder"><%= @loup2.user.username.capitalize %></span>, ont dévoré durant la nuit <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.</h4>
+      </div>
+    </div>
+    <% if @chasseur.state_chasseur.include?(j.to_s) || GameEvent.find_by(round: j, game: @game, event_type: "villageois-vote") != nil %>
+    <div class="titre mt-3"><h5 class="titre"><% if j == 2 %>Second<%else%>Troisieme<%end%> jour :</h5></div>
+    <% end %>
+    <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('start') %>
+    <%= render "historique_chasseur" %>
+    <% end %>
+    <% if GameEvent.find_by(round: j, game: @game, event_type: "villageois-vote") != nil %>
+    <% accusé = GameEvent.find_by(round: j, game: @game, event_type: "villageois-vote").target %>
+    <% i += 1 %>
+      <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+        <div class="character">
+          <img src="https://www.shareicon.net/data/128x128/2016/07/07/792192_envelope_512x512.png" alt="" class="player">
+        </div>
+        <div class="description">
+          <h4>Les villageois ont voté pour la pandaison de <span class="bolder"><%= accusé.user.username.capitalize %></span>, qui était <%= accusé.character.name.capitalize %>.<% if accusé.character.name == "loup" %> Un bon point pour le village ! <% else %> Pauvre innocent<%if accusé.character.name == "sorciere" || accusé.character.name == "voyante" %>e<%end%>... <% end %></h4>
+        </div>
+      </div>
+    <% end %>
+    <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('end') %>
+    <%= render "historique_chasseur" %>
+    <% end %>
+    <% j += 1 %>
+  <% end %>
+</div>
+
+
+<!-- EMPTY DIV EMBEDDING DATA -->
+<div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
+

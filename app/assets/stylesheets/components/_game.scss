@@ -343,3 +343,151 @@
     }
   }
 }
+
+
+// End Game Part ========================================================
+
+.win_or_loose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 2%;
+  .info-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 40%;
+    .photo {
+      .info {
+        position: absolute;
+        background-color: #5c979c;
+        border: 2px solid white;
+        border-radius: 50%;
+        color:white;
+        font-size: 13px!important;
+        font-weight: bolder;
+        width: 60px;
+        height: 60px;
+        z-index: 100;
+        text-align: center;
+        margin-top: 5px;
+        top: 130px;
+        p {
+          padding-top: 6px;
+          margin-bottom: 0px;
+        }
+      }
+      .character {
+        width: 60px;
+        height: 60px;
+        object-fit:cover;
+        position: absolute;
+        z-index: 100;
+        left: 100px;
+        top: 130px;
+        border: 2px solid white;
+        border-radius: 50%;
+      }
+      .badge {
+        align-self:center;
+        display: block;
+        width: 200px;
+        height: 200px;
+        object-fit:contain;
+        position: relative;
+      }
+    }
+  }
+}
+
+.titre {
+  h5 {
+    color: white!important;
+    padding: 20px;
+    padding-bottom: 0px;
+    font-size: 18px!important;
+    font-weight: bolder!important;
+  }
+}
+
+.cupidon-historique {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  .character {
+    .player {
+      width: 80%;
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+    }
+    .avatar {
+      margin-top: -10px;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+    }
+    .avatar2 {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      margin-top: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  .description {
+    width: 70%;
+    font-size: 15px!important;
+    text-align: justify;
+    h4 {
+      font-size: 15px!important;
+    }
+  }
+}
+
+.impaire {
+  background-color: #cce7ed;
+}
+
+.paire {
+  background-color: #e0e0e0;
+}
+
+.my-restart-button {
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 120px;
+    height: 50px;
+    object-fit:cover;
+  }
+}
+
+// Starting game -- Style ===============================================
+.info-news {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-color: green;
+  color: white;
+  height: auto;
+  h4 {
+    font-size: 13px!important;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}

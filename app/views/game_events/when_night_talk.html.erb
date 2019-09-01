@@ -1,9 +1,108 @@
+<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
+  <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
+  <% if @game.step == "waiting" %>
+  <%= render 'player_number' %>
+  <% elsif @game.step == "starting" %>
+  <h2 class="mj-text">Place au débat</h2>
+  <% else %>
+  <h2 class="mj-text">La partie est terminée !</h2>
+  <% end %>
+
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <% if @game.step == "starting" %>
+            <% if @gamer.is_alive %>
+              <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+            <% else %>
+              <%= image_tag player.character.photo.url, class: "filtered" %>
+            <% end %>
+          <% else %>
+            <% if current_user.photo.url != nil %>
+            <%= image_tag current_user.photo.url, class: "avatar" %>
+            <% else %>
+            <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="allplayers">
+  <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+    <div class="choice-ajax">
+      <% i = 1 %>
+      <% @all_except_me.each do |player| %>
+        <div class="mycheck player mx-1">
+          <div>
+            <%= check_box_tag :target, player %>
+          </div>
+          <div class="player-photo">
+            <div class="puce d-none"><p>0</p></div>
+            <%= f.label :target do %>
+              <% if player.user.photo.url != nil %>
+                <%= image_tag player.user.photo.url, class: "avatar check" %>
+              <% else %>
+                <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar check" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="player-name"><p><%= player.user.username %></p></div>
+        </div>
+        <% i += 1 %>
+      <% end %>
+    </div>
+    <div class="button-container d-none">
+      <div><%= f.button :submit, "Valider", class: "btn btn-valider" %></div>
+    </div>
+  <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="info-news">
+  <h4 class="text-center">
+    <% @game.news.split("$").each do |phrase| %>
+      <%= phrase %>
+      <br>
+    <% end %>
+  </h4>
+</div>
+
+
+<div class="container">
+  <div id="messages" class="message-box">
+    <% @game.messages.each do |message| %>
+      <%= render 'messages/show', message: message %>
+    <% end %>
+  </div>
+  <div class="message-form">
+    <%= render 'messages/form', game: @game, message: Message.new %>
+  </div>
+</div>
+
 <div id="countdown"></div>
 
-<h3><%= @game.news %></h3>
+<!--
 <% if @chasseur.state_chasseur == "dead-end" %>
   <%= render "chasseur" %>
 <% end %>
+-->
 
 <div class="end-day"></div>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>

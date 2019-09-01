@@ -7,10 +7,12 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
-          <% if current_user.photo.url != nil %>
-          <%= image_tag current_user.photo.url, class: "avatar" %>
-          <% else %>
-          <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+          <%= link_to user_path(current_user) do %>
+            <% if current_user.photo.url != nil %>
+            <%= image_tag current_user.photo.url, class: "avatar" %>
+            <% else %>
+            <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+            <% end %>
           <% end %>
         </li>
       <% else %>
@@ -26,8 +28,13 @@
 <div class="container">
   <div class="flex-box d-flex flex-column">
     <div class="play-wolf text-center">
-
       <div class="scene">
+        <img src="http://appsforarduino.com/img/d_default/seamless-grass-texture-game/seamless-grass-texture-game-cut-5c74bf0575ca7.png" alt="" class="sol">
+        <img src="https://i.pinimg.com/originals/50/13/f2/5013f2075b43362774867e0f2536baca.png" alt="" class="fond-arbre1">
+        <img src="https://i.pinimg.com/originals/50/13/f2/5013f2075b43362774867e0f2536baca.png" alt="" class="fond-arbre2">
+        <img src="https://i.pinimg.com/originals/50/13/f2/5013f2075b43362774867e0f2536baca.png" alt="" class="fond-arbre3">
+        <img src="https://cdn.pixabay.com/photo/2014/12/21/23/30/bush-575513__340.png" alt="" class="bush1">
+        <img src="https://cdn.pixabay.com/photo/2014/12/21/23/54/bush-576310_960_720.png" alt="" class="bush2">
         <img src="https://i1.wp.com/lost-fortress.com/wp-content/uploads/2017/08/Dwarf_women_idle_costume.gif?resize=160%2C160" class="secondleft">
         <img src="https://elqgamingblog.files.wordpress.com/2017/10/dreamblazers-elven-archer-animation-triple-size-brown.gif" class="firstleft">
         <img src="https://i.pinimg.com/originals/08/63/a0/0863a09172b315fa8cd3e85a370b9fac.gif" class="firemiddle">

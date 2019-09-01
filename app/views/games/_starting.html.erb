@@ -29,13 +29,22 @@
   <% @dead.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">
-        <%= image_tag player.character.photo.url, class: "filtered" %>
+        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
       </div>
       <div class="player-name">
         <p><%= player.user.username.capitalize %></p>
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="info-news">
+  <h4 class="text-center">
+    <% @game.news.split("$").each do |phrase| %>
+      <%= phrase %>
+      <br>
+    <% end %>
+  </h4>
 </div>
 
 <div id="countdown"></div>
