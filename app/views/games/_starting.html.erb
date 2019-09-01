@@ -1,7 +1,5 @@
-<h1>I am the FULL game room n°<%= @game.id %></h1>
-<% if @game.round == 1 && @game.round_step == "waiting" %>
-  <%= render 'player_number' %>
-<% end %>
+<h1>Game room n°<%= @game.id %></h1>
+<%= render 'player_number' %>
 
 <div id="countdown"></div>
 
