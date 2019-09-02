@@ -7,6 +7,8 @@
 @import "home";
 @import "game";
 @import "user";
+@import "circle";
+@import "etat";
 @import "progress";
 
 .container {
@@ -24,6 +26,7 @@ body {
   background-color: #11194a;
   height: 100vh;
   width: 100vw;
+  font-family: 'Almendra';font-size: 22px;
 }
 
 .filtered {
@@ -38,4 +41,15 @@ body {
 
 .bolder {
   font-weight: bolder!important;
+}
+
+.countdown {
+  color: white!important;
+}
+
+#progressBar {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

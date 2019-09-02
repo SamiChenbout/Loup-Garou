@@ -1,3 +1,4 @@
+<div id="circle15"></div>
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
   <% if @gamer == @chasseur %>
@@ -112,7 +113,7 @@
       <%= image_tag @chasseur.character.photo.url, class: "avatar" %>
     </div>
     <div class="description">
-      <h4> A sa mort, il doit éliminer un joueur en utilisant sa dernière balle. Reste à savoir s'il sait bien viser...</h4>
+      <h4>A sa mort, il doit éliminer un joueur en utilisant sa dernière balle. Reste à savoir s'il sait bien viser...</h4>
     </div>
   </div>
    <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
