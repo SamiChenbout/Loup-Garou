@@ -6,10 +6,10 @@ const dayScript = () => {
 }
 
 const myTimerDay = (timeLeft, ifDivIs, whatFetch) => {
-  const gameDiv = document.getElementById("connect-to-game-channel");
-  const gameId = gameDiv.dataset.gameId;
-  const timerDiv = document.getElementById("countdown");
   if(ifDivIs) {
+    const gameDiv = document.getElementById("connect-to-game-channel");
+    const gameId = gameDiv.dataset.gameId;
+    const timerDiv = document.getElementById("countdown");
     var timer = setInterval(function(){
     if (timerDiv)
       timerDiv.innerHTML = timeLeft;
