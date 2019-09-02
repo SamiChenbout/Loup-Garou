@@ -55,33 +55,13 @@ game = Game.new
 game.save
 puts 'Game seeded!'
 
-game2 = Game.new
-game2.save
-player6 = Player.new(user: user6, character: sorciere, game: game2, points: 250)
-game3 = Game.new
-game3.save
-player7 = Player.new(user: user6, character: cupidon, game: game3, points: 500)
-game4 = Game.new
-game4.save
-player8 = Player.new(user: user6, character: loup1, game: game4, points: 0)
-game5 = Game.new
-game5.save
-player9 = Player.new(user: user6, character: loup1, game: game5, points: 0)
-
-player10 = Player.new(user: user6, character: cupidon, game: game, points: 0)
-
-player6.save
-player7.save
-player8.save
-player9.save
-player10.save
-
 puts 'Seeding players...'
 player1 = Player.new(user: user1, character: loup1, game: game)
 player2 = Player.new(user: user2, character: loup2, game: game)
 player3 = Player.new(user: user3, character: voyante, game: game)
 player4 = Player.new(user: user4, character: chasseur, game: game)
 player5 = Player.new(user: user5, character: sorciere, game: game)
+
 
 player1.save
 player2.save

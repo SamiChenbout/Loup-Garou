@@ -1,15 +1,29 @@
 class GameEventsController < ApplicationController
   def create
     @game = Game.find(params[:game_id])
-    @user = User.find_by(username: params["game_event"]["target"])
-    @game_event = GameEvent.new(target: Player.find_by(user: @user))
+    @targeted_player = Player.find(params[:target])
+    @user = @targeted_player.user
+    @game_event = GameEvent.new(target: Player.find_by(game: @game, user: @user))
     @game_event.game = @game
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
+    # WHEN STEP IS DAY, THEN BROADCAST RESULTS OF VOTE IN REAL TIME
     if @game.round_step == "day"
       @game_event.event_type = "villageois-vote"
+      previous_current_user_vote_event = GameEvent.where(actor_id: @actor.id, event_type: "villageois-vote", round: @game.round)
+      if previous_current_user_vote_event != []
+        @previous_target_id = Player.find(previous_current_user_vote_event.last.target_id).id
+      else
+        @previous_target_id = 0
+      end
+      previous_current_user_vote_event.each do |previous_vote|
+        previous_vote.destroy
+      end
+    @game_event.save
+    broadcast_score
     else
+      # WHEN STEP IS NOT DAY
       if @actor.character.name == "sorciere"
         @game_event.event_type = "sorciere-kill"
         @game.update(round_step: "start-day")
@@ -39,9 +53,20 @@ class GameEventsController < ApplicationController
           @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!$") unless @game.news.include?("réunis")
         end
       end
+      @game_event.save
     end
-    @game_event.save
     broadcast_status(@game) unless @game.round_step == "day"
+  end
+
+  def broadcast_score
+    ActionCable.server.broadcast("game_round_score_#{@game.id}", {
+      game_id: @game.id,
+      game_round: @game.round,
+      new_target_id: @targeted_player.id,
+      old_target_id: @previous_target_id,
+      updated_vote_new_target: GameEvent.where(target_id: @targeted_player.id, event_type: "villageois-vote", game: @game, round: @game.round).count,
+      updated_vote_previous_target: GameEvent.where(target_id: @previous_target_id, event_type: "villageois-vote", game: @game, round: @game.round).count,
+    })
   end
 
   def destroy

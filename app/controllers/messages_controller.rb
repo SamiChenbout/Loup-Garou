@@ -2,10 +2,10 @@
 
   def create
     @game = Game.find(params[:game_id])
-    @player = @game.players.where(user_id: current_user.id)[0]
+    @gamer = @game.players.where(user_id: current_user.id)[0]
     @message = Message.new(message_params)
     @message.game = @game
-    @message.player = @player
+    @message.player = @gamer
     if @message.save
       respond_to do |format|
         format.html { redirect_to game_path(@game) }
@@ -17,9 +17,9 @@
         format.js
       end
     end
-    if @message.game.round_step == "loup" && @player.is_alive
+    if @message.game.round_step == "loup" && @gamer.is_alive
       broadcast_loup_message
-    elsif @player.is_alive
+    elsif @gamer.is_alive
       broadcast_message
     end
   end

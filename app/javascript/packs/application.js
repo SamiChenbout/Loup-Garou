@@ -1,5 +1,5 @@
 import "bootstrap";
-import { mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote } from "./checkbox";
+import { scoreUpdate, autoSubmit, mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote } from "./checkbox";
 import { initActionCable } from "../plugins/init_action_cable";
 import { dayScript } from "../plugins/day_script";
 import { initActionCableLoup } from "../plugins/init_action_cable_loup";
@@ -14,6 +14,8 @@ mycheckVoteLoup();
 mycheckOne();
 initActionCable();
 initActionCableLoup();
+autoSubmit();
+scoreUpdate();
 //dayScript();
 //cupidon();
 //chasseur();

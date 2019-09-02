@@ -117,5 +117,46 @@ const mycheckVote = () => {
   };
 };
 
+const autoSubmit = () => {
+  if (document.getElementById("new_game_event")) {
+    document.querySelectorAll(".mycheck").forEach((element) => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.getElementById("new_game_event").submit();
+      });
+    });
+  }
+}
 
-export { mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote };
+const scoreUpdate = () => {
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  if (gameDiv) {
+    const gameId = gameDiv.dataset.gameId;
+    App[`game_round_score_${gameId}`] = App.cable.subscriptions.create(
+      { channel: 'GameRoundScoreChannel', game_id: gameId },
+        { received: (data) => {
+          console.log(data);
+          document.querySelectorAll(".mycheck").forEach((player) => {
+            if (data.new_target_id === parseInt(player.dataset.playerId, 10)) {
+              player.querySelector('.puce').innerText = data.updated_vote_new_target;
+              if (data.updated_vote_new_target > 0) {
+                player.querySelector('.puce').classList.remove("d-none");
+              } else if (data.updated_vote_new_target === 0) {
+                player.querySelector('.puce').classList.add("d-none");
+              }
+            } else if (data.old_target_id === parseInt(player.dataset.playerId, 10)) {
+              player.querySelector('.puce').innerText = data.updated_vote_previous_target;
+              if (data.updated_vote_previous_target > 0) {
+                player.querySelector('.puce').classList.remove("d-none");
+              } else if (data.updated_vote_previous_target === 0) {
+                player.querySelector('.puce').classList.add("d-none");
+              }
+            }
+          });
+        }
+      }
+    )
+  }
+}
+
+export { scoreUpdate, autoSubmit, mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote };
