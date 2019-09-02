@@ -1,28 +1,58 @@
+<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
+  <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
+  <% if @game.step == "waiting" %>
+  <%= render 'player_number' %>
+  <% elsif @game.step == "starting" %>
+  <h2 class="mj-text">Place au débat</h2>
+  <% else %>
+  <h2 class="mj-text">La partie est terminée !</h2>
+  <% end %>
 
-<!-- MAIN CHATROOM -->
-<div class="container">
-  <div class="row">
-    <div class="col-10 offset-1">
-    <% if @game.step == "waiting" %>
-      <%= render "waiting" %>
-    <% elsif @game.step == "starting" %>
-      <%= render "starting" %>
-    <% else %>
-      <%= render "finished" %>
-    <% end %>
-
-    <h3><%= @game.news %></h3>
-      <div class="chat-header"><h4>Main Chat</h4></div>
-        <div id="messages" class="messages">
-        </div>
-        <div class="message-form">
-          <%= render 'messages/form', game: @game, message: @message, player: @gamer %>
-        </div>
-      </div>
-    </div>
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <% if @game.step == "starting" %>
+            <% if @gamer.is_alive %>
+              <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+            <% else %>
+              <%= image_tag player.character.photo.url, class: "filtered" %>
+            <% end %>
+          <% else %>
+            <% if current_user.photo.url != nil %>
+            <%= image_tag current_user.photo.url, class: "avatar" %>
+            <% else %>
+            <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
+<% if @game.step == "waiting" %>
+  <%= render "waiting" %>
+<% elsif @game.step == "starting" %>
+  <%= render "starting" %>
+<% else %>
+  <%= render "finished" %>
+<% end %>
+
+<!-- MAIN CHATROOM -->
+<div class="container">
+  <div id="messages" class="message-box"></div>
+  <div class="message-form">
+    <%= render 'messages/form', game: @game, message: @message, player: @gamer %>
+  </div>
+</div>
+
+
 <!-- EMPTY DIV EMBEDDING DATA -->
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
+<div id="info-number-player-alive" data-number-id="<%= @all_except_me.count %>"></div>
 

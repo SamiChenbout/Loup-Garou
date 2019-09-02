@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :messages, only: :create
     resources :game_events, only: [:create, :destroy]
 
+    get "/role", to: "games#role"
+
     get "/cupidon", to: "lover_couples#cupidon"
     get "/random_couple_choose", to: "lover_couples#random_couple_choose"
     get "/voyante", to: "game_events#voyante"
@@ -21,9 +23,9 @@ Rails.application.routes.draw do
     get "/chasseur", to: "game_events#chasseur"
     get "/random_chasseur_kill", to: "game_events#random_chasseur_kill"
 
-    get "/start-day", to: "game_events#when_day_comes"
-    get "/end-day-calcul", to: "game_events#when_night_comes"
-    get "/end-day", to: "game_events#when_night_talk"
+    get "/when_day_comes", to: "game_events#when_day_comes"
+    get "/when_night_comes", to: "game_events#when_night_comes"
+    get "/when_night_talk", to: "game_events#when_night_talk"
     get "/end_game", to: "games#end_game"
   end
 

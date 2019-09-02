@@ -1,5 +1,6 @@
 class Character < ApplicationRecord
   VALID_NAMES = %w(loup sorciere chasseur voyante cupidon)
+  mount_uploader :photo, PhotoUploader
 
   has_many :players, dependent: :destroy
   has_many :games, through: :players

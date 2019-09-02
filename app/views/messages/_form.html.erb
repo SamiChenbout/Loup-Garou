@@ -1,6 +1,6 @@
-<%= simple_form_for([ game, message ], remote: true) do |f| %>
-  <%= f.input :content, label: false,  as: :text %>
-  <% if player.is_alive %>
-    <%= f.button :submit, "Send", class: "btn btn-warning" %>
+<% if @gamer.is_alive %>
+  <%= simple_form_for([ game, message ], remote: true) do |f| %>
+    <%= f.input :content, label: false,  as: :text %>
+    <%= f.submit :submit, :type => :image, :src => "https://cdn4.iconfinder.com/data/icons/web-design-and-development-1-10/48/5-512.png", class: "btn btn-message" %>
   <% end %>
 <% end %>

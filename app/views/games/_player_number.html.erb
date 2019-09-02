@@ -1,5 +1,1 @@
-<% if @game.step == "waiting" %>
-  <h2>Waiting for <span class="bolder" id="number-players"><%= pluralize(6 - @game.players.count, "player") %></span></h2>
-<% elsif @game.step == "starting" %>
-  <h2><span class="bolder"><%= pluralize(@game.players.where(is_alive: true).count, "player") %></span> still alive!</h2>
-<% end %>
+<h2 class="mj-text">Il manque  <span class="bolder" id="number-players"><%= pluralize(6 - @game.players.count, "joueur") %>...</span></h2>

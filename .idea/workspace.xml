@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dbc6af4f-a106-4854-8d03-51b3fc8adf0a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_messages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_messages.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/character.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/character.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/games/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/games/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/messages/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/messages/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/pages/home.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/pages/home.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/_navbar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_navbar.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1QBolUI7eRwzdJPG8GLHtDgdYF3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dbc6af4f-a106-4854-8d03-51b3fc8adf0a" name="Default Changelist" comment="" />
+      <created>1567253500694</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567253500694</updated>
+      <workItem from="1567253503699" duration="191000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

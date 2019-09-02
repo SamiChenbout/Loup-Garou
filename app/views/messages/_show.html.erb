@@ -1,4 +1,29 @@
-<div class="message <%= author ? "" : "right" %>">
-  <%= message.player.user.username %>
-  <div class="message-content"> <%= message.content %></div>
-</div>
+<% if message.player.user == current_user %>
+  <div class="message-group text-right" style="margin-left: auto;">
+    <div class="message-content sendee"> <%= message.content %></div>
+    <div class="message-user">
+      <% if current_user.photo.url != nil %>
+        <%= image_tag current_user.photo.url, class: "avatar" %>
+      <% else %>
+        <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+<% if message.player.user != current_user %>
+  <div class="message-group text-left gauche">
+    <div class="message-user">
+      <% if message.player.user.photo.url != nil %>
+        <%= image_tag message.player.user.photo.url, class: "avatar" %>
+      <% else %>
+        <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
+      <% end %>
+    </div>
+    <div class="message-other">
+      <div class="message-username" ><%= message.player.user.username %></div>
+      <div class="message-content sender"> <%= message.content %></div>
+    </div>
+  </div>
+<% end %>

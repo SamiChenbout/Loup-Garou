@@ -6,6 +6,39 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @win = []
+    all_char_win = []
+    all_char_lose = []
+    @lose = []
+    @user.games.each do |game|
+      player = Player.find_by(game: game, user: @user)
+      if player.points != nil && player.points > 0
+        @win << game
+        all_char_win << player.character
+      else
+        @lose << game
+        all_char_lose << player.character
+      end
+    end
+    count_win = {}
+    count_lose = {}
+    all_char_win.each do |winner|
+      if count_win.key?(winner.name)
+        count_win[winner.name] += 1
+      else
+        count_win[winner.name] = 1
+      end
+    end
+    all_char_lose.each do |looser|
+      if count_lose.key?(looser.name)
+        count_lose[looser.name] += 1
+      else
+        count_lose[looser.name] = 1
+      end
+    end
+    @winner = Character.find_by(name: count_win.sort_by { |_key, value| value }.last)
+    @looser = Character.find_by(name: count_lose.sort_by { |_key, value| value }.last)
   end
 
   def new

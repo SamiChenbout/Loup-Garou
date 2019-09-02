@@ -17,7 +17,7 @@ class PlayersController < ApplicationController
     if @game.players.count > 5
       @game.update(step: "starting")
       broadcast_status(@game)
-      redirect_to game_cupidon_path(@game)
+      redirect_to game_role_path(@game)
     else
       redirect_to game_path(@game)
     end

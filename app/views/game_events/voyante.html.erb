@@ -1,11 +1,130 @@
+<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
+  <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
+  <% if @gamer == @voyante %>
+  <h2 class="mj-text">Au-dela des apparences...</h2>
+  <% else %>
+  <h2 class="mj-text">La voyante a l'oeil ouvert</h2>
+  <% end %>
+
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <% if @game.step == "starting" %>
+            <% if @gamer.is_alive %>
+              <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+            <% else %>
+              <%= image_tag @gamer.character.photo.url, class: "filtered avatar" %>
+            <% end %>
+          <% else %>
+            <% if current_user.photo.url != nil %>
+            <%= image_tag current_user.photo.url, class: "avatar" %>
+            <% else %>
+            <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% if @gamer.character.name != "voyante" %>
+<div class="allplayers">
+  <% @all_except_me.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <% if player.user.photo.url != nil %>
+          <%= image_tag player.user.photo.url, class: "avatar" %>
+        <% else %>
+          <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
+        <% end %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<% if @gamer.character.name == "voyante" && @gamer.is_alive %>
+  <div class="info-action">
+    <h4>A toi de jouer !</h4>
+  </div>
+<% else %>
+  <div class="info-noaction">
+    <% if @gamer.is_alive %>
+    <h4>Ce n'est pas ton tour, rendors toi...</h4>
+    <% else %>
+    <h4>Tu es mort, il ne te reste plus qu'à attendre...</h4>
+    <% end %>
+  </div>
+<% end %>
+
 <div id="countdown"></div>
 
 <% if @gamer.character.name == "voyante" && @gamer.is_alive %>
-  <p><%= @gamer.character.name %>, select player you would like to reveal!</p>
-  <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
-    <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-    <%= f.button :submit, "Reveal!", class: "btn btn-primary" %>
-  <% end %>
+<div class="role">
+  <h4 class="info">Qui veux-tu espionner ce soir ?</h4>
+    <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+      <div class="choice-One">
+        <% i = 1 %>
+        <% @all_except_me.each do |player| %>
+          <div class="mycheck">
+            <div>
+              <%= check_box_tag :target, player %>
+            </div>
+            <div>
+              <%= f.label :target do %>
+                <% if player.user.photo.url != nil %>
+                  <%= image_tag player.user.photo.url, class: "avatar check" %>
+                <% else %>
+                  <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar check" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div><h4><%= player.user.username %></h4></div>
+          </div>
+          <% i += 1 %>
+        <% end %>
+      </div>
+      <div class="button-container">
+        <div><%= f.button :submit, "Valider", class: "btn btn-valider" %></div>
+      </div>
+    <% end %>
+</div>
+<% else %>
+  <div class="repos">
+      <% if @gamer.is_alive %>
+      <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
+      <% else %>
+      <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
+      <% end %>
+  </div>
+  <div class="his-role en-bas">
+    <div class="character">
+      <%= image_tag @voyante.character.photo.url, class: "avatar" %>
+    </div>
+    <div class="description">
+      <h4>Chaque nuit, elle peut espionner un joueur et découvrir sa véritable identité. Mieux vaut ne pas etre son ennemi...</h4>
+    </div>
+  </div>
 <% end %>
-<div class="voyante"></div>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
+<div class="voyante checkOne"></div>
+
+<div id="countdown"></div>

@@ -1,0 +1,11 @@
+<% i += 1 %>
+<div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+  <div class="character">
+    <%= image_tag @chasseur.user.photo.url, class: "avatar" %>
+    <%= image_tag @chasseur.character.photo.url, class: "player" %>
+  </div>
+  <div class="description">
+    <% victime = GameEvent.find_by(round: j, game: @game, event_type: "chasseur-kill").target %>
+    <h4><span class="bolder"><%= @chasseur.user.username.capitalize %></span> a tiré sa dernière balle sur <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.<% if victime.character.name == "loup" %> C'était judicieux de sa part ! <% else %> Ce n'était pas un choix judicieux... <% end %></h4>
+  </div>
+</div>

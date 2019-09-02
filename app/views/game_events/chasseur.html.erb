@@ -1,9 +1,9 @@
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
-  <% if @gamer == @sorciere %>
-  <h2 class="mj-text">Juste quelques gouttes...</h2>
+  <% if @gamer == @chasseur %>
+  <h2 class="mj-text">Vengeance ou strategie ?</h2>
   <% else %>
-  <h2 class="mj-text">Gare à la déesse de la mort</h2>
+  <h2 class="mj-text">Quel suspens...</h2>
   <% end %>
 
   <div id="navbarSupportedContent">
@@ -28,7 +28,7 @@
     </ul>
   </div>
 </div>
-<% if @gamer.character.name != "sorciere" %>
+<% if @gamer.character.name != "chasseur" %>
 <div class="allplayers">
   <% @all_except_me.each do |player| %>
     <div class="player mx-3">
@@ -44,10 +44,20 @@
       </div>
     </div>
   <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
 </div>
 <% end %>
 
-<% if @gamer.character.name == "sorciere" %>
+<% if @gamer.character.name == "chasseur" %>
   <div class="info-action">
     <h4>A toi de jouer !</h4>
   </div>
@@ -59,9 +69,9 @@
 
 <div id="countdown"></div>
 
-<% if @gamer.character.name == "sorciere" && @gamer.is_alive %>
+<% if @gamer.character.name == "chasseur" && @gamer.is_alive %>
 <div class="role">
-  <h4 class="info">Qui veux-tu livrer à la mort ?</h4>
+  <h4 class="info">A qui veux-tu offrir ta dernière balle ?</h4>
     <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
       <div class="choice-One">
         <% i = 1 %>
@@ -91,18 +101,22 @@
 </div>
 <% else %>
   <div class="repos">
+    <% if @gamer.is_alive %>
     <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
+    <% else %>
+    <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
+    <% end %>
   </div>
   <div class="his-role">
     <div class="character">
-      <%= image_tag @sorciere.character.photo.url, class: "avatar" %>
+      <%= image_tag @chasseur.character.photo.url, class: "avatar" %>
     </div>
     <div class="description">
-      <h4>Adepte de magie noire, elle dispose d'une potion de mort pour assassiner quelqu'un au premier tour.</h4>
+      <h4> A sa mort, il doit éliminer un joueur en utilisant sa dernière balle. Reste à savoir s'il sait bien viser...</h4>
     </div>
   </div>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
-<div class="sorciere checkOne"></div>
+<div class="chasseur checkOne"></div>
 
 <div id="countdown"></div>

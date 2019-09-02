@@ -1,9 +1,55 @@
-<h1>Game room n°<%= @game.id %></h1>
-<%= render 'player_number' %>
+<div class="allplayers">
+  <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+    <div class="choice-ajax">
+      <% i = 1 %>
+      <% @all_except_me.each do |player| %>
+        <div class="mycheck player mx-1">
+          <div>
+            <%= check_box_tag :target, player %>
+          </div>
+          <div class="player-photo">
+            <div class="puce d-none"><p>0</p></div>
+            <%= f.label :target do %>
+              <% if player.user.photo.url != nil %>
+                <%= image_tag player.user.photo.url, class: "avatar check" %>
+              <% else %>
+                <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar check" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="player-name"><p><%= player.user.username %></p></div>
+        </div>
+        <% i += 1 %>
+      <% end %>
+    </div>
+    <div class="button-container d-none">
+      <div><%= f.button :submit, "Valider", class: "btn btn-valider" %></div>
+    </div>
+  <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="info-news">
+  <h4 class="text-center">
+    <% @game.news.split("$").each do |phrase| %>
+      <%= phrase %>
+      <br>
+    <% end %>
+  </h4>
+</div>
 
 <div id="countdown"></div>
 
-<% if @chasseur.state_chasseur == "dead-start" %>
+<!-- <% if @chasseur.state_chasseur == "dead-start" %>
   <% @game.update(round_step: "chasseur") %>
   <%= render "./game_events/chasseur" %>
 <% else %>
@@ -13,6 +59,6 @@
       <%= f.button :submit, "Vote!", class: "btn btn-primary" %>
     <% end %>
   <% end %>
-<% end %>
+<% end %> -->
 
-<div class="day"></div>
+<div class="day checkVote"></div>
