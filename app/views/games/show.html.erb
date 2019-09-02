@@ -45,13 +45,9 @@
 
 <!-- MAIN CHATROOM -->
 <div class="container">
-  <div id="messages" class="message-box">
-    <% @game.messages.each do |message| %>
-      <%= render 'messages/show', message: message %>
-    <% end %>
-  </div>
+  <div id="messages" class="message-box"></div>
   <div class="message-form">
-    <%= render 'messages/form', game: @game, message: Message.new %>
+    <%= render 'messages/form', game: @game, message: @message, player: @gamer %>
   </div>
 </div>
 
