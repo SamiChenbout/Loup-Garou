@@ -86,7 +86,7 @@
       <% end %>
       <div class="info-bottom">
         <div class="date">Membre depuis <%= @user.created_at.month %>/<%= @user.created_at.year %></div>
-        <div class="edit"><i class="fas fa-edit"></i></div>
+        <div class="edit"><i class="fas fa-edit" data-toggle="modal" data-target="#editprofile"></i></div>
       </div>
     </div>
   </div>
@@ -114,6 +114,55 @@
           <img src="https://www.shareicon.net/data/128x128/2016/09/26/835604_halloween_512x512.png" alt="" class="badge">
         </div>
       </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="editprofile">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit your profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for(@user) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.input :email, required: true, autofocus: true %>
+              <%= f.input :description, label: 'Description' %>
+              <%= f.input :photo, label: 'Profile picture' %>
+              <%= f.input :photo_cache, as: :hidden %>
+              <%= f.input :password,
+                          hint: "leave it blank if you don't want to change it",
+                          required: false,
+                          input_html: { autocomplete: "new-password" } %>
+              <%= f.input :password_confirmation,
+                          required: false,
+                          input_html: { autocomplete: "new-password" } %>
+              <%= f.input :current_password,
+                          hint: "we need your current password to confirm your changes",
+                          required: true,
+                          input_html: { autocomplete: "current-password" } %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Update" %>
+            </div>
+          <% end %>
+
+
+          <%= link_to "Back", :back %>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="footer">
