@@ -17,10 +17,12 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
-          <% if current_user.photo.url != nil %>
-          <%= image_tag current_user.photo.url, class: "avatar" %>
-          <% else %>
-          <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+          <%= link_to user_path(current_user)  do %>
+            <% if current_user.photo.url != nil %>
+            <%= image_tag current_user.photo.url, class: "avatar" %>
+            <% else %>
+            <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+            <% end %>
           <% end %>
         </li>
       <% else %>
@@ -31,6 +33,7 @@
     </ul>
   </div>
 </div>
+
 <div class="allplayers">
   <% @all_except_me.each do |player| %>
     <div class="player mx-3">
