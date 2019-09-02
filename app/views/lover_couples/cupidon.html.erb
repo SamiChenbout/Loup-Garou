@@ -1,3 +1,4 @@
+<div id="circle15"></div>
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
   <% if @gamer == @cupidon %>
@@ -5,7 +6,6 @@
   <% else %>
   <h2 class="mj-text">Cupidon lie les deux amoureux</h2>
   <% end %>
-
   <div id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
@@ -48,11 +48,11 @@
 <% end %>
 
 <% if @gamer.character.name == "cupidon" %>
-  <div class="info-action">
+  <div class="info-action" data-aos="fade-down">
     <h4>A toi de jouer !</h4>
   </div>
 <% else %>
-  <div class="info-noaction">
+  <div class="info-noaction" data-aos="fade-down">
     <h4>Ce n'est pas ton tour, rendors toi...</h4>
   </div>
 <% end %>

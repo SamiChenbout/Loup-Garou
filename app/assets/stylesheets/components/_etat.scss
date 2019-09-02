@@ -1,0 +1,25 @@
+.etat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .etat-photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+      img {
+      height: 280px;
+      width: 280px;
+      object-fit: contain!important;
+      align-self:center;
+    }
+  }
+  h2 {
+    padding-top: 30px;
+    text-align: center;
+    color: white;
+    font-family: 'Almendra SC';font-size: 20px!important;
+  }
+}

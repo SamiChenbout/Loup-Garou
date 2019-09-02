@@ -1,17 +1,7 @@
-<div id="circle15"></div>
+<div id="circle10"></div>
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
-  <% if @gamer.character.name == "loup" %>
-  <h2 class="mj-text">Ca sent la chair fraiche...</h2>
-  <% elsif @gamer.character.name == "voyante" %>
-  <h2 class="mj-text">Discretion est maitre mot !</h2>
-  <% elsif @gamer.character.name == "sorciere" %>
-  <h2 class="mj-text">La mort t'accompagne</h2>
-  <% elsif @gamer.character.name == "cupidon" %>
-  <h2 class="mj-text">Amour, quelle aventure !</h2>
-  <% elsif @gamer.character.name == "chasseur" %>
-  <h2 class="mj-text">Vengeance n'est point solution</h2>
-  <% end %>
+  <h2 class="mj-text">Le jour se lève...</h2>
 
   <div id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -46,34 +36,26 @@
       </div>
     </div>
   <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "avatar filtered" %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div id="countdown"></div>
 
-<div class="role">
-  <div class="character">
-    <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+<div class="etat">
+  <div class="etat-photo">
+    <img src="https://garysanis.com/Pics/Space/WheatAgainstSettingSun_Big.gif" alt="">
+    <h2 class="etat-text">Le vote entre villageois approche. <br> Gare l'oeil ouvert !</h2>
   </div>
-  <h4 class="info"> Tu es un<% if @gamer.character.name == "sorciere" || @gamer.character.name == "voyante"%>e<%end%> <%= @gamer.character.name %></h4>
-  <div class="description">
-    <h4><%= @gamer.character.description %></h4>
-  </div>
-</div>
-
-<div class="other-role">
-  <% Character.all.each do |character| %>
-    <% if character.name != @gamer.character.name %>
-      <div class="other-role-card">
-        <div class="character">
-          <%= image_tag character.photo.url %>
-        </div>
-        <div class="name">
-          <p><%= character.name.capitalize %></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
 </div>
 
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
-<div class="show-role"></div>
+<div class="day-interlude"></div>

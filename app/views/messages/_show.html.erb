@@ -1,13 +1,6 @@
 <% if message.player.user == user %>
   <div class="message-group text-right" style="margin-left: auto;">
-    <div class="message-content sendee"> <%= message.content %></div>
-    <div class="message-user">
-      <% if current_user.photo.url != nil %>
-        <%= image_tag current_user.photo.url, class: "avatar" %>
-      <% else %>
-        <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
-      <% end %>
-    </div>
+    <div class="message-content sendee mr-2"> <%= message.content %></div>
   </div>
 <% end %>
 
