@@ -1,21 +1,22 @@
 const dayScript = () => {
-  const gameDiv = document.getElementById("connect-to-game-channel");
-  const gameId = gameDiv.dataset.gameId;
-  myTimerDay(180, document.querySelector('.day'), `end-day-calcul`);
-  myTimerDay(0, document.querySelector('.end-day-calcul'), `end-day`);
-  myTimerDay(5, document.querySelector('.end-day'), `end-day`);
-  myTimerDay(10, document.querySelector('.show-role'), `cupidon`);
+  myTimerDay(180, document.querySelector('.day'), `when_night_comes`);
+  myTimerDay(1, document.querySelector('.end-day-calcul'), `when_night_talk`);
+  myTimerDay(10, document.querySelector('.end-day'), `night`);
+  myTimerDay(10, document.querySelector('.show-role'), `night`);
 }
 
 const myTimerDay = (timeLeft, ifDivIs, whatFetch) => {
+  const gameDiv = document.getElementById("connect-to-game-channel");
+  const gameId = gameDiv.dataset.gameId;
   const timerDiv = document.getElementById("countdown");
   if(ifDivIs) {
-    setInterval(function(){
+    var timer = setInterval(function(){
     if (timerDiv)
       timerDiv.innerHTML = timeLeft;
       timeLeft -= 1;
       if(timeLeft <= 0){
-        fetch(`/games/${gameId}/${whatFetch}`);
+        clearInterval(timer);
+        window.location = `/games/${gameId}/${whatFetch}`;
       }
   }, 1000);
   }
