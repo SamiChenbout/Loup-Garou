@@ -34,7 +34,7 @@
     ActionCable.server.broadcast("game_#{@game.id}", {
       message_partial: ApplicationController.renderer.render(
         partial: "messages/show",
-        locals: { message: @message, author: false }
+        locals: { message: @message, user: 'fake' }
       ),
       current_user_id: current_user.id
     })
@@ -44,7 +44,7 @@
     ActionCable.server.broadcast("loup_messages_#{@game.id}", {
       message_partial: ApplicationController.renderer.render(
         partial: "messages/show",
-        locals: { message: @message, author: false }
+        locals: { message: @message, user: 'fake' }
       ),
       current_user_id: current_user.id
     })

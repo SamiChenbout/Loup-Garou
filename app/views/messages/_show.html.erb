@@ -1,4 +1,4 @@
-<% if message.player.user == current_user %>
+<% if message.player.user == user %>
   <div class="message-group text-right" style="margin-left: auto;">
     <div class="message-content sendee"> <%= message.content %></div>
     <div class="message-user">
@@ -12,7 +12,7 @@
 <% end %>
 
 
-<% if message.player.user != current_user %>
+<% if message.player.user != user %>
   <div class="message-group text-left gauche">
     <div class="message-user">
       <% if message.player.user.photo.url != nil %>
