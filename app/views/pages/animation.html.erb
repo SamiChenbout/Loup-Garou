@@ -94,10 +94,8 @@
           <img src="https://i.pinimg.com/originals/fc/f2/02/fcf20275d15b7d35a55512b081f61375.gif" class="secondright">
         </div>
 
-        <div class="play">
-          <%= link_to animation_path  do %>
-            <%= image_tag "Play.png" %>
-          <% end %>
+        <div id="progressBar">
+            <div id="bar">20%</div>
         </div>
       </div>
     </div>
@@ -113,3 +111,8 @@
   </div>
 
 </div>
+
+<div id="animation-page"></div>
+
+ <%= audio_tag("howl.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
+
