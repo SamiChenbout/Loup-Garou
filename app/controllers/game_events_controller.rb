@@ -64,7 +64,6 @@ class GameEventsController < ApplicationController
       @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!$") unless @game.news.include?("réunis")
     end
     victime1.update(state_chasseur: "dead-start") if victime1.character.name == "chasseur"
-    @game.update(news: @game.news + "Les amoureux étaient liés !$") if @game.round == 1
     if GameEvent.where(game: @game, round: @game.round, event_type: "spy") != []
       decouvert = GameEvent.where(game: @game, round: @game.round, event_type: "spy").first.target
       @game.update(news: @game.news + "La voyante a espionné ")
@@ -322,6 +321,7 @@ class GameEventsController < ApplicationController
   def chasseur
     @game = Game.find(params[:game_id])
     @gamer = Player.where(user: current_user, game: @game).first
+    @chasseur = Player.where(game: @game, character: Character.where(name: "chasseur").first).first
     all = @game.players
     @all_except_me = []
     @dead = []

@@ -40,6 +40,10 @@ class GamesController < ApplicationController
     @loup1 = Player.where(game: @game, character: Character.where(name: "loup").first).first
     @loup2 = Player.where(game: @game, character: Character.where(name: "loup").last).first
     @lovers = @game.lover_couples.first
+
+    current_user.update(points: current_user.points + @gamer.points) if current_user.points != nil
+    current_user.update(points: @gamer.points) unless current_user.points != nil
+    current_user.update(level: current_user.level + 1, points: current_user.points / 1000) if current_user.points / 1000 > 1
   end
 
   def role

@@ -112,6 +112,7 @@
 // Cupidon Part ===========================================================
 
 .his-role {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
   margin: 10px;
   display: flex;
   align-items: center;
@@ -144,12 +145,16 @@
   }
 }
 
+.en-bas {
+  bottom: 0vh;
+}
+
 .repos {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: 55vh;
   img {
     width: 70vw;
     object-fit: cover;

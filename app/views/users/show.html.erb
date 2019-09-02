@@ -1,76 +1,130 @@
-<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
-    <% end %>
-
-  <div id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-<div class="profil">
-  <div class="profil-photo">
-    <div class="niveau"><p><%= @user.level %></p></div>
-    <div>
-      <% if @user.photo.url != nil %>
-      <%= image_tag @user.photo.url, class: "avatar" %>
-      <% else %>
-      <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="profil-info">
-    <div class="username"><%= @user.username.capitalize %></div>
-    <% if @user.description != nil %>
-    <div class="description"><h4><%= @user.description %></h4></div>
-    <% end %>
-    <div class="info-bottom">
-      <div class="date">Membre depuis <%= @user.created_at.month %>/<%= @user.created_at.year %></div>
-      <div class="edit"><i class="fas fa-edit"></i></div>
-    </div>
-  </div>
-</div>
-
-<div class="stat">
-    <div class="info-win">
-      <div class="photo">
-        <div class="info"><p><% if @win.count != 0 %><%= @win.count %><% else %>0<% end %><br>win</p></div>
-        <% if @winner != nil %>
-        <%= image_tag @winner.photo.url, class: "character" %>
-        <% else %>
-        <img src="https://www.ikeraguirre.com/wp-content/uploads/sites/2/2016/10/image-transparente.png" alt="", class="character">
-        <% end %>
-        <img src="https://www.shareicon.net/data/128x128/2017/03/29/881758_cup_512x512.png" alt="" class="badge">
+<div class="modal-rules-container d-none">
+  <div class="modal-rules">
+    <div class="croix-container-rules"><img src="https://image.flaticon.com/icons/png/512/52/52772.png" alt="", class="croix"></div>
+    <div class="regle"><h4 class="titre">Regle du jeu</h4></div>
+    <h5>
+      Des meurtres sont commis chaque nuit
+      par certains habitants du village, devenus
+      Lycanthropes à cause d’un phénomène
+      mystérieux …
+      Les Villageois doivent se ressaisir pour éradiquer ce nouveau fléau venu du fond
+      des âges, avant que le hameau ne perde ses derniers habitants.
+    </h5>
+    <div class="his-role">
+      <% loup = Character.find_by(name: "loup") %>
+      <div class="character">
+        <%= image_tag loup.photo.url, class: "avatar" %>
+      </div>
+      <div class="description">
+        <h4><%= loup.description %></h4>
       </div>
     </div>
-    <div class="info-lose">
-      <div class="photo">
-        <% if @looser != nil %>
-        <%= image_tag @looser.photo.url, class: "character" %>
-        <% else %>
-        <img src="https://www.ikeraguirre.com/wp-content/uploads/sites/2/2016/10/image-transparente.png" alt="", class="character">
-        <% end %>
-        <div class="info"><p><% if @lose.count != 0 %><%= @lose.count %><% else %>0<% end %><br>Lose</p></div>
-        <img src="https://www.shareicon.net/data/128x128/2016/09/26/835604_halloween_512x512.png" alt="" class="badge">
+    <% Character.all.each do |personnage| %>
+    <% if personnage.name != "loup" %>
+    <div class="his-role">
+      <div class="character">
+        <%= image_tag personnage.photo.url, class: "avatar" %>
+      </div>
+      <div class="description">
+        <h4><%= personnage.description %></h4>
       </div>
     </div>
-</div>
-
-<div class="footer">
-  <div class="footer-logo">
-    <img src="https://cdn.pixabay.com/photo/2014/04/02/17/03/gear-307780__340.png">
-  </div>
-  <div class="footer-logo">
-    <img src="https://res.cloudinary.com/pixel-art/image/upload/v1554322838/open-book/167755-open-book-pixel-art.png">
+    <% end %>
+  <% end %>
   </div>
 </div>
 
+<div class="modal-params-container d-none">
+  <div class="modal-params">
+    <div class="croix-container-params"><img src="https://image.flaticon.com/icons/png/512/52/52772.png" alt="", class="croix"></div>
+    <div class="regle"><h4 class="titre">Parametres</h4></div>
+    <div class="button-params">
+      <div class="button-p one"><i class="fas fa-2x fa-music"></i></div>
+      <div class="button-p two"><i class="fas fa-2x fa-volume-down"></i></div>
+      <div class="button-p three"><i class="fas fa-2x fa-bell"></i></div>
+    </div>
+    <hr/>
+    <div class="but"><h4 class="titre">Français</h4></div>
+    <hr/>
+    <div class="but"><h4 class="titre">Termes et conditions</h4></div>
+  </div>
+</div>
 
-<embed  class="background-music" src="http://soundimage.org/wp-content/uploads/2014/03/Spells-a-Brewin.mp3" autostart="true" loop="true" hidden="true"><embed>
+<div class="allHome">
+  <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
+      <% end %>
+
+    <div id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="profil">
+    <div class="profil-photo">
+      <div class="niveau"><p><%= @user.level %></p></div>
+      <div>
+        <% if @user.photo.url != nil %>
+        <%= image_tag @user.photo.url, class: "avatar" %>
+        <% else %>
+        <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="profil-info">
+      <div class="username"><%= @user.username.capitalize %></div>
+      <% if @user.description != nil %>
+      <div class="description"><h4><%= @user.description %></h4></div>
+      <% end %>
+      <div class="info-bottom">
+        <div class="date">Membre depuis <%= @user.created_at.month %>/<%= @user.created_at.year %></div>
+        <div class="edit"><i class="fas fa-edit"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat">
+      <div class="info-win">
+        <div class="photo">
+          <div class="info"><p><% if @win.count != 0 %><%= @win.count %><% else %>0<% end %><br>win</p></div>
+          <% if @winner != nil %>
+          <%= image_tag @winner.photo.url, class: "character" %>
+          <% else %>
+          <img src="https://www.ikeraguirre.com/wp-content/uploads/sites/2/2016/10/image-transparente.png" alt="", class="character">
+          <% end %>
+          <img src="https://www.shareicon.net/data/128x128/2017/03/29/881758_cup_512x512.png" alt="" class="badge">
+        </div>
+      </div>
+      <div class="info-lose">
+        <div class="photo">
+          <% if @looser != nil %>
+          <%= image_tag @looser.photo.url, class: "character" %>
+          <% else %>
+          <img src="https://www.ikeraguirre.com/wp-content/uploads/sites/2/2016/10/image-transparente.png" alt="", class="character">
+          <% end %>
+          <div class="info"><p><% if @lose.count != 0 %><%= @lose.count %><% else %>0<% end %><br>Lose</p></div>
+          <img src="https://www.shareicon.net/data/128x128/2016/09/26/835604_halloween_512x512.png" alt="" class="badge">
+        </div>
+      </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo parameter">
+      <img src="https://cdn.pixabay.com/photo/2014/04/02/17/03/gear-307780__340.png">
+    </div>
+    <div class="footer-logo book">
+      <img src="https://res.cloudinary.com/pixel-art/image/upload/v1554322838/open-book/167755-open-book-pixel-art.png">
+    </div>
+  </div>
+
+
+  <embed  class="background-music" src="http://soundimage.org/wp-content/uploads/2014/03/Spells-a-Brewin.mp3" autostart="true" loop="true" hidden="true"><embed>
+</div>

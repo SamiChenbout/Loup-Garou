@@ -82,7 +82,7 @@ const mycheckVoteLoup = () => {
 };
 
 const mycheckVote = () => {
-  const numberDiv = document.getElementById("connect-to-game-channel");
+  const numberDiv = document.getElementById("info-number-player-alive");
   const number = numberDiv.dataset.numberId;
   if(document.querySelector('.checkVote')) {
     document.querySelectorAll('.mycheck').forEach(function(element) {
