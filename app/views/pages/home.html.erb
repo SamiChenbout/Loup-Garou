@@ -52,9 +52,12 @@
 
 <div class="allHome">
   <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
-    <% end %>
+    <div>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
+      <% end %>
+      <img src="https://fun.namerobot.com/tools/werewolf/logo.png" alt="" class="name-game">
+    </div>
     <div id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>

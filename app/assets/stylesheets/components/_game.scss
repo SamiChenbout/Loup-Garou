@@ -110,6 +110,24 @@
   }
 }
 
+.name-game {
+  width: 27%!important;
+  height: 30px!important;
+  object-fit: contain!important;
+  position:absolute;
+  top: 25px;
+  left: 70px;
+  filter: grayscale(100%);
+}
+.name-game-right {
+  width: 27%!important;
+  height: 30px!important;
+  object-fit: contain!important;
+  position:absolute;
+  top: 25px;
+  right: 20px;
+  filter: grayscale(100%);
+}
 // Cupidon Part ===========================================================
 
 .his-role {
