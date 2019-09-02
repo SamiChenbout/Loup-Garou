@@ -12,23 +12,25 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
-          <% if @game.step == "starting" %>
-            <% if @gamer.is_alive %>
-              <%= image_tag @gamer.character.photo.url, class: "avatar" %>
-            <% else %>
-              <%= image_tag player.character.photo.url, class: "filtered" %>
-            <% end %>
-          <% else %>
-            <% if current_user.photo.url != nil %>
-            <%= image_tag current_user.photo.url, class: "avatar" %>
-            <% else %>
-            <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+          <%= link_to user_path(current_user)  do %>
+              <% if @game.step == "starting" %>
+                <% if @gamer.is_alive %>
+                  <%= image_tag @gamer.character.photo.url, class: "avatar" %>
+                <% else %>
+                  <%= image_tag player.character.photo.url, class: "filtered" %>
+                <% end %>
+              <% else %>
+                <% if current_user.photo.url != nil %>
+                <%= image_tag current_user.photo.url, class: "avatar" %>
+                <% else %>
+                <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+                <% end %>
             <% end %>
           <% end %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+
         </li>
       <% end %>
     </ul>
