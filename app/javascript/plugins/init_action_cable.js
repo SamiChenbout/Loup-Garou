@@ -30,7 +30,7 @@ const initActionCable = () => {
 
 // SCROLL FUNCTION
 const scrollLastMessageIntoView = () => {
-  const messages = document.querySelectorAll('.message');
+  const messages = document.querySelectorAll('.message-content');
   const lastMessage = messages[messages.length - 1];
   if (lastMessage !== undefined) {
     lastMessage.scrollIntoView();

@@ -1,0 +1,20 @@
+development:
+  cloud_name: hll7cmkkh
+  api_key: '212852594864468'
+  api_secret: NGytSPst8YZN_TfbLuY-_O5QF_M
+  enhance_image_tag: true
+  static_image_support: false
+
+production:
+  cloud_name: hll7cmkkh
+  api_key: '212852594864468'
+  api_secret: NGytSPst8YZN_TfbLuY-_O5QF_M
+  enhance_image_tag: true
+  static_image_support: true
+
+test:
+  cloud_name: hll7cmkkh
+  api_key: '212852594864468'
+  api_secret: NGytSPst8YZN_TfbLuY-_O5QF_M
+  enhance_image_tag: true
+  static_image_support: false
