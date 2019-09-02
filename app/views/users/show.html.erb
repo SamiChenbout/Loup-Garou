@@ -131,20 +131,9 @@
 
             <div class="form-inputs">
               <%= f.input :email, required: true, autofocus: true %>
+              <%= f.input :username %>
               <%= f.input :description, label: 'Description' %>
               <%= f.input :photo, label: 'Profile picture' %>
-              <%= f.input :photo_cache, as: :hidden %>
-              <%= f.input :password,
-                          hint: "leave it blank if you don't want to change it",
-                          required: false,
-                          input_html: { autocomplete: "new-password" } %>
-              <%= f.input :password_confirmation,
-                          required: false,
-                          input_html: { autocomplete: "new-password" } %>
-              <%= f.input :current_password,
-                          hint: "we need your current password to confirm your changes",
-                          required: true,
-                          input_html: { autocomplete: "current-password" } %>
             </div>
 
             <div class="form-actions">
@@ -157,14 +146,9 @@
 
             </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
       </div>
     </div>
   </div>
-
   <div class="footer">
     <div class="footer-logo parameter">
       <img src="https://cdn.pixabay.com/photo/2014/04/02/17/03/gear-307780__340.png">
