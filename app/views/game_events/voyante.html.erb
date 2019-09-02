@@ -123,6 +123,7 @@
       <h4>Chaque nuit, elle peut espionner un joueur et découvrir sa véritable identité. Mieux vaut ne pas etre son ennemi...</h4>
     </div>
   </div>
+   <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="voyante checkOne"></div>

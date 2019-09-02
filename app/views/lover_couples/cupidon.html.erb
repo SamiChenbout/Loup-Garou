@@ -101,6 +101,7 @@
       <h4>Dès le début de la partie, il doit former un couple de deux joueurs. Leur objectif sera de survivre ensemble, car si l'un d'eux meurt, l'autre se suicidera.</h4>
     </div>
   </div>
+  <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="cupidon checkTwo"></div>
