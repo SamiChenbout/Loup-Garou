@@ -116,6 +116,7 @@
       <h4>A sa mort, il doit éliminer un joueur en utilisant sa dernière balle. Reste à savoir s'il sait bien viser...</h4>
     </div>
   </div>
+   <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="chasseur checkOne"></div>

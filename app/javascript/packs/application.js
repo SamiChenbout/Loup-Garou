@@ -5,6 +5,8 @@ import { initActionCableLoup } from "../plugins/init_action_cable_loup";
 import { cupidon, chasseur, sorciere, loup, voyante, night, day } from "./night";
 import { modalRegle, modalParams } from "./modal";
 import { dayScript } from "../plugins/day_script";
+import { animation } from "../plugins/animation_timeout";
+import { move } from "../plugins/progress_bar";
 
 mycheckTwo();
 modalRegle();
@@ -82,3 +84,12 @@ if(document.querySelector('#circle3')) {
 
   bar3.animate(1.0);  // Number from 0.0 to 1.0
 }
+
+animation();
+move();
+//dayScript();
+//cupidon();
+//chasseur();
+//sorciere();
+//loup();
+//voyante();

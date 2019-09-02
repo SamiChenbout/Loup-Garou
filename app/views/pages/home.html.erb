@@ -95,13 +95,15 @@
         </div>
 
         <div class="play">
-          <%= link_to find_path  do %>
+          <%= link_to animation_path  do %>
             <%= image_tag "Play.png" %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+
+  <%= audio_tag("whatislove.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 
   <div class="footer">
     <div class="footer-logo parameter">
@@ -111,5 +113,5 @@
       <img src="https://res.cloudinary.com/pixel-art/image/upload/v1554322838/open-book/167755-open-book-pixel-art.png">
     </div>
   </div>
-  <embed  class="background-music" src="http://soundimage.org/wp-content/uploads/2014/03/Spells-a-Brewin.mp3" autostart="true" loop="true" hidden="true"><embed>
+
 </div>

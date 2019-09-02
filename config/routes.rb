@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   end
 
   get "/find", to: "players#find_game"
+  get "/animation", to: "pages#animation"
 end

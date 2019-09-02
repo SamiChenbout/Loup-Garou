@@ -86,7 +86,7 @@
       <% end %>
       <div class="info-bottom">
         <div class="date">Membre depuis <%= @user.created_at.month %>/<%= @user.created_at.year %></div>
-        <div class="edit"><i class="fas fa-edit"></i></div>
+        <div class="edit"><i class="fas fa-edit" data-toggle="modal" data-target="#editprofile"></i></div>
       </div>
     </div>
   </div>
@@ -116,6 +116,39 @@
       </div>
   </div>
 
+  <div class="modal" tabindex="-1" role="dialog" id="editprofile">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit your profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for(@user) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.input :email, required: true, autofocus: true %>
+              <%= f.input :username %>
+              <%= f.input :description, label: 'Description' %>
+              <%= f.input :photo, label: 'Profile picture' %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Update" %>
+            </div>
+          <% end %>
+
+
+          <%= link_to "Back", :back %>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="footer">
     <div class="footer-logo parameter">
       <img src="https://cdn.pixabay.com/photo/2014/04/02/17/03/gear-307780__340.png">

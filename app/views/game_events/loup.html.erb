@@ -134,6 +134,7 @@
       <h4>Chaque nuit, ils égorgent une victime. Le jour, ils se font passer pour des villageois afin de ne pas être démasqués.</h4>
     </div>
   </div>
+   <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="loup checkVoteLoup"></div>
