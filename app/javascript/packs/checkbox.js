@@ -82,9 +82,9 @@ const mycheckVoteLoup = () => {
 };
 
 const mycheckVote = () => {
-  const numberDiv = document.getElementById("info-number-player-alive");
-  const number = numberDiv.dataset.numberId;
   if(document.querySelector('.checkVote')) {
+    const numberDiv = document.getElementById("info-number-player-alive");
+    const number = numberDiv.dataset.numberId;
     document.querySelectorAll('.mycheck').forEach(function(element) {
       element.addEventListener('click', (event) => {
         event.preventDefault();

@@ -51,7 +51,7 @@
   <% @dead.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">
-        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
+        <%= image_tag player.character.photo.url, class: "avatar filtered" %>
       </div>
       <div class="player-name">
         <p><%= player.user.username.capitalize %></p>
@@ -61,7 +61,7 @@
 </div>
 <% end %>
 
-<% if @gamer.character.name == "loup" %>
+<% if @gamer.character.name == "loup" && @gamer.is_alive %>
   <div class="info-action">
     <h4>A toi de jouer !</h4>
   </div>
@@ -109,7 +109,7 @@
   <% @dead.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">
-        <%= image_tag player.character.photo.url, class: "filtered" %>
+        <%= image_tag player.character.photo.url, class: "filtered avatar" %>
       </div>
       <div class="player-name">
         <p><%= player.user.username.capitalize %></p>

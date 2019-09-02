@@ -14,7 +14,7 @@
             <% if @gamer.is_alive %>
               <%= image_tag @gamer.character.photo.url, class: "avatar" %>
             <% else %>
-              <%= image_tag player.character.photo.url, class: "filtered" %>
+              <%= image_tag @gamer.character.photo.url, class: "filtered avatar" %>
             <% end %>
           <% else %>
             <% if current_user.photo.url != nil %>
@@ -61,7 +61,7 @@
 </div>
 <% end %>
 
-<% if @gamer.character.name == "voyante" %>
+<% if @gamer.character.name == "voyante" && @gamer.is_alive %>
   <div class="info-action">
     <h4>A toi de jouer !</h4>
   </div>
@@ -109,15 +109,11 @@
 </div>
 <% else %>
   <div class="repos">
-    <% if @gamer.is_alive %>
-    <% if @gamer.is_alive %>
-    <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
-    <% else %>
-    <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
-    <% end %>
-    <% else %>
-    <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
-    <% end %>
+      <% if @gamer.is_alive %>
+      <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
+      <% else %>
+      <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
+      <% end %>
   </div>
   <div class="his-role en-bas">
     <div class="character">
