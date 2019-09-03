@@ -118,7 +118,7 @@ const mycheckVote = () => {
 };
 
 const autoSubmit = () => {
-  if (document.getElementById("new_game_event")) {
+  if (document.querySelector(".choice-ajax")) {
     document.querySelectorAll(".mycheck").forEach((element) => {
       element.addEventListener('click', (event) => {
         event.preventDefault();
