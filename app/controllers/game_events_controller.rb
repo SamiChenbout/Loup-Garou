@@ -1,10 +1,10 @@
 class GameEventsController < ApplicationController
   def create
     @game = Game.find(params[:game_id])
+    @game_event = GameEvent.new(target: Player.find(params[:target]))
+    @game_event.game = @game
     @targeted_player = Player.find(params[:target])
     @user = @targeted_player.user
-    @game_event = GameEvent.new(target: Player.find_by(game: @game, user: @user))
-    @game_event.game = @game
     @game_event.round = @game.round
     @actor = Player.where(game: @game, user: current_user).first
     @game_event.actor = @actor
@@ -29,7 +29,7 @@ class GameEventsController < ApplicationController
         @game.update(round_step: "day-interlude")
       elsif @actor.character.name == "voyante"
         @game_event.event_type = "spy"
-        @game.update(round_step: "loup")
+        @game.update(round_step: "reveal")
       elsif @actor.character.name == "loup"
         @game_event.event_type = "loup-vote"
         @game.update(round_step: "day-interlude")
@@ -38,6 +38,7 @@ class GameEventsController < ApplicationController
         @actor.update(is_alive: false)
         @game_event.event_type = "chasseur-kill"
         @game.update(round_step: "day") if @actor.state_chasseur == "dead-start"
+        @game.update(round_step: "night") if @actor.state_chasseur == "dead-end"
         @game.update(news: "#{@actor.user.username}, le chasseur, a tué #{@game_event.target.user.username}, qui était #{@game_event.target.character.name}.$")
         if GameEvent.find_by(game: @game, event_type: "villageois-vote", round: @game.round) == nil
           @actor.update(state_chasseur: "#{@game.round}-start")
@@ -57,9 +58,9 @@ class GameEventsController < ApplicationController
           @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!$") unless @game.news.include?("réunis")
         end
       end
-      @game_event.save
+      @game_event.save!
     end
-    broadcast_status(@game) unless @game.round_step == "day"
+    broadcast_status(@game) #unless @game.round_step == "day"
   end
 
   def broadcast_score
@@ -80,9 +81,15 @@ class GameEventsController < ApplicationController
   def when_day_comes
     @game = Game.find(params[:game_id])
     @game.update(news: "")
-    victimes_loup = GameEvent.where(game: @game, round: @game.round, event_type: "loup-vote")
-    victime1 = (victimes_loup.sample).target
+    @sorciere = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
+    @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
+    @cupidon = Player.where(game: @game, character: Character.where(name: "cupidon").first).first
+    @loup = Player.where(game: @game, character: Character.where(name: "loup").first).first
+
+    victimes_loup = GameEvent.where(game: @game, round: @game.round, event_type: "loup-vote", actor: loup).first
+    victime1 = victimes_loup.target
     victime1.update(is_alive: false)
+    @game.update(round_step: "day")
     GameEvent.where(game: @game, round: @game.round, event_type: "loup-vote").each { |event| event.update(target: victime1) }
     if victime1.is_link
       duo = LoverCouple.find_by(game: @game)
@@ -90,11 +97,12 @@ class GameEventsController < ApplicationController
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
       duo.lover2.update(state_chasseur: "dead-start") if duo.lover2.character.name == "chasseur"
+      @game.update(round_step: "chasseur") if duo.lover2.character.name == "chasseur" || duo.lover1.character.name == "chasseur"
       @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!$") unless @game.news.include?("réunis")
     end
     victime1.update(state_chasseur: "dead-start") if victime1.character.name == "chasseur"
     if GameEvent.where(game: @game, round: @game.round, event_type: "spy") != []
-      decouvert = GameEvent.where(game: @game, round: @game.round, event_type: "spy").first.target
+      decouvert = GameEvent.where(game: @game, round: @game.round, event_type: "spy", actor: @voyante).first.target
       @game.update(news: @game.news + "La voyante a espionné ")
       if decouvert.character.name == "loup" || decouvert.character.name == "chasseur"
         @game.update(news: @game.news + "le ")
@@ -105,7 +113,7 @@ class GameEventsController < ApplicationController
     end
     @game.update(news: @game.news + "Le village a subit des pertes :$")
     if @game.round == 1
-      victime2 = GameEvent.where(game: @game, round: @game.round, event_type: "sorciere-kill").first.target
+      victime2 = GameEvent.where(game: @game, round: @game.round, event_type: "sorciere-kill", actor: @sorciere).first.target
       victime2.update(is_alive: false)
       if victime2.is_link
         duo = LoverCouple.find_by(game: @game)
@@ -113,13 +121,13 @@ class GameEventsController < ApplicationController
         duo.lover2.update(is_alive: false)
         duo.lover1.update(state_chasseur: "dead-start") if duo.lover1.character.name == "chasseur"
         duo.lover2.update(state_chasseur: "dead-start") if duo.lover2.character.name == "chasseur"
+        @game.update(round_step: "chasseur") if duo.lover2.character.name == "chasseur" || duo.lover1.character.name == "chasseur"
         @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!$") unless @game.news.include?("réunis")
       end
       victime2.update(state_chasseur: "dead-start") if victime2.character.name == "chasseur"
       @game.update(news: @game.news + "#{victime2.user.username}, qui était #{victime2.character.name}.$") if victime2 != victime1
     end
     @game.update(news: @game.news + "#{victime1.user.username}, qui était #{victime1.character.name}.$")
-    @game.update(round_step: "day")
     alivewolves = []
     aliveplayers = []
     players = []
@@ -190,6 +198,7 @@ class GameEventsController < ApplicationController
       duo.lover2.update(is_alive: false)
       duo.lover1.update(state_chasseur: "dead-end") if duo.lover1.character.name == "chasseur"
       duo.lover2.update(state_chasseur: "dead-end") if duo.lover2.character.name == "chasseur"
+      @game.update(round_step: "chasseur") if duo.lover2.character.name == "chasseur" || duo.lover1.character.name == "chasseur"
       @game.update(news: @game.news + "Dans la mort sont désormais réunis #{duo.lover1.user.username} et #{duo.lover2.user.username}!$") unless @game.news.include?("réunis")
     end
     @game.update(news: "#{player.user.username}, ")
@@ -215,6 +224,8 @@ class GameEventsController < ApplicationController
     @chasseur = Player.where(game: @game, character: Character.where(name: "chasseur").first).first
     voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
     @game.update(round_step: "nuit-interlude")
+    chasseur = Character.find_by(name: "chasseur")
+    @game.update(round_step: "chasseur") if Player.find_by(character: chasseur, game: @game).state_chasseur == "dead-end"
     alivewolves = []
     aliveplayers = []
     players = []
@@ -300,7 +311,7 @@ class GameEventsController < ApplicationController
     # Assigning game_event attributes before saving
     @game_event.game = @game
     @game_event.round = @game.round
-    @actor = Player.where(game: @game, user: current_user).first
+    @actor = Player.where(game: @game, character: Character.where(name: "loup").first).first
     @game_event.actor = @actor
     @game_event.event_type = "loup-vote"
     @game_event.save
@@ -337,7 +348,7 @@ class GameEventsController < ApplicationController
     # Assigning game_event attributes before saving
     @game_event.game = @game
     @game_event.round = @game.round
-    @actor = Player.where(game: @game, user: current_user).first
+    @actor = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
     @game_event.actor = @actor
     @game_event.event_type = "sorciere-kill"
     @game_event.save
@@ -356,7 +367,7 @@ class GameEventsController < ApplicationController
     @all_except_me = []
     @dead = []
     all.each do |player|
-      @all_except_me << player if player.user != current_user && player.is_alive
+      @all_except_me << player if player.user != current_user && player.is_alive && @chasseur.is_link == false || (player.is_link == false && @chasseur.is_link && player.is_alive)
       @dead << player if player.user != current_user && player.is_alive == false
     end
   end
@@ -370,11 +381,12 @@ class GameEventsController < ApplicationController
     # Assigning game_event attributes before saving
     @game_event.game = @game
     @game_event.round = @game.round
-    @actor = Player.where(game: @game, user: current_user).first
+    @actor = Player.where(game: @game, character: Character.where(name: "chasseur").first).first
     @game_event.actor = @actor
     @game_event.event_type = "chasseur-kill"
     @game_event.save
-    # round_step is not changing
+    @game.update(round_step: "day") if @actor.state_chasseur == "dead-start"
+    @game.update(round_step: "night") if @actor.state_chasseur == "dead-end"
     if GameEvent.find_by(game: @game, event_type: "villageois-vote", round: @game.round) == nil
       @actor.update(state_chasseur: "#{@game.round}-start")
     else

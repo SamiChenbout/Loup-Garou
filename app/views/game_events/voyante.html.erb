@@ -38,6 +38,9 @@
   <% @all_except_me.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">
+        <% if @gamer.is_link && player.is_link %>
+              <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="lovee">
+            <% end %>
         <% if player.user.photo.url != nil %>
           <%= image_tag player.user.photo.url, class: "avatar" %>
         <% else %>
@@ -81,13 +84,13 @@
 <% if @gamer.character.name == "voyante" && @gamer.is_alive %>
 <div class="role">
   <h4 class="info">Qui veux-tu espionner ce soir ?</h4>
-    <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+    <%= simple_form_for [@game, GameEvent.new], remote: true do |f| %>
       <div class="choice-One">
         <% i = 1 %>
         <% @all_except_me.each do |player| %>
           <div class="mycheck">
             <div>
-              <%= check_box_tag :target, player %>
+              <%= check_box_tag :target, player.id %>
             </div>
             <div>
               <%= f.label :target do %>

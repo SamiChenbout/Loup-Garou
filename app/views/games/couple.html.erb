@@ -1,0 +1,89 @@
+<div id="circle10"></div>
+<div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
+  <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
+  <h2 class="mj-text">Les amoureux se rencontrent...</h2>
+
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <% if current_user.photo.url != nil %>
+          <%= image_tag current_user.photo.url, class: "avatar" %>
+          <% else %>
+          <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% if @gamer.is_link == false %>
+<div class="allplayers">
+  <% @all_except_me.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <% if player.user.photo.url != nil %>
+          <%= image_tag player.user.photo.url, class: "avatar" %>
+        <% else %>
+          <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
+        <% end %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+  <% @dead.each do |player| %>
+    <div class="player mx-3">
+      <div class="player-photo">
+        <%= image_tag player.character.photo.url, class: "avatar filtered" %>
+      </div>
+      <div class="player-name">
+        <p><%= player.user.username.capitalize %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<% if @gamer.is_link %>
+  <div class="info-action">
+    <h4>Tu as été lié !</h4>
+  </div>
+<% else %>
+  <div class="info-noaction">
+    <h4>Tu n'as pas été lié, rendors toi...</h4>
+  </div>
+<% end %>
+
+
+<% if @gamer.is_link %>
+  <div class="lovers">
+    <div class="lovers-photo">
+      <div><%= image_tag @lovers.lover1.user.photo.url, class: "avatar" %></div>
+      <div><%= image_tag @lovers.lover2.user.photo.url, class: "avatar" %></div>
+    </div>
+    <h2 class="lovers-text">L'amour vous a lié<br>A vous d'en faire une force !</h2>
+  </div>
+<% else %>
+  <div class="repos">
+    <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
+  </div>
+  <div class="his-role">
+    <div class="character">
+      <%= image_tag @cupidon.character.photo.url, class: "avatar" %>
+    </div>
+    <div class="description">
+      <h4><%= @cupidon.character.description %></h4>
+    </div>
+  </div>
+   <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
+<% end %>
+
+<div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
+<div class="lover-couple"></div>
+<div id="countdown"></div>

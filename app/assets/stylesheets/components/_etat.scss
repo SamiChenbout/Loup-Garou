@@ -9,17 +9,51 @@
     justify-content: center;
     align-items: center;
     margin: 50px;
-      img {
+    img {
       height: 280px;
       width: 280px;
       object-fit: contain!important;
       align-self:center;
     }
   }
+  .etat-text {
+    padding: 20px;
+    background-color: #cce7ed;
+    border-radius: 10px;
+  }
   h2 {
     padding-top: 30px;
     text-align: center;
-    color: white;
+    font-family: 'Almendra SC';font-size: 20px!important;
+  }
+}
+
+.lovers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .lovers-photo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    img {
+      height: 150px;
+      width: 150px;
+      align-self:center;
+      margin: 25px;
+    }
+  }
+  .lovers-text {
+    padding: 20px;
+    background-color: #cce7ed;
+    border-radius: 10px;
+  }
+  h2 {
+    padding-top: 30px;
+    text-align: center;
     font-family: 'Almendra SC';font-size: 20px!important;
   }
 }

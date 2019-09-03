@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     get "/when_night_comes", to: "game_events#when_night_comes"
     get "/when_night_talk", to: "game_events#when_night_talk"
     get "/end_game", to: "games#end_game"
+    get "/couple", to: "games#couple"
+    get "/reveal", to: "games#reveal"
 
     get "/night", to: "games#night"
     get "/day", to: "games#day"

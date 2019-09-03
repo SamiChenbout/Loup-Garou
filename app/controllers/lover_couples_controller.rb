@@ -6,7 +6,7 @@ class LoverCouplesController < ApplicationController
     lover_couple = LoverCouple.new(lover1: @lover1, lover2: @lover2, game: @game)
     @lover1.update(is_link: true)
     @lover2.update(is_link: true)
-    @game.update(round_step: "voyante")
+    @game.update(round_step: "couple-reveal")
     lover_couple.save!
     broadcast_status(@game)
   end
@@ -27,15 +27,17 @@ class LoverCouplesController < ApplicationController
 
   def random_couple_choose
     @game = Game.find(params[:game_id])
-    # Designing 2 lovers ramdomly
-    @lovers = @game.players.sample(2)
-    @lover_couple = LoverCouple.new(lover1: @lovers[0], lover2: @lovers[1], game: @game)
-    @lovers[0].update(is_link: true)
-    @lovers[1].update(is_link: true)
-    @lover_couple.save!
+    if LoverCouple.where(game: @game).count == 0
+      # Designing 2 lovers ramdomly
+      @lovers = @game.players.sample(2)
+      @lover_couple = LoverCouple.new(lover1: @lovers[0], lover2: @lovers[1], game: @game)
+      @lovers[0].update(is_link: true)
+      @lovers[1].update(is_link: true)
+      @lover_couple.save!
+    end
     # TO DO: lover_couple.save!
     # Setting game round_step
-    @game.update(round_step: "voyante")
+    @game.update(round_step: "couple-reveal")
     broadcast_status(@game)
   end
 

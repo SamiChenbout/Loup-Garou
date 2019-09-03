@@ -72,6 +72,44 @@ const day = () => {
   }
 }
 
+const couple = () => {
+  if(document.querySelector('.lover-couple')) {
+    const gameDiv = document.getElementById("connect-to-game-channel");
+    const gameId = gameDiv.dataset.gameId;
+    const timerDiv = document.getElementById("countdown");
+    let timerLeft = 10;
+    var timer = setInterval(function(){
+      if (timerLeft) {
+        timerDiv.innerHTML = timerLeft;
+        timerLeft -= 1;
+        if(timerLeft <= 0){
+          clearInterval(timer);
+          window.location = `/games/${gameId}/voyante`;
+        }
+      }
+    }, 1000);
+  }
+}
+
+const voyanteReveal = () => {
+  if(document.querySelector('.reveal-voyante')) {
+    const gameDiv = document.getElementById("connect-to-game-channel");
+    const gameId = gameDiv.dataset.gameId;
+    const timerDiv = document.getElementById("countdown");
+    let timerLeft = 10;
+    var timer = setInterval(function(){
+      if (timerLeft) {
+        timerDiv.innerHTML = timerLeft;
+        timerLeft -= 1;
+        if(timerLeft <= 0){
+          clearInterval(timer);
+          window.location = `/games/${gameId}/loup`;
+        }
+      }
+    }, 1000);
+  }
+}
+
 const myTimer = (timeLeft, whatFetch) => {
   const gameDiv = document.getElementById("connect-to-game-channel");
   const gameId = gameDiv.dataset.gameId;
@@ -88,4 +126,4 @@ const myTimer = (timeLeft, whatFetch) => {
   }, 1000);
 }
 
-export { cupidon, voyante, chasseur, loup, sorciere, night, day };
+export { cupidon, voyante, chasseur, loup, sorciere, night, day, couple, voyanteReveal };
