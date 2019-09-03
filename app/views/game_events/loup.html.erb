@@ -36,7 +36,7 @@
 <% if @gamer.character.name != "loup" %>
 <div class="allplayers">
   <% @all_except_me.each do |player| %>
-    <div class="player mx-3">
+    <div class="player mx-2">
       <div class="player-photo">
         <% if @gamer.is_link && player.is_link %>
           <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="lovee">
@@ -53,7 +53,7 @@
     </div>
   <% end %>
   <% @dead.each do |player| %>
-    <div class="player mx-3">
+    <div class="player mx-2">
       <div class="player-photo">
         <%= image_tag player.character.photo.url, class: "avatar filtered" %>
       </div>
@@ -111,7 +111,7 @@
     </div>
   <% end %>
   <% @dead.each do |player| %>
-    <div class="player mx-3">
+    <div class="player mx-2">
       <div class="player-photo">
         <%= image_tag player.character.photo.url, class: "filtered avatar" %>
       </div>

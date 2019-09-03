@@ -24,7 +24,7 @@
 <% if @gamer.is_link == false %>
 <div class="allplayers">
   <% @all_except_me.each do |player| %>
-    <div class="player mx-3">
+    <div class="player mx-2">
       <div class="player-photo">
         <% if player.user.photo.url != nil %>
           <%= image_tag player.user.photo.url, class: "avatar" %>
@@ -38,7 +38,7 @@
     </div>
   <% end %>
   <% @dead.each do |player| %>
-    <div class="player mx-3">
+    <div class="player mx-2">
       <div class="player-photo">
         <%= image_tag player.character.photo.url, class: "avatar filtered" %>
       </div>
