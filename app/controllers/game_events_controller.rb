@@ -21,7 +21,7 @@ class GameEventsController < ApplicationController
         previous_vote.destroy
       end
     @game_event.save
-    broadcast_score
+    return broadcast_score
     else
       # WHEN STEP IS NOT DAY
       if @actor.character.name == "sorciere"
