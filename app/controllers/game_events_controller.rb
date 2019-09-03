@@ -26,20 +26,24 @@ class GameEventsController < ApplicationController
       # WHEN STEP IS NOT DAY
       if @actor.character.name == "sorciere"
         @game_event.event_type = "sorciere-kill"
-        @game.update(round_step: "start-day")
+        @game.update(round_step: "day-interlude")
       elsif @actor.character.name == "voyante"
         @game_event.event_type = "spy"
         @game.update(round_step: "loup")
       elsif @actor.character.name == "loup"
         @game_event.event_type = "loup-vote"
-        @game.update(round_step: "start-day")
+        @game.update(round_step: "day-interlude")
         @game.update(round_step: "sorciere") if @game.round == 1
       elsif @actor.character.name == "chasseur"
         @actor.update(is_alive: false)
         @game_event.event_type = "chasseur-kill"
         @game.update(round_step: "day") if @actor.state_chasseur == "dead-start"
         @game.update(news: "#{@actor.user.username}, le chasseur, a tué #{@game_event.target.user.username}, qui était #{@game_event.target.character.name}.$")
-        @actor.update(state_chasseur: "peace")
+        if GameEvent.find_by(game: @game, event_type: "villageois-vote", round: @game.round) == nil
+          @actor.update(state_chasseur: "#{@game.round}-start")
+        else
+          @actor.update(state_chasseur: "#{@game.round}-end")
+        end
         if @actor.is_link
           duo = LoverCouple.find_by(game: @game)
           duo.lover1.update(is_alive: false)
@@ -143,7 +147,7 @@ class GameEventsController < ApplicationController
       end
       @game.update(step: "finished")
       @game.update(news: @game.news + "The villageois win!$") unless @game.news.include?("win")
-    elsif alivewolves.count == aliveplayers && alivewolves.count == 1
+    elsif (alivewolves.count == aliveplayers.count && alivewolves.count == 1) || alivewolves.count > aliveplayers.count
       wolfs.each do |loup|
         loup.update(points: 250)
         loup.update(points: 500) if loup.is_alive
@@ -152,6 +156,11 @@ class GameEventsController < ApplicationController
       @game.update(news: @game.news + "The werewolfs win!$") unless @game.news.include?("win")
     end
     broadcast_status(@game)
+    if @game.step == "finished"
+      redirect_to game_end_game_path(@game)
+    else
+      redirect_to game_path(@game)
+    end
   end
 
   def when_night_comes
@@ -205,11 +214,7 @@ class GameEventsController < ApplicationController
     end
     @chasseur = Player.where(game: @game, character: Character.where(name: "chasseur").first).first
     voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
-    if voyante.is_alive
-      @game.update(round_step: "voyante")
-    else
-      @game.update(round_step: "loup")
-    end
+    @game.update(round_step: "nuit-interlude")
     alivewolves = []
     aliveplayers = []
     players = []
@@ -237,7 +242,7 @@ class GameEventsController < ApplicationController
       end
       @game.update(step: "finished")
       @game.update(news: @game.news + "The villageois win!$") unless @game.news.include?("win")
-    elsif alivewolves.count == aliveplayers && alivewolves.count == 1
+    elsif (alivewolves.count == aliveplayers.count && alivewolves.count == 1) || alivewolves.count > aliveplayers.count
       wolfs.each do |loup|
         loup.update(points: 250)
         loup.update(points: 500) if loup.is_alive
@@ -303,7 +308,7 @@ class GameEventsController < ApplicationController
     if @game.round == 1
       @game.update(round_step: "sorciere")
     else
-      @game.update(round_step: "start-day")
+      @game.update(round_step: "day-interlude")
     end
     broadcast_status(@game)
   end
@@ -338,7 +343,7 @@ class GameEventsController < ApplicationController
     @game_event.save
     # Setting game round_step
     # @game.round_step = "day"
-    @game.update(round_step: "start-day")
+    @game.update(round_step: "day-interlude")
     broadcast_status(@game)
   end
 

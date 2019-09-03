@@ -1,0 +1,120 @@
+<div class="modal-rules-container d-none">
+  <div class="modal-rules">
+    <div class="croix-container-rules"><img src="https://image.flaticon.com/icons/png/512/52/52772.png" alt="", class="croix"></div>
+    <div class="regle"><h4 class="titre">Regle du jeu</h4></div>
+    <h5>
+      Des meurtres sont commis chaque nuit
+      par certains habitants du village, devenus
+      Lycanthropes à cause d’un phénomène
+      mystérieux …
+      Les Villageois doivent se ressaisir pour éradiquer ce nouveau fléau venu du fond
+      des âges, avant que le hameau ne perde ses derniers habitants.
+    </h5>
+    <div class="his-role">
+      <% loup = Character.find_by(name: "loup") %>
+      <div class="character">
+        <%= image_tag loup.photo.url, class: "avatar" %>
+      </div>
+      <div class="description">
+        <h4><%= loup.description %></h4>
+      </div>
+    </div>
+    <% Character.all.each do |personnage| %>
+    <% if personnage.name != "loup" %>
+    <div class="his-role">
+      <div class="character">
+        <%= image_tag personnage.photo.url, class: "avatar" %>
+      </div>
+      <div class="description">
+        <h4><%= personnage.description %></h4>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<div class="modal-params-container d-none">
+  <div class="modal-params">
+    <div class="croix-container-params"><img src="https://image.flaticon.com/icons/png/512/52/52772.png" alt="", class="croix"></div>
+    <div class="regle"><h4 class="titre">Parametres</h4></div>
+    <div class="button-params">
+      <div class="button-p one"><i class="fas fa-2x fa-music"></i></div>
+      <div class="button-p two"><i class="fas fa-2x fa-volume-down"></i></div>
+      <div class="button-p three"><i class="fas fa-2x fa-bell"></i></div>
+    </div>
+    <hr/>
+    <div class="but"><h4 class="titre">Français</h4></div>
+    <hr/>
+    <div class="but"><h4 class="titre">Termes et conditions</h4></div>
+  </div>
+</div>
+
+<div class="allHome">
+  <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
+    <% end %>
+    <div id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= link_to user_path(current_user) do %>
+              <% if current_user.photo.url != nil %>
+              <%= image_tag current_user.photo.url, class: "avatar" %>
+              <% else %>
+              <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+              <% end %>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="flex-box d-flex flex-column">
+      <div class="play-wolf text-center">
+        <div class="scene">
+          <img src="http://appsforarduino.com/img/d_default/seamless-grass-texture-game/seamless-grass-texture-game-cut-5c74bf0575ca7.png" alt="" class="sol">
+          <img src="https://i.pinimg.com/originals/50/13/f2/5013f2075b43362774867e0f2536baca.png" alt="" class="fond-arbre1">
+          <img src="https://i.pinimg.com/originals/50/13/f2/5013f2075b43362774867e0f2536baca.png" alt="" class="fond-arbre2">
+          <img src="https://i.pinimg.com/originals/50/13/f2/5013f2075b43362774867e0f2536baca.png" alt="" class="fond-arbre3">
+          <img src="https://cdn.pixabay.com/photo/2014/12/21/23/30/bush-575513__340.png" alt="" class="bush1">
+          <img src="https://cdn.pixabay.com/photo/2014/12/21/23/54/bush-576310_960_720.png" alt="" class="bush2">
+          <img src="https://i1.wp.com/lost-fortress.com/wp-content/uploads/2017/08/Dwarf_women_idle_costume.gif?resize=160%2C160" class="secondleft">
+          <img src="https://elqgamingblog.files.wordpress.com/2017/10/dreamblazers-elven-archer-animation-triple-size-brown.gif" class="firstleft">
+          <img src="https://i.pinimg.com/originals/08/63/a0/0863a09172b315fa8cd3e85a370b9fac.gif" class="firemiddle">
+          <img src="https://art.ngfiles.com/images/762000/762704_rflowers_witch.gif?f1546043499" class="firstright">
+          <img src="https://i.pinimg.com/originals/fc/f2/02/fcf20275d15b7d35a55512b081f61375.gif" class="secondright">
+        </div>
+
+        <div id="progressBar">
+            <div class="bar-container" id="bar2">
+              <div id="bar">20%</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo parameter">
+      <img src="https://cdn.pixabay.com/photo/2014/04/02/17/03/gear-307780__340.png">
+    </div>
+    <div class="footer-logo book">
+      <img src="https://res.cloudinary.com/pixel-art/image/upload/v1554322838/open-book/167755-open-book-pixel-art.png">
+    </div>
+  </div>
+
+</div>
+
+<div id="animation-page"></div>
+
+ <%= audio_tag("howl.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
+

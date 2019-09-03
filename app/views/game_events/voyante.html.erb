@@ -1,3 +1,4 @@
+<div id="circle15"></div>
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
   <% if @gamer == @voyante %>
@@ -123,6 +124,7 @@
       <h4>Chaque nuit, elle peut espionner un joueur et découvrir sa véritable identité. Mieux vaut ne pas etre son ennemi...</h4>
     </div>
   </div>
+   <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="voyante checkOne"></div>

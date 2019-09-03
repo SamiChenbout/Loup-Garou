@@ -1,0 +1,41 @@
+ #bar {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18%;
+  border: 2px solid white;
+  background-color: #d16d08;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+  height: 34px;
+  position: fixed;
+  border-radius: 5px;
+  align-self:center;
+  font-weight: bolder!important;
+}
+
+.bar-container {
+  align-self:center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  background-color: #d16d08;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+  height: 40px;
+  position: fixed;
+  border-radius: 5px;
+  bottom: 24vh;
+}
+
+#progressBar {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

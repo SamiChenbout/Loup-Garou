@@ -1,3 +1,4 @@
+<div id="circle15"></div>
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
   <% if @gamer == @cupidon %>
@@ -5,7 +6,6 @@
   <% else %>
   <h2 class="mj-text">Cupidon lie les deux amoureux</h2>
   <% end %>
-
   <div id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
@@ -48,11 +48,11 @@
 <% end %>
 
 <% if @gamer.character.name == "cupidon" %>
-  <div class="info-action">
+  <div class="info-action" data-aos="fade-down">
     <h4>A toi de jouer !</h4>
   </div>
 <% else %>
-  <div class="info-noaction">
+  <div class="info-noaction" data-aos="fade-down">
     <h4>Ce n'est pas ton tour, rendors toi...</h4>
   </div>
 <% end %>
@@ -101,6 +101,7 @@
       <h4>Dès le début de la partie, il doit former un couple de deux joueurs. Leur objectif sera de survivre ensemble, car si l'un d'eux meurt, l'autre se suicidera.</h4>
     </div>
   </div>
+  <%= audio_tag("snoring.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 <% end %>
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>
 <div class="cupidon checkTwo"></div>

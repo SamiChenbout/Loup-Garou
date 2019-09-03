@@ -29,17 +29,17 @@ user6.save
 puts 'Users seeded!'
 
 puts 'Seeding characters...'
-loup1 = Character.new(name: "loup", description: "Ils se réveillent chaque nuit pour éliminer un villageois. Le jour, ils participent aux débats en essayant de ne pas faire découvrir leur activité nocturne. Ils ont le droit de voter comme tous les autres joueurs (car personne ne sait qui ils sont), et éventuellement contre un des leurs par nécessité.")
+loup1 = Character.new(name: "loup", description: "Chaque nuit, ils égorgent une victime. Le jour, ils se font passer pour des villageois afin de ne pas être démasqués.")
 loup1.remote_photo_url = "https://www.shareicon.net/data/128x128/2016/08/18/813700_zoo_512x512.png"
-loup2 = Character.new(name: "loup", description: "Ils se réveillent chaque nuit pour éliminer un villageois. Le jour, ils participent aux débats en essayant de ne pas faire découvrir leur activité nocturne. Ils ont le droit de voter comme tous les autres joueurs (car personne ne sait qui ils sont), et éventuellement contre un des leurs par nécessité.")
+loup2 = Character.new(name: "loup", description: "Chaque nuit, ils égorgent une victime. Le jour, ils se font passer pour des villageois afin de ne pas être démasqués.")
 loup2.remote_photo_url = "https://www.shareicon.net/data/128x128/2016/08/18/813700_zoo_512x512.png"
-voyante = Character.new(name: "voyante", description: "Au début de chaque nuit, elle peut désigner une personne dont elle découvrira secrètement l'identité. Si vous êtes vous-même la voyante, ne vous dévoilez pas trop vite sous peine de vous faire tuer au cours de la prochaine nuit par les loups-garous !")
+voyante = Character.new(name: "voyante", description: "Chaque nuit, elle peut espionner un joueur et découvrir sa véritable identité. Mieux vaut ne pas etre son ennemi...")
 voyante.remote_photo_url = "https://www.shareicon.net/data/128x128/2016/09/26/835620_wizard_512x512.png"
-sorciere = Character.new(name: "sorciere", description: "Elle possède une potion d'empoisonnement. Elle ne peut l'utiliser qu'une seule fois, au cours de la première nuit, pour tenter de tuer un loup. Après coup, elle n'est plus qu'une simple villageoise.")
+sorciere = Character.new(name: "sorciere", description: "Adepte de magie noire, elle dispose d'une potion de mort pour assassiner quelqu'un au premier tour.")
 sorciere.remote_photo_url = "https://www.shareicon.net/data/128x128/2016/09/26/835624_halloween_512x512.png"
-chasseur = Character.new(name: "chasseur", description: "Le chasseur n'a aucun rôle particulier à jouer tant qu'il est vivant. Mais dès qu'il meurt – qu'il soit tué dans la nuit (Loups-garous, sorcière), à la suite d'une décision des villageois ou par la mort de son amoureux — il doit désigner une personne qui mourra également, sur-le-champ.")
+chasseur = Character.new(name: "chasseur", description: "A sa mort, il doit éliminer un joueur en utilisant sa dernière balle. Reste à savoir s'il sait bien viser...")
 chasseur.remote_photo_url = "https://www.shareicon.net/data/128x128/2017/01/06/868309_arrow_512x512.png"
-cupidon = Character.new(name: "cupidon", description: "Durant la nuit du premier tour de la partie (tour préliminaire), il va désigner deux personnes qui seront amoureuses jusqu'à la fin du jeu. Il peut choisir n’importe quels joueurs, y compris se désigner lui-même. Si l'une des deux personnes vient à mourir, l'autre meurt immédiatement de désespoir.")
+cupidon = Character.new(name: "cupidon", description: "Dès le début de la partie, il doit former un couple de deux joueurs. Leur objectif sera de survivre ensemble, car si l'un d'eux meurt, l'autre se suicidera.")
 cupidon.remote_photo_url = "https://www.shareicon.net/data/128x128/2016/09/02/824449_love_512x512.png"
 
 loup1.save
@@ -69,19 +69,6 @@ player3.save
 player4.save
 player5.save
 puts 'Players seeded!'
-
-game.update(step: "starting")
-LoverCouple.new(lover1: player1, lover2: player2, game: game).save
-GameEvent.new(actor: player1, target: player6, round: 1, game: game, event_type: "loup-vote").save
-GameEvent.new(actor: player3, target: player5, round: 1, game: game, event_type: "spy").save
-GameEvent.new(actor: player5, target: player6, round: 1, game: game, event_type: "sorciere-kill").save
-game.update(round_step: "day")
-GameEvent.new(actor: player1, target: player3, round: 1, game: game, event_type: "villageois-vote").save
-GameEvent.new(actor: player3, target: player1, round: 1, game: game, event_type: "villageois-vote").save
-GameEvent.new(actor: player2, target: player3, round: 1, game: game, event_type: "villageois-vote").save
-game.update(round_step: "loup", round: 1)
-GameEvent.new(actor: player1, target: player5, round: 2, game: game, event_type: "loup-vote").save
-GameEvent.new(actor: player2, target: player5, round: 2, game: game, event_type: "loup-vote").save
 
 puts "The Game ID is : #{game.id}"
 

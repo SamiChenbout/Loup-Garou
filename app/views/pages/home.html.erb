@@ -52,9 +52,12 @@
 
 <div class="allHome">
   <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
-    <% end %>
+    <div>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "https://www.clipartmax.com/png/full/352-3529912_alpha-wolf-head-wolf-head-logo-png.png" %>
+      <% end %>
+      <img src="https://fun.namerobot.com/tools/werewolf/logo.png" alt="" class="name-game">
+    </div>
     <div id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
@@ -95,13 +98,15 @@
         </div>
 
         <div class="play">
-          <%= link_to find_path  do %>
+          <%= link_to animation_path  do %>
             <%= image_tag "Play.png" %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+
+  <%= audio_tag("whatislove.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
 
   <div class="footer">
     <div class="footer-logo parameter">
@@ -111,5 +116,5 @@
       <img src="https://res.cloudinary.com/pixel-art/image/upload/v1554322838/open-book/167755-open-book-pixel-art.png">
     </div>
   </div>
-  <embed  class="background-music" src="http://soundimage.org/wp-content/uploads/2014/03/Spells-a-Brewin.mp3" autostart="true" loop="true" hidden="true"><embed>
+
 </div>
