@@ -255,13 +255,13 @@
   overflow-y: scroll;
   width: 80%;
   margin: 0 auto;
-  height: 60vh;
+  height: 65vh;
   z-index: 300;
   display: flex;
   align-items:center;
+  justify-content:center;
   flex-direction: column;
   .titre {
-    margin-top: 20px;
     background-color: #63b2b2;
     zoom:1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
