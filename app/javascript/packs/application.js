@@ -7,6 +7,7 @@ import { modalRegle, modalParams } from "./modal";
 import { dayScript } from "../plugins/day_script";
 import { animation } from "../plugins/animation_timeout";
 import { move, move2 } from "../plugins/progress_bar";
+import { play } from "../plugins/play_sound";
 
 mycheckTwo();
 modalRegle();
