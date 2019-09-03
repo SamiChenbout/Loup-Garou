@@ -139,11 +139,13 @@
   background-color: #cce7ed;
   border-radius: 10px;
   padding: 20px;
+  height: auto;
+  min-height: 110px;
   .character {
     width: 30%;
     img {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       object-fit: cover;
     }
   }
