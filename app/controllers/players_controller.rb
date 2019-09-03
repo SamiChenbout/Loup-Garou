@@ -30,5 +30,4 @@ class PlayersController < ApplicationController
       number_of_players: game.players.count
     })
   end
-
 end

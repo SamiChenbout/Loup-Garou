@@ -73,7 +73,7 @@
 
 <div id="countdown"></div>
 
-<% if @gamer.character.name == "chasseur" && @gamer.is_alive %>
+<% if @gamer.character.name == "chasseur" %>
 <div class="role">
   <h4 class="info">A qui veux-tu offrir ta dernière balle ?</h4>
     <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
