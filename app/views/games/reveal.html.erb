@@ -64,7 +64,7 @@
 <% end %>
 
 
-<% if @gamer.is_link %>
+<% if @gamer.character.name == "voyante" %>
   <div class="role">
     <div class="character">
       <%= image_tag @target.character.photo.url, class: "avatar" %>

@@ -7,9 +7,11 @@ class GamesController < ApplicationController
     all = @game.players
     @all_except_me = []
     @dead = []
+    @all_alive = []
     all.each do |player|
       @all_except_me << player if player.user != current_user && player.is_alive
       @dead << player if player.user != current_user && player.is_alive == false
+      @all_alive << player if player.is_alive
     end
 
     @sorciere = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
@@ -98,7 +100,9 @@ class GamesController < ApplicationController
       @dead << player if player.user != current_user && player.is_alive == false
     end
     @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
-    @game.update(round: @game.round + 1)
+    if GameEvent.where(game: @game, round: @game.round, event_type: "villageois-vote") != [] || @game.round == 0
+      @game.update(round: @game.round + 1)
+    end
   end
 
   def couple

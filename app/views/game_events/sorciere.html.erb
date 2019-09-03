@@ -66,13 +66,13 @@
 <% if @gamer.character.name == "sorciere" && @gamer.is_alive %>
 <div class="role">
   <h4 class="info">Qui veux-tu livrer à la mort ?</h4>
-    <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+    <%= simple_form_for [@game, GameEvent.new] do |f| %>
       <div class="choice-One">
         <% i = 1 %>
         <% @all_except_me.each do |player| %>
           <div class="mycheck">
             <div>
-              <%= check_box_tag :target, player %>
+              <%= check_box_tag :target, player.id %>
             </div>
             <div>
               <%= f.label :target do %>
