@@ -65,9 +65,9 @@ player5 = Player.new(user: user5, character: sorciere, game: game)
 
 player1.save
 player2.save
-player3.save
-player4.save
-player5.save
+#player3.save
+#player4.save
+#player5.save
 puts 'Players seeded!'
 
 puts "The Game ID is : #{game.id}"
