@@ -3,7 +3,7 @@ const animation = () => {
     console.log('test');
     setTimeout(() => {
       window.location = "/find"
-    }, 5000000);
+    }, 5000);
   }
 }
 
