@@ -50,16 +50,16 @@
 
 <div id="countdown"></div>
 
-<!-- <% if @chasseur.state_chasseur == "dead-start" %>
-  <% @game.update(round_step: "chasseur") %>
-  <%= render "./game_events/chasseur" %>
-<% else %>
-  <% if @gamer.is_alive %>
-    <%= simple_form_for([@game, GameEvent.new]) do |f| %>
-      <%= f.input :target, as: :radio_buttons, collection: @all_except_me.map { |target| target.user.username } %>
-      <%= f.button :submit, "Vote!", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-<% end %> -->
+<!-- <% #if @chasseur.state_chasseur == "dead-start" %>
+  <% #@game.update(round_step: "chasseur") %>
+  <%= #render "./game_events/chasseur" %>
+<% #else %>
+  <% #if @gamer.is_alive %>
+    <%= #simple_form_for([@game, GameEvent.new]) do |f| %>
+      <%= #f.input :target, as: :radio_buttons, collection: @all_except_me.map { #|target| target.user.username } %>
+      <%= #f.button :submit, "Vote!", class: "btn btn-primary" %>
+    <%# end %>
+  <% #end %>
+<% #end %> -->
 
 <div class="day checkVote"></div>
