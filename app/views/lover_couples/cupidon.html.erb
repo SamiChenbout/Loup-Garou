@@ -62,16 +62,16 @@
 <% if @gamer.character.name == "cupidon" %>
 <div class="role">
   <h4 class="info">Lie deux joueurs jusqu'à la mort</h4>
-    <%= simple_form_for([@game, LoverCouple.new], remote: true) do |f| %>
+    <%= simple_form_for [@game, LoverCouple.new] do |f| %>
       <div class="choice">
         <% i = 1 %>
         <% @game.players.each do |player| %>
           <div class="mycheck">
             <div>
-              <input id="post_lovers_ids_<%=i%>" name="post[lovers_ids][]" type="checkbox" value="<%=i%>" />
+              <input id="post_lovers_ids_<%=player.id%>" name="post[lovers_ids][]" type="checkbox" value="<%=player.id%>" />
             </div>
             <div>
-              <label for="post_lovers_ids_<%=i%>" class="check">
+              <label for="post_lovers_ids_<%=player.id%>" class="check">
                 <% if player.user.photo.url != nil %>
                   <%= image_tag player.user.photo.url, class: "avatar check" %>
                 <% else %>

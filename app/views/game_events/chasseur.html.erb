@@ -76,13 +76,13 @@
 <% if @gamer.character.name == "chasseur" %>
 <div class="role">
   <h4 class="info">A qui veux-tu offrir ta dernière balle ?</h4>
-    <%= simple_form_for([@game, GameEvent.new], remote: true) do |f| %>
+    <%= simple_form_for [@game, GameEvent.new] do |f| %>
       <div class="choice-One">
         <% i = 1 %>
         <% @all_except_me.each do |player| %>
           <div class="mycheck">
             <div>
-              <%= check_box_tag :target, player %>
+              <%= check_box_tag :target, player.id %>
             </div>
             <div>
               <%= f.label :target do %>

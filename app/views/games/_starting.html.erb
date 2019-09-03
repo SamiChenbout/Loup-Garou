@@ -1,35 +1,54 @@
 <div class="allplayers">
 
 <!-- ADD REMOTE TRUE? -->
-  <%= simple_form_for [@game, GameEvent.new], remote: true do |f| %>
-    <div class="choice-ajax">
-      <% @all_except_me.each do |player| %>
-        <div class="mycheck player mx-1" data-player-id="<%= player.id %>">
-          <div>
-            <%= check_box_tag :target, player.id %>
-          </div>
-          <div class="player-photo">
-            <div class="puce d-none"><p>0</p></div>
-            <% if @gamer.is_link && player.is_link %>
-              <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="love">
-            <% end %>
-            <%= f.label :target do %>
-              <% if player.user.photo.url != nil %>
-                <img src="<%=player.user.photo.url%>" alt="" class="avatar check">
-              <% else %>
-                <img src="https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg" alt="" class="avatar check <% if @gamer.is_link && player.is_link %>love<% end %>">
+  <% if @gamer.is_alive %>
+    <%= simple_form_for [@game, GameEvent.new], remote: true do |f| %>
+      <div class="choice-ajax">
+        <% @all_alive.each do |player| %>
+          <div class="mycheck player mx-1" data-player-id="<%= player.id %>">
+            <div>
+              <%= check_box_tag :target, player.id %>
+            </div>
+            <div class="player-photo">
+              <div class="puce d-none"><p>0</p></div>
+              <% if @gamer.is_link && player.is_link %>
+                <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="love">
               <% end %>
-            <% end %>
+              <%= f.label :target do %>
+                <% if player.user.photo.url != nil %>
+                  <img src="<%=player.user.photo.url%>" alt="" class="avatar check">
+                <% else %>
+                  <img src="https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg" alt="" class="avatar check <% if @gamer.is_link && player.is_link %>love<% end %>">
+                <% end %>
+              <% end %>
+            </div>
+            <div class="player-name"><p><%= player.user.username %></p></div>
           </div>
-          <div class="player-name"><p><%= player.user.username %></p></div>
+        <% end %>
+      </div>
+      <div class="button-container d-none">
+        <div><%= f.button :submit, "Valider", class: "btn btn-valider" %></div>
+      </div>
+    <% end %>
+  <% else %>
+    <% @all_except_me.each do |player| %>
+      <div class="player mx-3">
+        <div class="player-photo">
+          <% if @gamer.is_link && player.is_link %>
+            <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="lovee mr-2">
+          <% end %>
+          <% if player.user.photo.url != nil %>
+            <%= image_tag player.user.photo.url, class: "avatar" %>
+          <% else %>
+            <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar" %>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-    <div class="button-container d-none">
-      <div><%= f.button :submit, "Valider", class: "btn btn-valider" %></div>
-    </div>
+        <div class="player-name">
+          <p><%= player.user.username.capitalize %></p>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-
   <% @dead.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">

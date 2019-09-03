@@ -1,8 +1,8 @@
 class LoverCouplesController < ApplicationController
   def create
     @game = Game.find(params[:game_id])
-    @lover1 = Player.find_by(user: User.find_by(username: params[:lovers][:lovers_ids][1]), game: @game)
-    @lover2 = Player.find_by(user: User.find_by(username: params[:lovers][:lovers_ids][2]), game: @game)
+    @lover1 = Player.find(params[:post][:lovers_ids][0])
+    @lover2 = Player.find(params[:post][:lovers_ids][1])
     lover_couple = LoverCouple.new(lover1: @lover1, lover2: @lover2, game: @game)
     @lover1.update(is_link: true)
     @lover2.update(is_link: true)
