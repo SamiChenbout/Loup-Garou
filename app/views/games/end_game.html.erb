@@ -42,7 +42,6 @@
     <% end %>
   <% end %>
 </div>
-
 <div class="win_or_loose">
   <div class="info-game">
     <div class="photo">
@@ -99,7 +98,7 @@
       <%= image_tag @loup1.character.photo.url, class: "player" %>
     </div>
     <div class="description">
-      <% victime = GameEvent.find_by(round: 1, game: @game, event_type: "loup-vote").target %>
+      <% victime = GameEvent.find_by(round: 1, game: @game, event_type: "loup-vote", actor: @loup1).target %>
       <h4>Les loups, <span class="bolder"><%= @loup1.user.username.capitalize %></span> et <span class="bolder"><%= @loup2.user.username.capitalize %></span>, ont dévoré durant la nuit <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.</h4>
     </div>
   </div>
@@ -157,7 +156,7 @@
         <%= image_tag @loup1.character.photo.url, class: "player" %>
       </div>
       <div class="description">
-        <% victime = GameEvent.find_by(round: j, game: @game, event_type: "loup-vote").target %>
+        <% victime = GameEvent.find_by(round: j, game: @game, event_type: "loup-vote", actor: @loup1).target %>
         <h4>Les loups, <span class="bolder"><%= @loup1.user.username.capitalize %></span> et <span class="bolder"><%= @loup2.user.username.capitalize %></span>, ont dévoré durant la nuit <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.</h4>
       </div>
     </div>

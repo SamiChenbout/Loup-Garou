@@ -1,7 +1,7 @@
 <div class="allplayers">
 
 <!-- ADD REMOTE TRUE? -->
-  <%= simple_form_for [@game, GameEvent.new] do |f| %>
+  <%= simple_form_for [@game, GameEvent.new], remote: true do |f| %>
     <div class="choice-ajax">
       <% @all_except_me.each do |player| %>
         <div class="mycheck player mx-1" data-player-id="<%= player.id %>">
@@ -10,11 +10,14 @@
           </div>
           <div class="player-photo">
             <div class="puce d-none"><p>0</p></div>
+            <% if @gamer.is_link && player.is_link %>
+              <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="love">
+            <% end %>
             <%= f.label :target do %>
               <% if player.user.photo.url != nil %>
-                <%= image_tag player.user.photo.url, class: "avatar check" %>
+                <img src="<%=player.user.photo.url%>" alt="" class="avatar check">
               <% else %>
-                <%= image_tag "https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg", class: "avatar check" %>
+                <img src="https://images.assetsdelivery.com/compings_v2/gmast3r/gmast3r1511/gmast3r151100776.jpg" alt="" class="avatar check <% if @gamer.is_link && player.is_link %>love<% end %>">
               <% end %>
             <% end %>
           </div>
@@ -49,17 +52,5 @@
 </div>
 
 <div id="countdown"></div>
-
-<!-- <% #if @chasseur.state_chasseur == "dead-start" %>
-  <% #@game.update(round_step: "chasseur") %>
-  <%= #render "./game_events/chasseur" %>
-<% #else %>
-  <% #if @gamer.is_alive %>
-    <%= #simple_form_for([@game, GameEvent.new]) do |f| %>
-      <%= #f.input :target, as: :radio_buttons, collection: @all_except_me.map { #|target| target.user.username } %>
-      <%= #f.button :submit, "Vote!", class: "btn btn-primary" %>
-    <%# end %>
-  <% #end %>
-<% #end %> -->
 
 <div class="day checkVote"></div>
