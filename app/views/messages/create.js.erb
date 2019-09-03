@@ -19,17 +19,17 @@ function createMessage() {
 
   if (messageDiv) {
     <% if @message.errors.any? %>
-      refreshForm('<%= j render "messages/form", game: @game, message: @message, player: @player %>');
+      refreshForm('<%= j render "messages/form", game: @game, message: @message, gamer: @gamer %>');
     <% else %>
       addMessage('<%= j render "messages/show", message: @message, user: current_user %>');
-      refreshForm('<%= j render "messages/form", game: @game, message: Message.new, player: @player %>');
+      refreshForm('<%= j render "messages/form", game: @game, message: Message.new, gamer: @gamer %>');
     <% end %>
   } else if (loupMessageDiv) {
     <% if @message.errors.any? %>
-      refreshForm('<%= j render "messages/form", game: @game, message: @message, player: @player %>');
+      refreshForm('<%= j render "messages/form", game: @game, message: @message, gamer: @gamer %>');
     <% else %>
       addLoupMessage('<%= j render "messages/show", message: @message, user: current_user %>');
-      refreshForm('<%= j render "messages/form", game: @game, message: Message.new, player: @player %>');
+      refreshForm('<%= j render "messages/form", game: @game, message: Message.new, gamer: @gamer %>');
     <% end %>
   }
 }

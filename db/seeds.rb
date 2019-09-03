@@ -62,6 +62,7 @@ player3 = Player.new(user: user3, character: voyante, game: game)
 player4 = Player.new(user: user4, character: chasseur, game: game)
 player5 = Player.new(user: user5, character: sorciere, game: game)
 
+
 player1.save
 player2.save
 player3.save

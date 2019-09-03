@@ -2,11 +2,11 @@
 <div class="my-nav navbar navbar-expand-sm navbar-light navbar-lewagon maitre-head">
   <img src="https://image.noelshack.com/fichiers/2019/35/6/1567258841-meuf.gif" alt="" class="mj">
   <% if @game.step == "waiting" %>
-  <%= render 'player_number' %>
+    <%= render 'player_number' %>
   <% elsif @game.step == "starting" %>
-  <h2 class="mj-text">Place au débat</h2>
+    <h2 class="mj-text">Place au débat</h2>
   <% else %>
-  <h2 class="mj-text">La partie est terminée !</h2>
+    <h2 class="mj-text">La partie est terminée !</h2>
   <% end %>
 
   <div id="navbarSupportedContent">
@@ -50,7 +50,7 @@
 <div class="container">
   <div id="messages" class="message-box"></div>
   <div class="message-form">
-    <%= render 'messages/form', game: @game, message: @message, player: @gamer %>
+    <%= render 'messages/form', game: @game, message: @message, gamer: @gamer %>
   </div>
 </div>
 

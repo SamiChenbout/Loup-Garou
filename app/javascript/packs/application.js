@@ -1,5 +1,5 @@
 import "bootstrap";
-import { mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote } from "./checkbox";
+import { scoreUpdate, autoSubmit, mycheckTwo, mycheckOne, mycheckVoteLoup, mycheckVote } from "./checkbox";
 import { initActionCable } from "../plugins/init_action_cable";
 import { initActionCableLoup } from "../plugins/init_action_cable_loup";
 import { cupidon, chasseur, sorciere, loup, voyante, night, day } from "./night";
@@ -16,6 +16,8 @@ mycheckVoteLoup();
 mycheckOne();
 initActionCable();
 initActionCableLoup();
+autoSubmit();
+scoreUpdate();
 dayScript();
 cupidon();
 chasseur();
@@ -88,9 +90,3 @@ if(document.querySelector('#circle3')) {
 
 animation();
 move();
-//dayScript();
-//cupidon();
-//chasseur();
-//sorciere();
-//loup();
-//voyante();
