@@ -31,7 +31,7 @@
 <div class="allplayers">
   <% @game.players.each do |player| %>
     <% if player != @gamer %>
-      <div class="player mx-3">
+      <div class="player mx-2">
         <div class="player-photo">
           <%= image_tag player.character.photo.url, class: "avatar" %>
         </div>
