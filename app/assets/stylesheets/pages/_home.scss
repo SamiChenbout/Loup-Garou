@@ -37,13 +37,13 @@ margin-bottom: 50px;
   border: 1px solid #ececec;
   border-top: none;
   border-bottom-width: 0;
-  max-height: calc(100vh - 70px - 45px - 61px - 30px);
+  max-height: calc(90vh - 70px - 45px - 61px - 30px);
   overflow: scroll;
 }
 
 .app-container {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@ margin-bottom: 50px;
 @media (max-width: 1024px) {
     .app-container {
       width: 100vw;
-      height: 100vh;
+      height: 90vh;
       background-color: white;
       display: flex;
       flex-direction: column;
@@ -82,7 +82,7 @@ margin-bottom: 50px;
   /* For a screen < 540px, this CSS will be read */
   .app-container {
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -111,7 +111,7 @@ margin-bottom: 50px;
   /* For a screen < 540px, this CSS will be read */
   .app-container {
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -141,7 +141,7 @@ margin-bottom: 50px;
   /* For a screen < 540px, this CSS will be read */
   .app-container {
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -170,7 +170,7 @@ margin-bottom: 50px;
   /* For a screen < 540px, this CSS will be read */
   .app-container {
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -199,7 +199,7 @@ margin-bottom: 50px;
   /* For a screen < 540px, this CSS will be read */
   .app-container {
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;

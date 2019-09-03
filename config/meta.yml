@@ -1,0 +1,7 @@
+# config/meta.yml
+
+meta_product_name: "Werewolf"
+meta_title: "Werewolf : The mobile game"
+meta_description: "The world reknown role playing game, now brought to you anywhere anytime"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@Lewagonparis"   # required for Twitter Cards
