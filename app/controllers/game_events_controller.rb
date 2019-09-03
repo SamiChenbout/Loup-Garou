@@ -163,12 +163,12 @@ class GameEventsController < ApplicationController
       @game.update(step: "finished")
       @game.update(news: @game.news + "The werewolfs win!$") unless @game.news.include?("win")
     end
-    broadcast_status(@game)
     if @game.step == "finished"
       redirect_to game_end_game_path(@game)
     else
       redirect_to game_path(@game)
     end
+    broadcast_status(@game)
   end
 
   def when_night_comes
@@ -208,7 +208,6 @@ class GameEventsController < ApplicationController
       @game.update(news: @game.news + "la #{player.character.name}, est morte!$")
     end
     player.update(state_chasseur: "dead-end") if player.character.name == "chasseur"
-    @game.update(round: @game.round + 1)
   end
 
   def when_night_talk
@@ -303,7 +302,10 @@ class GameEventsController < ApplicationController
   def random_loup_choose
     # All players except current_user
     @game = Game.find(params[:game_id])
-    @players = @game.players.where.not(user_id: current_user.id)
+    @loup1 = Player.where(game: @game, character: Character.where(name: "loup").first).first
+    @loup2 = Player.where(game: @game, character: Character.where(name: "loup").last).first
+    @players = @game.players.where.not(user_id: @loup1.user.id)
+    @players = @players.where.not(user_id: @loup2.user.id)
     # Designing a target ramdomly
     @target = @players.sample
     # Creating corresponding game event
@@ -340,7 +342,8 @@ class GameEventsController < ApplicationController
    def random_sorciere_choose
     # All players except current_user
     @game = Game.find(params[:game_id])
-    @players = @game.players.where.not(user_id: current_user.id)
+    @actor = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
+    @players = @game.players.where.not(user_id: @actor.id)
     # Designing a target ramdomly
     @target = @players.sample
     # Creating corresponding game event
@@ -348,7 +351,6 @@ class GameEventsController < ApplicationController
     # Assigning game_event attributes before saving
     @game_event.game = @game
     @game_event.round = @game.round
-    @actor = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
     @game_event.actor = @actor
     @game_event.event_type = "sorciere-kill"
     @game_event.save

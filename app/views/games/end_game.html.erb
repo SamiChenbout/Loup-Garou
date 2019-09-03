@@ -62,8 +62,9 @@
   <% end %>
 </div>
 
+<% i = 1 %>
+
 <div class="historique">
-  <% i = 1 %>
   <% j = 1 %>
   <div class="titre mt-3"><h5 class="titre">Première nuit :</h5></div>
   <div class="cupidon-historique impaire mt-3">
@@ -72,7 +73,7 @@
       <%= image_tag @cupidon.character.photo.url, class: "player" %>
     </div>
     <div class="description">
-      <h4><span class="bolder"><%= @cupidon.user.username.capitalize %></span> a lié les deux amoureux : <span class="bolder"><%= @lovers.lover1.user.username.capitalize %></span> et <span class="bolder"><%= @lovers.lover2.user.username.capitalize %></span>, respectivement <%= @lovers.lover1.character.name.capitalize %> et <%= @lovers.lover1.character.name.capitalize %>.</h4>
+      <h4><span class="bolder"><%= @cupidon.user.username.capitalize %></span> a lié les deux amoureux : <span class="bolder"><%= @lovers[0].user.username.capitalize %></span> et <span class="bolder"><%= @lovers[1].user.username.capitalize %></span>, respectivement <%= @lovers[0].character.name.capitalize %> et <%= @lovers[1].character.name.capitalize %>.</h4>
     </div>
   </div>
   <% i += 1 %>
@@ -114,7 +115,17 @@
     </div>
   </div>
   <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('start') %>
-  <%= render "historique_chasseur" %>
+  <% i += 1 %>
+  <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+    <div class="character">
+      <%= image_tag @chasseur.user.photo.url, class: "avatar" %>
+      <%= image_tag @chasseur.character.photo.url, class: "player" %>
+    </div>
+    <div class="description">
+      <% victime = GameEvent.find_by(round: j, game: @game, event_type: "chasseur-kill").target %>
+      <h4><span class="bolder"><%= @chasseur.user.username.capitalize %></span> a tiré sa dernière balle sur <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.<% if victime.character.name == "loup" %> C'était judicieux de sa part ! <% else %> Ce n'était pas un choix judicieux... <% end %></h4>
+    </div>
+  </div>
   <% end %>
   <% if GameEvent.find_by(round: 1, game: @game, event_type: "villageois-vote") != nil %>
   <% accusé = GameEvent.find_by(round: 1, game: @game, event_type: "villageois-vote").target %>
@@ -130,7 +141,17 @@
   </div>
   <% end %>
   <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('end') %>
-  <%= render "historique_chasseur" %>
+  <% i += 1 %>
+  <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+    <div class="character">
+      <%= image_tag @chasseur.user.photo.url, class: "avatar" %>
+      <%= image_tag @chasseur.character.photo.url, class: "player" %>
+    </div>
+    <div class="description">
+      <% victime = GameEvent.find_by(round: j, game: @game, event_type: "chasseur-kill").target %>
+      <h4><span class="bolder"><%= @chasseur.user.username.capitalize %></span> a tiré sa dernière balle sur <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.<% if victime.character.name == "loup" %> C'était judicieux de sa part ! <% else %> Ce n'était pas un choix judicieux... <% end %></h4>
+    </div>
+  </div>
   <% end %>
   <% j += 1 %>
   <% while(j <= @game.round) %>
@@ -164,7 +185,17 @@
     <div class="titre mt-3"><h5 class="titre"><% if j == 2 %>Second<%else%>Troisieme<%end%> jour :</h5></div>
     <% end %>
     <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('start') %>
-    <%= render "historique_chasseur" %>
+    <% i += 1 %>
+    <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+      <div class="character">
+        <%= image_tag @chasseur.user.photo.url, class: "avatar" %>
+        <%= image_tag @chasseur.character.photo.url, class: "player" %>
+      </div>
+      <div class="description">
+        <% victime = GameEvent.find_by(round: j, game: @game, event_type: "chasseur-kill").target %>
+        <h4><span class="bolder"><%= @chasseur.user.username.capitalize %></span> a tiré sa dernière balle sur <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.<% if victime.character.name == "loup" %> C'était judicieux de sa part ! <% else %> Ce n'était pas un choix judicieux... <% end %></h4>
+      </div>
+    </div>
     <% end %>
     <% if GameEvent.find_by(round: j, game: @game, event_type: "villageois-vote") != nil %>
     <% accusé = GameEvent.find_by(round: j, game: @game, event_type: "villageois-vote").target %>
@@ -179,12 +210,21 @@
       </div>
     <% end %>
     <% if @chasseur.state_chasseur.include?(j.to_s) && @chasseur.state_chasseur.include?('end') %>
-    <%= render "historique_chasseur" %>
+    <% i += 1 %>
+    <div class="cupidon-historique <% if i % 2 == 0%>paire <% else %>impaire<% end %>">
+      <div class="character">
+        <%= image_tag @chasseur.user.photo.url, class: "avatar" %>
+        <%= image_tag @chasseur.character.photo.url, class: "player" %>
+      </div>
+      <div class="description">
+        <% victime = GameEvent.find_by(round: j, game: @game, event_type: "chasseur-kill").target %>
+        <h4><span class="bolder"><%= @chasseur.user.username.capitalize %></span> a tiré sa dernière balle sur <span class="bolder"><%= victime.user.username.capitalize %></span>, qui était <%= victime.character.name.capitalize %>.<% if victime.character.name == "loup" %> C'était judicieux de sa part ! <% else %> Ce n'était pas un choix judicieux... <% end %></h4>
+      </div>
+    </div>
     <% end %>
     <% j += 1 %>
   <% end %>
 </div>
-
 
 <!-- EMPTY DIV EMBEDDING DATA -->
 <div id="connect-to-game-channel" data-game-id="<%= @game.id %>" data-current-user-id="<%= current_user.id %>"></div>

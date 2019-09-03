@@ -7,10 +7,10 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
-          <% if current_user.photo.url != nil %>
-          <%= image_tag current_user.photo.url, class: "avatar" %>
+          <% if @gamer.is_alive %>
+            <%= image_tag @gamer.character.photo.url, class: "avatar" %>
           <% else %>
-          <%= image_tag "https://www.shareicon.net/data/128x128/2015/09/27/107947_doc_512x512.png", class: "avatar" %>
+            <%= image_tag @gamer.character.photo.url, class: "filtered" %>
           <% end %>
         </li>
       <% else %>
@@ -25,6 +25,9 @@
   <% @all_except_me.each do |player| %>
     <div class="player mx-3">
       <div class="player-photo">
+          <% if @gamer.is_link && player.is_link %>
+            <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="lovee">
+          <% end %>
         <% if player.user.photo.url != nil %>
           <%= image_tag player.user.photo.url, class: "avatar" %>
         <% else %>
@@ -53,7 +56,7 @@
 <div class="etat">
   <div class="etat-photo">
     <img src="https://garysanis.com/Pics/Space/WheatAgainstSettingSun_Big.gif" alt="">
-    <h2 class="etat-text">Le vote entre villageois approche. <br> Gare l'oeil ouvert !</h2>
+    <h2 class="etat-text">Le vote entre villageois approche. <br> Garde l'oeil ouvert !</h2>
   </div>
 </div>
 

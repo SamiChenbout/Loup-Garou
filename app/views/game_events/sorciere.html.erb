@@ -95,7 +95,11 @@
 </div>
 <% else %>
   <div class="repos">
+    <% if @gamer.is_alive %>
     <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
+    <% else %>
+    <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
+    <% end %>
   </div>
   <div class="his-role">
     <div class="character">

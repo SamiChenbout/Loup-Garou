@@ -98,6 +98,7 @@ class GamesController < ApplicationController
       @dead << player if player.user != current_user && player.is_alive == false
     end
     @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
+    @game.update(round: @game.round + 1)
   end
 
   def couple
