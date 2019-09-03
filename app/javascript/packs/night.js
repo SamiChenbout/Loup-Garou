@@ -1,24 +1,24 @@
 const cupidon = () => {
   if(document.querySelector('.cupidon')) {
-    myTimer(10000000000, `random_couple_choose`);
+    myTimer(15, `random_couple_choose`);
   }
 }
 
 const voyante = () => {
   if(document.querySelector('.voyante')) {
-    myTimer(10, `voyante_next_step`);
+    myTimer(15, `voyante_next_step`);
   }
 }
 
 const loup = () => {
   if(document.querySelector('.loup')) {
-    myTimer(10, `random_loup_choose`);
+    myTimer(30, `random_loup_choose`);
   }
 }
 
 const sorciere = () => {
   if(document.querySelector('.sorciere')) {
-    myTimer(10, `random_sorciere_choose`);
+    myTimer(15, `random_sorciere_choose`);
   }
 }
 
