@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
       game_id: game.id
     })
   end
+  # app/controllers/application_controller.rb
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
 end
