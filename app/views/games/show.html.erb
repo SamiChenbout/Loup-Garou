@@ -48,9 +48,10 @@
 
 <!-- MAIN CHATROOM -->
 <div class="container">
-  <div id="messages" class="message-box"></div>
-  <div class="message-form">
-    <%= render 'messages/form', game: @game, message: @message, gamer: @gamer %>
+    <div id="messages" class="message-box">
+    </div>
+    <div class="message-form">
+      <%= render 'messages/form', game: @game, message: @message, gamer: @gamer %>
   </div>
 </div>
 
