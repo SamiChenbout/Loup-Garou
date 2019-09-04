@@ -89,7 +89,7 @@
       <% @all_except_me.each do |player| %>
         <div class="mycheck player mx-1">
           <div>
-            <%= check_box_tag :target, player %>
+            <%= check_box_tag :target, player.id %>
           </div>
           <div class="player-photo">
             <div class="puce d-none"><p>0</p></div>
