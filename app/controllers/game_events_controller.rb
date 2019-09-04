@@ -21,7 +21,7 @@ class GameEventsController < ApplicationController
         previous_vote.destroy
       end
     @game_event.save
-    broadcast_score
+    return broadcast_score
     else
       # WHEN STEP IS NOT DAY
       if @actor.character.name == "sorciere"
@@ -280,11 +280,13 @@ class GameEventsController < ApplicationController
       @dead << player if player.user != current_user && player.is_alive == false
     end
   end
+
   def voyante_next_step
     # Setting game round_step
     @game = Game.find(params[:game_id])
     @game.update(round_step: "loup")
     broadcast_status(@game)
+    redirect_to()
   end
 
   # LOUP

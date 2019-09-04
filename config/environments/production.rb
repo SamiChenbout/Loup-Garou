@@ -48,7 +48,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -79,8 +79,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.web_socket_server_url = "wss://lewagon-loup-garou.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://lewagon-loup-garou.herokuapp.com/cable', 'http://lewagon-loup-garou.herokuapp.com/cable']
+  config.action_cable.url = "wss://www.loup-garou.org/cable"
+  config.action_cable.allowed_request_origins = [ "http://www.loup-garou.org", "https://www.loup-garou.org" ]
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
