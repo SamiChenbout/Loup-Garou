@@ -1,6 +1,11 @@
+
+
+
 const play = () => {
-  const audio = document.getElementById("audio");
-  if (audio) {
+  const audio = new Audio('../../assets/audios/whatislove.mp3');
+  const audiodiv = document.getElementById("audiodiv");
+  if (audiodiv) {
+  console.log('hello!')
     audio.play();
   };
 };
