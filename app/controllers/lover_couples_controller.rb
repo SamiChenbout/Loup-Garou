@@ -29,7 +29,11 @@ class LoverCouplesController < ApplicationController
     @game = Game.find(params[:game_id])
     if LoverCouple.where(game: @game).count == 0
       # Designing 2 lovers ramdomly
-      @lovers = @game.players.sample(2)
+      @lovers = []
+      user_1 = User.find(1)
+      user_2 = User.find(2)
+      @lovers << @game.players.where(user: user_1, game: @game).first
+      @lovers << @game.players.where(user: user_2, game: @game).first
       @lover_couple = LoverCouple.new(lover1: @lovers[0], lover2: @lovers[1], game: @game)
       @lovers[0].update(is_link: true)
       @lovers[1].update(is_link: true)

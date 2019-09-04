@@ -1,5 +1,5 @@
 const dayScript = () => {
-  myTimerDay(1200000000000000, document.querySelector('.day'), `when_night_comes`);
+  myTimerDay(50, document.querySelector('.day'), `when_night_comes`);
   myTimerDay(1, document.querySelector('.end-day-calcul'), `when_night_talk`);
   myTimerDay(10, document.querySelector('.end-day'), `night`);
   myTimerDay(10, document.querySelector('.show-role'), `night`);
