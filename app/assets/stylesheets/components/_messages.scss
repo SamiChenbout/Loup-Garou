@@ -25,11 +25,11 @@
 }
 
 .message-form {
-  height: 50px!important;
+  height:10%;
   padding: 7px;
-  background-color: transparent!important;
+  background-color: #11194A;
   bottom: 0vh;
-  position: absolute;
+  position: fixed;
   width: 97%;
   .new_message {
     height: 100%;
@@ -99,10 +99,16 @@
 
 .message-box {
   flex:1;
-  overflow-y: scroll!important;
+  // overflow-y: scroll!important;
+  overflow-anchor:none;
   margin-bottom: 20vh;
-  max-height: 73vh;
+  height:90%;
   position: relative;
+}
+
+#message-anchor {
+  overflow-anchor:auto;
+  height:1px;
 }
 
 .message {
