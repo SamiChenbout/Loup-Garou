@@ -4,6 +4,7 @@ development:
   api_secret: NGytSPst8YZN_TfbLuY-_O5QF_M
   enhance_image_tag: true
   static_image_support: false
+  secure: true
 
 production:
   cloud_name: hll7cmkkh
@@ -11,6 +12,7 @@ production:
   api_secret: NGytSPst8YZN_TfbLuY-_O5QF_M
   enhance_image_tag: true
   static_image_support: true
+  secure: true
 
 test:
   cloud_name: hll7cmkkh
@@ -18,3 +20,4 @@ test:
   api_secret: NGytSPst8YZN_TfbLuY-_O5QF_M
   enhance_image_tag: true
   static_image_support: false
+  secure: true
