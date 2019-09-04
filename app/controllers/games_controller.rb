@@ -131,5 +131,6 @@ class GamesController < ApplicationController
     end
     @voyante = Player.where(game: @game, character: Character.where(name: "voyante").first).first
     @target = GameEvent.where(game: @game, actor: @voyante, event_type: "spy", round: @game.round).first.target
+    @game.update(round_step: "loup")
   end
 end

@@ -147,14 +147,10 @@
 <!-- Chat Room -->
 
 <% if @gamer.character.name == "loup" %>
-  <div id="loup_messages" class="message-box">
-    <% @game.messages.each do |message| %>
-      <% if message.player.character.name == "loup" %>
-        <%= render 'messages/show', message: message %>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="message-form">
-    <%= render 'messages/form', game: @game, message: Message.new %>
+  <div class="container">
+    <div id="loup_messages" class="message-box"></div>
+    <div class="message-form">
+      <%= render 'messages/form', game: @game, message: Message.new, gamer: @gamer%>
+    </div>
   </div>
 <% end %>
