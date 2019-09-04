@@ -39,7 +39,7 @@
     <div class="player mx-2">
       <div class="player-photo">
         <% if @gamer.is_link && player.is_link %>
-          <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="lovee">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Love_Heart_symbol.svg" alt="" class="lovee">
         <% end %>
         <% if player.user.photo.url != nil %>
           <%= image_tag player.user.photo.url, class: "avatar" %>
@@ -126,7 +126,7 @@
     <% if @gamer.is_alive %>
     <img src="https://media.giphy.com/media/cGCTkvdoPUld5yMiMd/giphy.gif" alt="" class="sleeping">
     <% else %>
-    <img src="http://66.media.tumblr.com/tumblr_mbp44gZ4MV1rfjowdo1_500.gif" alt="" class="sleeping">
+    <img src="https://www.pngkey.com/png/detail/239-2391163_game-over-game-over-en-png.png" alt="" class="sleeping">
     <% end %>
   </div>
   <div class="his-role">

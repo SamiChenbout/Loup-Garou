@@ -12,7 +12,7 @@
             <div class="player-photo">
               <div class="puce d-none"><p>0</p></div>
               <% if @gamer.is_link && player.is_link %>
-                <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="love">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Love_Heart_symbol.svg" alt="" class="love">
               <% end %>
               <%= f.label :target do %>
                 <% if player.user.photo.url != nil %>
@@ -35,7 +35,7 @@
       <div class="player mx-2">
         <div class="player-photo">
           <% if @gamer.is_link && player.is_link %>
-            <img src="http://wp.production.patheos.com/blogs/soulandcity/files/2016/09/Love.png" alt="" class="lovee mr-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Love_Heart_symbol.svg" alt="" class="lovee mr-2">
           <% end %>
           <% if player.user.photo.url != nil %>
             <%= image_tag player.user.photo.url, class: "avatar" %>
