@@ -7,18 +7,18 @@ Character.destroy_all
 User.destroy_all
 
 puts 'Seeding users...'
-user1 = User.new(username: "hugo_pur100", email: "User1@mail.fr", password: "password", level: 7, description: "Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
-user1.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567604820/pur100_jbviyj.png"
-user2 = User.new(username: "maya2024", email: "User2@mail.fr", password: "password", level: 5, description: "apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
+user1 = User.new(username: "St-Germain", email: "user6@mail.fr", password: "password", level: 6, description: "Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
+user1.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605181/b5yabm9mrg50xc4eyqt8_gjoghj.jpg"
+user2 = User.new(username: "maya2024", email: "user2@mail.fr", password: "password", level: 5, description: "apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
 user2.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605047/46993537_z2dsvh.jpg"
-user3 = User.new(username: "HubertEats", email: "User3@mail.fr", password: "password", level: 3, description: "Lorem inmaturo interitu ipse quoque sui pertaesus excessit e vitaet praefecturae.")
+user3 = User.new(username: "HubertEats", email: "user3@mail.fr", password: "password", level: 3, description: "Lorem inmaturo interitu ipse quoque sui pertaesus excessit e vitaet praefecturae.")
 user3.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605004/cf2elxghbxeeahy4eanr_nkq7n5.jpg"
-user4 = User.new(username: "SamiBabi", email: "User4@mail.fr", password: "password", level: 5, description: "inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo et praefecturae.")
+user4 = User.new(username: "Sami", email: "user4@mail.fr", password: "password", level: 5, description: "inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo et praefecturae.")
 user4.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567604931/52137839_srwwob.jpg"
-user5 = User.new(username: "CarloScobar", email: "User5@mail.fr", password: "password", level: 2, description: "Plata o Plomo ?")
+user5 = User.new(username: "CarloScobar", email: "user5@mail.fr", password: "password", level: 2, description: "Plata o Plomo ?")
 user5.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605098/51363551_tzxpyx.png"
-user6 = User.new(username: "St-Germain", email: "user6@mail.fr", password: "password", level: 6, description: "Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
-user6.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605181/b5yabm9mrg50xc4eyqt8_gjoghj.jpg"
+user6 = User.new(username: "hugo_pur100", email: "user6@mail.fr", password: "password", level: 6, description: "Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
+user6.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567604820/pur100_jbviyj.png"
 
 user1.save
 user2.save
@@ -56,10 +56,10 @@ game.save
 puts 'Game seeded!'
 
 puts 'Seeding players...'
-player1 = Player.new(user: user1, character: loup1, game: game)
+player1 = Player.new(user: user1, character: cupidon, game: game)
 player2 = Player.new(user: user2, character: loup2, game: game)
-player3 = Player.new(user: user3, character: voyante, game: game)
-player4 = Player.new(user: user4, character: chasseur, game: game)
+player3 = Player.new(user: user3, character: chasseur, game: game)
+player4 = Player.new(user: user4, character: voyante, game: game)
 player5 = Player.new(user: user5, character: sorciere, game: game)
 
 
