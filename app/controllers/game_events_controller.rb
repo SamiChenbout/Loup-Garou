@@ -324,7 +324,7 @@ class GameEventsController < ApplicationController
     # Assigning game_event attributes before saving
     @game_event.game = @game
     @game_event.round = @game.round
-    @actor = Player.where(game: @game, character: Character.where(name: "loup").first).first
+    @actor = Player.where(game: @game, player: @loup1).first
     @game_event.actor = @actor
     @game_event.event_type = "loup-vote"
     @game_event.save
