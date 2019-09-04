@@ -31,7 +31,7 @@ night();
 move2();
 couple();
 voyanteReveal();
-play();
+//play();
 animation();
 move();
 scroll_down();
