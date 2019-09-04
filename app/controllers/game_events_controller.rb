@@ -356,8 +356,8 @@ class GameEventsController < ApplicationController
     @actor = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
     @players = @game.players.where.not(user_id: @actor.id)
     # Designing a target ramdomly
-    target_user = User.find(6)
-    @target = Player.where(user: target_user).first
+    @cupidon = Player.where(game: @game, character: Character.where(name: "cupidon").first).first
+    @target = @cupidon
     # Creating corresponding game event
     @game_event = GameEvent.new(target: @target)
     # Assigning game_event attributes before saving
