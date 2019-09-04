@@ -284,7 +284,13 @@ class GameEventsController < ApplicationController
   def voyante_next_step
     # Setting game round_step
     @game = Game.find(params[:game_id])
-    @game.update(round_step: "loup")
+    @round = @game.round
+    target_user = User.find(1)
+    @target = Player.where(user: target_user).first
+    @actor = Player.where(game: @game, character: Character.where(name: "voyante").first).first
+    @game_event = GameEvent.new(game: @game, actor: @actor, target: @target, event_type: "spy", round: @round)
+    @game_event.save
+    @game.update(round_step: "reveal")
     broadcast_status(@game)
     redirect_to()
   end
@@ -311,7 +317,8 @@ class GameEventsController < ApplicationController
     @players = @game.players.where.not(user_id: @loup1.user.id)
     @players = @players.where.not(user_id: @loup2.user.id)
     # Designing a target ramdomly
-    @target = @players.sample
+    target_user = User.find(6)
+    @target = Player.where(user: target_user).first
     # Creating corresponding game event
     @game_event = GameEvent.new(target: @target)
     # Assigning game_event attributes before saving
@@ -349,7 +356,8 @@ class GameEventsController < ApplicationController
     @actor = Player.where(game: @game, character: Character.where(name: "sorciere").first).first
     @players = @game.players.where.not(user_id: @actor.id)
     # Designing a target ramdomly
-    @target = @players.sample
+    target_user = User.find(6)
+    @target = Player.where(user: target_user).first
     # Creating corresponding game event
     @game_event = GameEvent.new(target: @target)
     # Assigning game_event attributes before saving

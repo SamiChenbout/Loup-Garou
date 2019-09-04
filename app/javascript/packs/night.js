@@ -12,7 +12,7 @@ const voyante = () => {
 
 const loup = () => {
   if(document.querySelector('.loup')) {
-    myTimer(30, `random_loup_choose`);
+    myTimer(20, `random_loup_choose`);
   }
 }
 
