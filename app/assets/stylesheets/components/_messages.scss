@@ -98,12 +98,8 @@
 }
 
 .message-box {
-  flex:1;
-  // overflow-y: scroll!important;
-  overflow-anchor:none;
-  margin-bottom: 20vh;
-  height:90%;
-  position: relative;
+  min-height: 20px !important;
+  padding-bottom: 70px;
 }
 
 #message-anchor {
