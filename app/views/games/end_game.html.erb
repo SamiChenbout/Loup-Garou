@@ -49,6 +49,8 @@
       <%= image_tag @gamer.character.photo.url, class: "character" %>
       <% if @gamer.points != nil && @gamer.points > 0 %>
       <img src="https://www.shareicon.net/data/128x128/2017/03/29/881758_cup_512x512.png" alt="" class="badge">
+      <%= audio_tag("paperplanes.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
+
       <% else %>
       <img src="https://www.shareicon.net/data/128x128/2016/09/26/835604_halloween_512x512.png" alt="" class="badge">
       <% end %>

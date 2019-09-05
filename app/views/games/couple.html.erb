@@ -66,6 +66,8 @@
     <div class="lovers-photo">
       <div><%= image_tag @lovers.lover1.user.photo.url, class: "avatar" %></div>
       <div><%= image_tag @lovers.lover2.user.photo.url, class: "avatar" %></div>
+      <%= audio_tag("careless.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
+
     </div>
     <h2 class="lovers-text">L'amour vous a lié<br>A vous d'en faire une force !</h2>
   </div>
