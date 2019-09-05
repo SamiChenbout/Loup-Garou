@@ -1,4 +1,4 @@
-<div class="allplayers">
+<div class="allplayers all-up">
 
 <!-- ADD REMOTE TRUE? -->
   <% if @gamer.is_alive %>
@@ -61,7 +61,7 @@
   <% end %>
 </div>
 
-<div class="info-news">
+<div class="info-news all-up">
   <h4 class="text-center">
     <% @game.news.split("$").each do |phrase| %>
       <%= phrase %>
