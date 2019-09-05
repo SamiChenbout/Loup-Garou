@@ -25,6 +25,8 @@
 }
 
 .message-form {
+  display: flex;
+  align-items: flex-end;
   height:10%;
   padding: 7px;
   background-color: #11194A;
@@ -35,6 +37,7 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
   .form-group {
     width: 100%;
@@ -42,7 +45,7 @@
     padding: 0;
   }
   .form-control.text.required {
-    height: 75%;
+    height: 40px;
     width: 97%;
   }
 
@@ -84,12 +87,14 @@
 
 .sender {
   background-color: #d8e5e6!important;
-  text-align: justify;
+  text-align: text-left;
+  font-size: 18px!important;
 }
 
 .sendee {
-  background-color: #cdffeb!important;
-  text-align: justify;
+  background-color: #93b5b4!important;
+  text-align: text-right;
+  font-size: 18px!important;
 }
 
 .gauche {
@@ -124,10 +129,11 @@
 .message-content {
   background-color: #F2F9FC;
   border-radius: 3px;
-  padding: 8px 13px;
+  padding: 5px 8px;
   align-self: center;
   border-radius: 15px;
   max-width: 60vw;
+      font-size: 18px!important;
 }
 
 .message-username {
