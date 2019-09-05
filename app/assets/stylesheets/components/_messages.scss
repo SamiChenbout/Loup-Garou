@@ -104,7 +104,10 @@
 
 .message-box {
   min-height: 20px !important;
-  margin-bottom: 70px;
+  padding-top: 10px;
+  padding-bottom: 70px;
+  overflow-y: scroll;
+  height: 80vh;
 }
 
 #message-anchor {
