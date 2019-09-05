@@ -40,7 +40,6 @@ const scrollLastMessageIntoView = () => {
 // GAME REDIRECTION FUNCTION
 const redirectAllPlayers = (data) => {
   if (data.game_status.step === "starting") {
-    document.getElementById("title-adhoc").classList.add("d-none");
     if (data.game_status.round_step === "cupidon" && data.game_status.round === 1) {
       window.location = `/games/${data.game_id}/cupidon`;
     } else if (data.game_status.round_step === "voyante") {
