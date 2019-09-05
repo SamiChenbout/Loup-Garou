@@ -11,7 +11,8 @@ function addMessage(messageHTML) {
 
 function addLoupMessage(messageHTML) {
   const messages = document.getElementById('loup_messages');
-    messages.insertAdjacentHTML('beforeend', messageHTML);
+  messages.insertAdjacentHTML('beforeend', messageHTML);
+  scrollIntoView();
 }
 
 function scrollIntoView() {

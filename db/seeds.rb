@@ -7,7 +7,7 @@ Character.destroy_all
 User.destroy_all
 
 puts 'Seeding users...'
-user1 = User.new(username: "St-Germain", email: "user6@mail.fr", password: "password", level: 6, description: "Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
+user1 = User.new(username: "St-Germain", email: "user1@mail.fr", password: "password", level: 6, description: "Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
 user1.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605181/b5yabm9mrg50xc4eyqt8_gjoghj.jpg"
 user2 = User.new(username: "maya2024", email: "user2@mail.fr", password: "password", level: 5, description: "apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.")
 user2.remote_photo_url = "https://res.cloudinary.com/sami-chenbout/image/upload/v1567605047/46993537_z2dsvh.jpg"
