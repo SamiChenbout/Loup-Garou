@@ -1,6 +1,14 @@
-<h2 class="mj-text">Il manque  <span class="bolder" id="number-players">
-  <% if defined?(pluralize(6 - @game.players.count, "joueur", locale: :fr)) %>
-    <%= pluralize(6 - @game.players.count, "joueur", locale: :fr) %>...</span></h2>
-  <% else %>
-    <%= "Game starting..."  %>
-  <% end %>
+<% if @game.players.count && @game.players.count != 0 %>
+  <h2 class="mj-text" id="title-adhoc">
+    <span class="bolder" id="number-players">
+      <% if 6 - @game.players.count == 1 %>
+        <%= "Il manque #{6 - @game.players.count} joueur..."%>
+      <% elsif 6 - @game.players.count > 1 %>
+        <%= "Il manque #{6 - @game.players.count} joueurs..."%>
+      <% end %>
+    </span>
+  </h2>
+<% else %>
+  <h2 class="mj-text">La partie commence...</h2>
+<% end %>
+
