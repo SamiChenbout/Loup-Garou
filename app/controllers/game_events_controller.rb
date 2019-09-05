@@ -285,14 +285,12 @@ class GameEventsController < ApplicationController
     # Setting game round_step
     @game = Game.find(params[:game_id])
     @round = @game.round
-    target_user = User.find(1)
-    @target = Player.where(user: target_user).first
+    @loup1 = Player.where(game: @game, character: Character.where(name: "loup").first).first
     @actor = Player.where(game: @game, character: Character.where(name: "voyante").first).first
-    @game_event = GameEvent.new(game: @game, actor: @actor, target: @target, event_type: "spy", round: @round)
+    @game_event = GameEvent.new(game: @game, actor: @actor, target: @loup1, event_type: "spy", round: @round)
     @game_event.save
     @game.update(round_step: "reveal")
     broadcast_status(@game)
-    redirect_to()
   end
 
   # LOUP
@@ -317,16 +315,10 @@ class GameEventsController < ApplicationController
     @players = @game.players.where.not(user_id: @loup1.user.id)
     @players = @players.where.not(user_id: @loup2.user.id)
     # Designing a target ramdomly
-    target_user = User.find(6)
-    @target = Player.where(user: target_user).first
+    @cupidon = Player.where(game: @game, character: Character.where(name: "cupidon").first).first
     # Creating corresponding game event
-    @game_event = GameEvent.new(target: @target)
+    @game_event = GameEvent.new(target: @cupidon, game: @game, round: @game.round, actor: @loup1, event_type: "loup-vote")
     # Assigning game_event attributes before saving
-    @game_event.game = @game
-    @game_event.round = @game.round
-    @actor = Player.where(game: @game, player: @loup1).first
-    @game_event.actor = @actor
-    @game_event.event_type = "loup-vote"
     @game_event.save
     # Setting game round_step
     if @game.round == 1
