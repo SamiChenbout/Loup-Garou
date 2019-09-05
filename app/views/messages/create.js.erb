@@ -6,11 +6,20 @@ function refreshForm(innerHTML) {
 function addMessage(messageHTML) {
   const messages = document.getElementById('messages');
   messages.insertAdjacentHTML('beforeend', messageHTML);
+  scrollIntoView();
 }
 
 function addLoupMessage(messageHTML) {
   const messages = document.getElementById('loup_messages');
     messages.insertAdjacentHTML('beforeend', messageHTML);
+}
+
+function scrollIntoView() {
+  const messages = document.querySelectorAll('.message-content');
+  const lastMessage = messages[messages.length - 1];
+  if (lastMessage !== undefined) {
+    lastMessage.scrollIntoView();
+  }
 }
 
 function createMessage() {
