@@ -68,6 +68,7 @@
 <% if @gamer.character.name == "voyante" && @gamer.is_alive %>
   <div class="info-action">
     <h4>A toi de jouer !</h4>
+    <%= audio_tag("voyante.mp3", autoplay: true, controls: true, loop: false, hidden:true)  %>
   </div>
 <% else %>
   <div class="info-noaction">
