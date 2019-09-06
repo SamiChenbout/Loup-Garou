@@ -1,6 +1,6 @@
 const cupidon = () => {
   if(document.querySelector('.cupidon')) {
-    myTimer(10, `random_couple_choose`);
+    myTimer(5, `random_couple_choose`);
   }
 }
 
@@ -12,13 +12,13 @@ const voyante = () => {
 
 const loup = () => {
   if(document.querySelector('.loup')) {
-    myTimer(20, `random_loup_choose`);
+    myTimer(180, `random_loup_choose`);
   }
 }
 
 const sorciere = () => {
   if(document.querySelector('.sorciere')) {
-    myTimer(10, `random_sorciere_choose`);
+    myTimer(7, `random_sorciere_choose`);
   }
 }
 
